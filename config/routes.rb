@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :mylists
   resources :products
   resources :contacts, only: [:new, :create]
+  resources :reviews
   get 'users/show'
   
   #resources :products do

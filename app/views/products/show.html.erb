@@ -1,3 +1,15 @@
-      <tr>
-        <td><%= image_tag @products.image_url.to_s %></td>
-      </tr>
+
+<div>
+<tr>
+  <td><%= image_tag(@products.image_url.to_s, :class => "image-tag") %></td>
+</tr>
+</div>
+
+<div>
+  <ul>
+   <li><%= @products.name %></li>
+   <li><%= @products.description %></li>
+   <li><%= @products.sale_price %></li>
+   <li><%= link_to @products.reviews, review_path %></li>
+  </ul>
+</div>
