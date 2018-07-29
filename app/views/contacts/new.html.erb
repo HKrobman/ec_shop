@@ -1,0 +1,36 @@
+<% provide(:title, 'Contact') %>
+<div class="contents-center">
+<div class="contact">
+    <%= form_for(@contact) do |f| %>
+    <div class="field">
+      <%= f.label :name, '氏名' %><br />
+      <%= f.text_field :name %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :telphone, '電話番号' %><br />
+      <%= f.text_field :telphone %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :email, 'メールアドレス' %><br />
+      <%= f.text_field :email %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :content_type, '問い合わせ内容' %><br />
+      <%= f.text_field :content_type %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :content, '詳細' %><br />
+      <%= f.text_area :content %>
+    </div>
+    
+    <div class="field">
+      <%= f.submit "送信", class: "btn btn-large btn-primary" %>
+    </div>
+      
+    <% end %>
+</div>
+</div>

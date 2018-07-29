@@ -1,6 +1,6 @@
-class CreateItems < ActiveRecord::Migration[5.2]
+class CreateProducts < ActiveRecord::Migration[5.2]
   def change
-    create_table :items do |t|
+    create_table :products do |t|
       t.string :name
       t.integer :category_id
       t.string :company
@@ -12,7 +12,7 @@ class CreateItems < ActiveRecord::Migration[5.2]
       t.string :image_url
       t.string :color
       t.integer :delivery_days
-      t.integer :active
+      t.boolean :active
 
       t.timestamps
     end

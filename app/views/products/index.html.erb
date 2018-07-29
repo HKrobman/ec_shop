@@ -1,0 +1,34 @@
+<% provide(:title, 'Product') %>
+<div class="product-content">
+<h3>検索窓とか</h3>
+
+<nav>
+  <div class="menu">
+  <ul>
+    <li><%= link_to "本・雑誌", products_path %> </li>
+    <li><%= link_to "食品", products_path %> </li>
+    <li><%= link_to "衣類", products_path %> </li>
+    <li><%= link_to "家電", products_path %> </li>
+    <li><%= link_to "玩具", products_path %> </li>
+  </ul> 
+ </div>
+</nav>
+
+<div class="product">
+<ul>
+ <% @products.each do |product| %>    
+  <li>
+    
+      <%= link_to image_tag(product.image_url.to_s, :size => '100x100'), product ,{ class: :"image" }%>
+      <div>
+        <div><%= link_to product.name, product%></div>
+        <div><%= product.company %></div>
+      </div>
+      <div><%= product.sale_price %>円</div>
+      <div><%= link_to "星"%></div>
+  </li>
+ <% end %>
+</ul>
+</div>
+</div>
+

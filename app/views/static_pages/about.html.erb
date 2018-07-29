@@ -1,1 +1,57 @@
 <% provide(:title, 'About') %>
+<div class="about">
+  <h1>About us</h1>
+  
+  <div id="maps_canvas"></div>
+  
+</div>
+
+
+    <script type="text/javascript">
+    function init() {
+
+      // 緯度経度の指定 lat:35.70564, lng:139.751891
+      var latlng = new google.maps.LatLng(35.70564,139.751891)
+
+      // マップの表示オプションを指定
+      var options = {
+        zoom: 17,
+        center: latlng,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      };
+
+      //Geocoding: Address =>　アドレスを緯度経度に変換
+      //Reverse Geocoding: LatLng =>　緯度経度をアドレスに変換
+      //google cloudプラットフォームでGeocodingApiを有効化
+      var geocoder = new google.maps.Geocoder();
+      // 指定のタグにマップを表示
+      var map = new google.maps.Map(document.getElementById('maps_canvas'), options);
+
+      map.addListener('click', function(e){
+        var marker = new google.maps.Marker({
+          position: e.latLng,
+          map: this,
+          title: e.latLng.toString(),
+          animation: google.maps.Animation.DROP
+          //icon: 'icon.png'　アイコンの指定
+          //icon: {
+          //  url: 'icon.png',
+          //  scaleSize: new.google.map.Size(24,24)  アイコンがくっきり表示される
+          //}
+          //title: "Tokyo!"　マーカーをhoverするとこの文字が表示される
+          //animation: google.maps.Animation.BOUNCE  マーカーがバウンドし続ける
+          //animation: google.maps.Animation.DROP  マーカーがドロップする(アニメーションの連続性はない)
+        });
+        var infoWindow = new google.maps.InfoWindow({
+          content: e.latLng.toString()
+        });
+        marker.addListener('click', function(){
+          infoWindow.open(map, marker); //mapとmarkerを紐付けるための処理
+          //this.setMap(null);   //配置されたマーカーを再度クリックすると、そのマーカーが消去される
+        });
+      });
+    }
+
+
+  google.maps.event.addDomListener(window, 'load', init);
+  </script>
