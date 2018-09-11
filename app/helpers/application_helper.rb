@@ -1,6 +1,6 @@
 module ApplicationHelper
     def full_title(page_title)
-        base_title = "何かサイトの名前"
+        base_title = "MY EC-SHOP"
       if page_title.empty?
           base_title
       else

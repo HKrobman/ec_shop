@@ -1,15 +1,28 @@
 class ReviewsController < ApplicationController
-    
+  before_action :authenticate_user!
+  
   def index 
-      @reviews = Review.all
+    
+    @reviews = Review.all
+  end
+  
+  def new
+    @review = Review.new
   end
 
   def show
-      @reviews = Review.find(params[:id])
+   
   end
   
   def create
-      @reviews = Review.find(params[:id])
+    @product = Product.find(params[:id])
+    @review = Review.new(review_params)
+    @review.product_id = @producs.id
   end
   
+   private
+
+    def review_params
+      params.require(:review).permit(:name, :title, :description)
+    end
 end

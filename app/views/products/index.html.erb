@@ -1,34 +1,33 @@
 <% provide(:title, 'Product') %>
-<div class="product-content">
 <h3>検索窓とか</h3>
 
+<div class="menu">
 <nav>
-  <div class="menu">
   <ul>
-    <li><%= link_to "本・雑誌", products_path %> </li>
-    <li><%= link_to "食品", products_path %> </li>
-    <li><%= link_to "衣類", products_path %> </li>
-    <li><%= link_to "家電", products_path %> </li>
-    <li><%= link_to "玩具", products_path %> </li>
+    <li><%= link_to "本・雑誌", products_path(category_id: 1),:class =>"list" %> </li>
+    <li><%= link_to "衣類", products_path(category_id: 2),:class =>"list" %> </li>
+    <li><%= link_to "食品", products_path(category_id: 3),:class =>"list" %> </li>
+    <li><%= link_to "家電", products_path(category_id: 4),:class =>"list" %> </li>
+    <li><%= link_to "玩具", products_path(category_id: 5),:class =>"list" %> </li>
   </ul> 
- </div>
 </nav>
+</div>
 
 <div class="product">
-<ul>
- <% @products.each do |product| %>    
-  <li>
-    
-      <%= link_to image_tag(product.image_url.to_s, :size => '100x100'), product ,{ class: :"image" }%>
-      <div>
-        <div><%= link_to product.name, product%></div>
-        <div><%= product.company %></div>
-      </div>
-      <div><%= product.sale_price %>円</div>
-      <div><%= link_to "星"%></div>
-  </li>
- <% end %>
-</ul>
+  <ul>
+   <% @products.each do |product| %>    
+    <li>
+       <%= link_to image_tag(product.image_url.to_s, :size => '180x180'), product %>
+       <div>
+         <div><%= link_to product.name, product%></div>
+         <div><%= product.company %></div>
+       </div>
+       <div>¥ <%= product.sale_price %></div>
+       <div><%= link_to "星"%></div>
+    </li>
+   <% end %>
+  </ul>
 </div>
-</div>
-
+  <div class="page">
+      <%= paginate @products %>
+  </div>

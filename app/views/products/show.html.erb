@@ -1,15 +1,68 @@
-
-<div>
-<tr>
-  <td><%= image_tag(@products.image_url.to_s, :class => "image-tag") %></td>
-</tr>
+<div class="menu">
+<nav>
+   <ul>
+       <li><%= link_to "本・雑誌", products_path,:class =>"list" %> </li>
+       <li><%= link_to "食品", products_path,:class =>"list" %> </li>
+       <li><%= link_to "衣類", products_path,:class =>"list" %> </li>
+       <li><%= link_to "家電", products_path,:class =>"list" %> </li>
+       <li><%= link_to "玩具", products_path,:class =>"list" %> </li>
+   </ul> 
+</nav>
 </div>
 
-<div>
-  <ul>
-   <li><%= @products.name %></li>
-   <li><%= @products.description %></li>
-   <li><%= @products.sale_price %></li>
-   <li><%= link_to @products.reviews, review_path %></li>
+<div class="product-contents">
+ 
+    <div class="left">
+        <%= image_tag(@product.image_url.to_s, :class => "show-image-tag left") %>
+       <div class="back-image"></div>
+        <div class="review-coments">
+           <h3>商品レビュー</h3>
+           <p>レビュー数: <%= @product.reviews.count %> 件</p>
+           <p>
+              <%= link_to "全てのレビューを見る", review_path(:product_id), :class => "review_show"%>
+              <%= link_to "レビューを投稿する", new_review_path(:product_id), :class => "review_post"%>
+           </p>
+           
+           <% if @product.reviews.count > 0 %>
+               <div class="review">
+                   <%= @reviews.title %>
+                   <%= @review.description %>
+               </div>
+           <% end %>
+        </div>      
+
+    </div>
+    
+
+  <ul class="right">
+   <li>
+       <p class ="product-name"><%= @product.name %></p>
+   </li>
+   <li>       
+       <p class="sale-price"><span>価格：¥</span> <%= @product.sale_price %><span class="stock">在庫:<%= @product.stocks %><span></p>
+       
+       <div class="sub-box">
+           <!--form-->
+           <p>数量選択ボックス</p>
+           <%= button_to "カートに入れる", cart_items_path(product_id: params[:id]),:class=> 'btn btn-large btn-primary add-cart' %>
+       </div>
+   </li>
+   <li>
+     <div class="product-description">
+       <p>商品説明</p>
+       <p class ="description" ><%= @product.description%></p> 
+     </div>
+   </li>
+   <li>
+     <p>関連商品</p>
+     <div class="relative-box">
+     </div>
+   </li>
   </ul>
-</div>
+    
+ 
+   </div>
+ 
+  
+  
+ </div>

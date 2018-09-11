@@ -1,28 +1,28 @@
 <% provide(:title, 'Contact') %>
-<div class="contents-center">
 <div class="contact">
+    <h1>Contact</h1>
     <%= form_for(@contact) do |f| %>
     <div class="field">
       <%= f.label :name, '氏名' %><br />
-      <%= f.text_field :name %>
+      <%= f.text_field :name, class: "contact-form" %>
     </div>
     
     <div class="field">
       <%= f.label :telphone, '電話番号' %><br />
-      <%= f.text_field :telphone %>
+      <%= f.text_field :telphone, class: "contact-form"  %>
     </div>
     
     <div class="field">
       <%= f.label :email, 'メールアドレス' %><br />
-      <%= f.text_field :email %>
+      <%= f.text_field :email, class: "contact-form"  %>
     </div>
     
-    <div class="field">
+    <div class="field ">
       <%= f.label :content_type, '問い合わせ内容' %><br />
-      <%= f.text_field :content_type %>
+      <%= f.text_field :content_type, class: "contact-form"  %>
     </div>
     
-    <div class="field">
+    <div class="field ">
       <%= f.label :content, '詳細' %><br />
       <%= f.text_area :content %>
     </div>
@@ -32,5 +32,4 @@
     </div>
       
     <% end %>
-</div>
 </div>

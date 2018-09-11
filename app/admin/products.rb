@@ -11,7 +11,6 @@ ActiveAdmin.register Product do
 #   permitted << :other if params[:action] == 'create' && current_user.admin?
 #   permitted
 # end
-  
   filter :category_id,
                  label: 'カテゴリー',
                  as: :select,
@@ -25,7 +24,6 @@ ActiveAdmin.register Product do
   filter :active
   filter :created_at
   filter :updated_at
-  
 
   index do
       column :name

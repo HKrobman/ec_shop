@@ -1,0 +1,15 @@
+<% provide(:title, 'Cart')%>
+<div class = "cart">
+  <table>
+   <% @cart_items.each do |item| %>
+    <tr>
+      <td><%= image_tag(item.product.image_url.to_s, :class => "cart-image-tag")%></td>
+      <td><%= item.product.name %></td>
+      <td><%= item.product.sale_price %>円</td>
+      <td><%= item.quantity %>個</td>
+    </tr>
+    <% end %>
+  </table>
+  
+  <%= button_to 'カートを空にする', @cart, method: :delete, confirm: 'カートを空にしますか？', class: 'destroy-cart' %>
+</div>

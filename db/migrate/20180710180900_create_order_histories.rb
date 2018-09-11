@@ -1,8 +1,8 @@
-class CreateOrderHistories < ActiveRecord::Migration[5.2]
+class CreateOrderHistories < ActiveRecord::Migration[5.1]
   def change
     create_table :order_histories do |t|
       t.integer :user_id
-      t.integer :item_id
+      t.integer :product_id
       t.date :orderd_at
 
       t.timestamps

@@ -1,7 +1,7 @@
-class CreateReviews < ActiveRecord::Migration[5.2]
+class CreateReviews < ActiveRecord::Migration[5.1]
   def change
     create_table :reviews do |t|
-      t.integer :product_id
+      t.integer :item_id
       t.text :description
       t.string :rank
       
