@@ -14,16 +14,15 @@ Rails.application.routes.draw do
   resources :mylists
   resources :contacts, only: [:new, :create]
   
-  post '/update_item' => 'carts#update_item'
-  resources :carts
+  resources :carts, only:[:show, :create, :destroy]
   
   resources :cart_items
+  resources :orders
+  #resources :payment_methods
   
   
-  
-  resources :products
+  resources :products 
   resources :reviews
-  
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'static_pages#home'
   match '/about',     to: 'static_pages#about',    via: 'get'

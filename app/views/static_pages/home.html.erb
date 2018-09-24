@@ -1,5 +1,9 @@
 <div class="home contents-center">
     <h1 class="home-h1">Welcome to MY EC-SHOP</h1>
-    
+  
+  <% if signed_in? %>
+    <p><%= link_to "Let's  go shopping!", products_path, :class =>"home-p" %></p>
+  <% else %>    
     <p><%= link_to "Sign in", new_user_session_path,{:class => "home-p"} %></p>
+  <% end %>
 </div>  

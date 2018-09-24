@@ -38,34 +38,11 @@
   </div>
 
   <div class="field">
-    <%= f.label :email, 'メールアドレス'%><br />
+    <%= f.label :email, 'メールアドレス',class: "control-label"%><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
   </div>
+  
  
-  
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-  
-  <div class="field">
-    <%= f.label :password, 'パスワード(6文字以上)' ,class: "control-label" %>
-    <% if @validatable %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %>
-    <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :password_confirmation, 'パスワード(確認)'%>
-    <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
-  </div>
-  
-  
-  <div class="field">
-    <%= f.label :current_password,'現在のパスワード',class: "control-label" %> <br />
-    <%= f.password_field :current_password, autocomplete: "off", class: "form-control" %>
-  </div>
-
   <div class="field field-center">
     <%= f.submit "保存", class: "btn btn-large btn-primary" %>
   </div>

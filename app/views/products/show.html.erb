@@ -12,26 +12,28 @@
 
 <div class="product-contents">
  
-    <div class="left">
-        <%= image_tag(@product.image_url.to_s, :class => "show-image-tag left") %>
-       <div class="back-image"></div>
-        <div class="review-coments">
-           <h3>商品レビュー</h3>
-           <p>レビュー数: <%= @product.reviews.count %> 件</p>
-           <p>
-              <%= link_to "全てのレビューを見る", review_path(:product_id), :class => "review_show"%>
-              <%= link_to "レビューを投稿する", new_review_path(:product_id), :class => "review_post"%>
-           </p>
+  <div class="left">
+    <%= image_tag(@product.image_url.to_s, :class => "show-image-tag left") %>
+    <div class="back-image"></div>
+      <div class="review-coments">
+       <p>レビュー数: <%= @product.reviews.count %> 件</p>
+       <p>
+        <span class="all-review"><%= link_to "全てのレビューを見る", reviews_path(product_id: params[:id]), :class => "review_show"%></span>
+        <span class="post-review"><%= link_to "レビューを投稿する", new_review_path(product_id: params[:id]), :class => "review_post"%></span>
+       </p>
            
-           <% if @product.reviews.count > 0 %>
-               <div class="review">
-                   <%= @reviews.title %>
-                   <%= @review.description %>
-               </div>
-           <% end %>
-        </div>      
-
-    </div>
+        <div class="m-review">
+         <% if @product.reviews.count > 0 %>
+          <p class="m-review-title" ><%= @review.title %></p>
+          <p>レビュー投稿日 : <%= @review.created_at.strftime('%Y/%m/%d') %><%=@review.name%></p>
+          <p class="m-review-desc"><%= @review.description %></p>
+         <% else %>
+          <p class="review-title">レビューはありません</p>
+         <% end %>   
+        </div>
+       
+    </div>      
+  </div>
     
 
   <ul class="right">
@@ -39,12 +41,23 @@
        <p class ="product-name"><%= @product.name %></p>
    </li>
    <li>       
-       <p class="sale-price"><span>価格：¥</span> <%= @product.sale_price %><span class="stock">在庫:<%= @product.stocks %><span></p>
+       <p class="sale-price">価格：<span class="price"><%= @product.sale_price %></span><span class="price-unit">円</span> 在庫:<span class="stock"><%= @stock %><span></p>
        
        <div class="sub-box">
-           <!--form-->
-           <p>数量選択ボックス</p>
-           <%= button_to "カートに入れる", cart_items_path(product_id: params[:id]),:class=> 'btn btn-large btn-primary add-cart' %>
+        
+           <%= form_tag(cart_items_path(product_id: params[:id])) do %>
+             <%= label :quantity, "注文個数 : ", :class=> "count-text" %>
+             <%= number_field_tag :quantity, nil , in:1..10, :class=> "count"  %>
+             <%= submit_tag "カートに入れる",  :class=> 'btn btn-large btn-primary add-cart' %>
+           <% end %>
+             
+           
+           <% if @mylist %>
+           　<%= button_to "マイリスト解除", mylist_path(product_id: params[:id]) , {:method=> "delete", :class=>'mylist-btn'} %>　
+           <% else %>
+             <%= button_to "マイリスト登録", mylists_path(product_id: params[:id]) , {:class=>'mylist-btn'} %>
+           <% end %>
+           
        </div>
    </li>
    <li>
@@ -54,9 +67,13 @@
      </div>
    </li>
    <li>
-     <p>関連商品</p>
-     <div class="relative-box">
-     </div>
+     <div class="product-info">
+       <p>商品情報</p>
+       <div class = "product-info-desc">
+         <p>商品コード:　<%= @product.code %></p>
+         <p>メーカー:　<%= @product.company %></p>
+       </div>
+    </div>
    </li>
   </ul>
     

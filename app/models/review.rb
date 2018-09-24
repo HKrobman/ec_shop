@@ -1,3 +1,7 @@
 class Review < ApplicationRecord
-    has_many :products
+    belongs_to :product
+    belongs_to :user
+    
+    validates :name, :title, :description, presence: true
+    validates :description, length: {maximum: 300}
 end

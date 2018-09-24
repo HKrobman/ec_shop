@@ -1,0 +1,12 @@
+<div class="review-index">
+	<% @reviews.each do |review| %>
+	<ul>
+	 <li class="m-review-index">
+	   <p class="m-review-title"><%= review.title %></p>
+	   <p class="review-time"><%= review.created_at.strftime('%Y/%m/%d') %></p>
+	   <p><%= review.name %></p>
+	   <p class="m-review-desc"><%= review.description%></p>
+	 </li>
+	</ul>
+	<% end %>
+</div>

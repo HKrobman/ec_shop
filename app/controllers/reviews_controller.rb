@@ -2,22 +2,29 @@ class ReviewsController < ApplicationController
   before_action :authenticate_user!
   
   def index 
-    
-    @reviews = Review.all
+    @reviews = Review.where(product_id: params[:product_id]).page(params[:page]).per(6)
   end
   
   def new
+    @product = Product.find(params[:product_id])
     @review = Review.new
   end
 
+#必要?
   def show
-   
+   @reviews = Review.find(product_id: params[:product_id]).page(params[:page]).per(6)
   end
+#必要?
   
   def create
-    @product = Product.find(params[:id])
-    @review = Review.new(review_params)
-    @review.product_id = @producs.id
+    user = current_user
+    @review = Review.new(
+      name: review_params[:name],
+      title: review_params[:title],
+      description: review_params[:description],
+      user_id: user.id,
+      product_id: params[:product_id])
+      redirect_to products_path(params[:product_id])  if @review.save   #
   end
   
    private

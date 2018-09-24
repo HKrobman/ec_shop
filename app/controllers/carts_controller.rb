@@ -1,9 +1,7 @@
 class CartsController < ApplicationController
-    before_action :set_up_cart, only: [:add_items, :update_items, :delete_items]
    
   def show
-    @cart_items = current_cart.cart_items
-    #binding.pry
+    @cart_items = current_cart.cart_items.all.page(params[:page]).per(4)
   end
 
   def update_items
@@ -13,7 +11,7 @@ class CartsController < ApplicationController
     
   def destroy
     current_cart.destroy
-    redirect_to current_cart
+    redirect_to cart_path
   end
 
   def total_price

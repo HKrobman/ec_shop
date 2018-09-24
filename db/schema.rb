@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_09_034525) do
+ActiveRecord::Schema.define(version: 2018_09_24_124000) do
 
   create_table "active_admin_comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "namespace"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 2018_09_09_034525) do
     t.integer "cart_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "order_id"
   end
 
   create_table "carts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -81,12 +82,13 @@ ActiveRecord::Schema.define(version: 2018_09_09_034525) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "order_histories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "user_id"
     t.integer "product_id"
     t.date "orderd_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "pay_type"
   end
 
   create_table "payment_methods", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -124,6 +126,7 @@ ActiveRecord::Schema.define(version: 2018_09_09_034525) do
     t.datetime "updated_at", null: false
     t.string "title"
     t.string "name"
+    t.integer "user_id"
   end
 
   create_table "stocks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -155,7 +158,7 @@ ActiveRecord::Schema.define(version: 2018_09_09_034525) do
     t.datetime "updated_at", null: false
     t.string "name_kanji"
     t.string "name_kana"
-    t.integer "payment_id"
+    t.integer "payment_method_id"
     t.string "telphone"
     t.string "zip_code"
     t.string "prefecture"

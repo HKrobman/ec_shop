@@ -1,12 +1,15 @@
 <% provide(:title, 'Mypage') %>
+
+<div class = "user-icon">
+  <%= fa_icon 'user', class: 'fa-user-icon'%>
+</div>
 <div class="mypage-home">
  <ul>
    <li><%= link_to "会員情報の確認・変更", edit_user_registration_path, :class =>"list"%></li>
-   <li><%= link_to "マイリスト", mylist_path(:user_id), :class =>"list" %></li>
+   <li><%= link_to "マイリスト", mylists_path(current_user), :class =>"list" %></li>
    <li><%= link_to "注文履歴・レビュー投稿", "#", :class =>"list" %></li>
    <li><%= link_to "支払い方法の確認・変更", "#", :class =>"list" %></li>
  
-   
    <%= button_to "退会",:class =>"quit", method: :delete %>
  </ul>
 </div>

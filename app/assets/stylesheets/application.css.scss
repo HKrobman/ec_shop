@@ -83,7 +83,7 @@ html, body {
   }
      
    .mypage{
-       padding-bottom: 40px;
+       padding-bottom: 30px;
    } 
      
   .awesome{
@@ -103,7 +103,6 @@ html, body {
   }
 
   ul{
-     list-style: none;
      display: block;
    }
 
@@ -129,7 +128,7 @@ html, body {
 }
 
 .credit{
-    padding-top: 40px;
+    padding-top: 20px;
     font-size: 1px;
 }
 
@@ -156,6 +155,7 @@ html, body {
     display: block;
     padding-top:60px;
     font-size: 30px;
+    color: orange;
 }
 
 /* Sign_in */
@@ -203,12 +203,14 @@ html, body {
     .contact-form{
         color: black;
         width: 300px;
+        border-radius: 10px;
     }
     
     textarea{
         color: black;
         width: 300px;
         height: 200px;
+        border-radius: 10px;
     }
 }
 
@@ -254,6 +256,15 @@ html, body {
 
 /*  product show   */
 
+.m-review-title{
+    font-size: 20px;
+    border-bottom: 1px solid orange;
+}
+
+.m-review-desc{
+    
+}
+
 .product-contents{
     padding: 30px;
 }
@@ -261,7 +272,7 @@ html, body {
 .show-image-tag{
     width: 450px;
     height: 350px;
-    margin: 40px 20px 30px 40px;
+    margin: 40px 20px 40px 40px;
     float: left;
     display: block;
 }
@@ -272,12 +283,6 @@ html, body {
     background-color: #2e2e2e;
 }
 
-.product-description{
-    width: 500px;
-    height: 300px;
-    float: left;
-    padding-top: 40px;
-}
 
 .left{
     float: left;
@@ -297,40 +302,108 @@ html, body {
     
 }
 
-.review{
+.m-review{
     width: 500px;
-    height: 200px;
-    background-color: white;
+    height: 150px;
+    padding: 10px;
+    background-color: #1d1d1d;
     border-radius: 20px;
 }
 
-.review_form{
+.all-review{
+    padding-left: 10px;
+    padding-right: 200px;
+}
+
+.review-form{
+    top: 200px;
+    position: relative;
+    padding: 30px;
+    text-align: center;
+    font-weight: bold;
+    border: solid 1px black;
+    border-top: solid 1px orange;
+    border-bottom: solid 1px orange;
+    border-radius: 10px;
+    width: 600px;
+    height: 500px;
+    margin: 0 auto;
+    
+    .review-input{
+        margin-bottom: 30px;
+        width: 300px;
+    }
+    
     input{
         color: black;
     }
     
     textarea{
         color: black;
+        width: 300px;
+        height: 170px;
+        margin-bottom: 20px;
     }
+    
+    .btn{
+        color: white;
+        width: 200px;
+    }
+
 }
 
+.review-index{
+    top: 100px;
+    position: relative;
+    margin: 0 auto;
+    width: 700px;
+    height: 600px;
+    
+   .m-review-index{
+      background-color: #2e2e2e;
+      width: 500px;
+      border-radius: 10px;
+      padding-left: 10px;
+      margin-bottom: 20px;
+  }
+ 
+ .review-time{
+     font-size: 10px;
+     
+ }
+  
+}
 
-
-.relative-box{
-    border: 1px solid #2e2e2e;
+.product-description{
     width: 500px;
-    height: 80px;
+    height: 220px;
+    //float: left;
+    padding-top: 40px;
+}
+
+.product-info{
+    
+    //float: left;
+    margin-top: 20px;
+}
+
+.product-info-desc{
+    border: 1px solid #2e2e2e;
+    font-size: 10px;
+    height: 70px;
+    width: 500px;
     border-radius: 10px;
+    padding: 5px 0px 5px 10px;
 }
 
 .description{
-      float: left;
+      //float: left;
       font-size: 20px;
       background-color: #2e2e2e;
       width: 500px;
-      height: 180px;
+      height: 150px;
       border-radius: 10px;
-      padding-left: 10px;
+      padding: 10px 0px 0px 10px;
   }
   
   
@@ -339,8 +412,9 @@ html, body {
     padding-left: 20px;
     font-size: 30px;
     line-height: 30px; 
-    border: 1px solid #2e2e2e;
-    border-radius: 10px;
+    border-bottom: 2px solid #2e2e2e;
+    //border: 1px solid #2e2e2e;
+    //border-radius: 10px;
     margin-bottom: 30px;
 }
 
@@ -348,45 +422,85 @@ html, body {
     border-bottom: 1px solid white;
     width: 320px;
     margin-left: 70px;
+    font-size: 15px;
+   
+  .price{
     color: orange;
-    font-size: 25px;
-    
-  span{
-      color: white;
-      font-size: 20px;
+    font-size: 30px;
+    padding-right: 5px;
   }
-}
+    
+   .price-unit{
+       padding-right: 40px;
+   }
 
-.stock{
-    padding-left: 80px;
+  .stock{
+    padding-left: 10px;
+    font-size: 15px;
+    color: orange;
+  }
+
 }
 
 .sub-box{
+    position: relative;
     margin-top: 30px;
     margin-left: 100px;
     width: 250px;
-    height: 120px;
+    height: 150px;
     border: 2px solid #2e2e2e;
-    //background-color: #151515;
-}
-.add-cart{
+    
+  .count-text{
+      position: absolute;
+      top: 12px;
+      left: 30px;
+  }
+    
+  .count{
+      position: absolute;
+      background-color: #2e2e2e;
+      border: 1px solid #1d1d1d;
+      border-radius: 10px;
+      width: 80px;
+      top: 10px;
+      left: 100px;
+      text-align: center;
+  }    
+
+  .add-cart{
+    position: absolute;
     color: white;
     height: 40px;
     border-radius: 10px;
-    margin-top: 20px;
-    margin-left: 25px;
+    top: 50px;
+    left: 30px;
+   }
+   
+   .mylist-btn{
+    position: absolute;
+    color: white;
+    height: 30px;
+    top: 110px;
+    left: 70px;
+    background-color: #2e2e2e;
+    border-radius: 10px;
+   }
+
 }
+
+
 
 
 /* About */
 
 .about-contents{
-    padding-bottom: 100px;
+    padding-bottom: 70px;
 }
 
 #map{
    height: 300px;
    width: 760px;
+   
    
 }
 
@@ -416,18 +530,36 @@ html, body {
 }
 
 
+.user-icon{
+    position: relative;
+    text-align: center;
+    height: 260px;
+    margin-top: 50px;
+    margin-bottom: 10px;
+}
+
+.fa-user-icon{
+    font-size: 250px;
+}
+
+
 .mypage-home{
     position: relative;
-    top: 250px;
-    padding: 30px;
-    margin: 2em 0;
+    padding: 20px;
     text-align: center;
     font-weight: bold;
     color: black;
-    border: solid 3px #1d1d1d;
+    border: solid 2px black;
+    border-top: solid 2px orange;
+    border-bottom: solid 2px orange;
     border-radius: 10px;
-    width: 500px;
+    width: 400px;
+    height: 400px;
     margin: 0 auto;
+    
+    ul{
+        padding-left: 0;
+    }
     
     li{
      text-align: center;
@@ -447,12 +579,13 @@ html, body {
 
 .mypage-info{
     position: relative;
+    top: 100px;
     padding: 30px;
     margin: 2em 0;
     width: 500px;
     text-align: left;
     font-weight: bold;
-    color: white;
+    color: black;
     border-radius: 10px;
     margin: 0 auto;
     
@@ -460,22 +593,125 @@ html, body {
         padding-bottom: 5px;    
     }
     .field-center{
+        margin-top: 20px;
         text-align: center;
+    }
+    
+    .control-label{
+        color: white;
     }
 }
 
 /* cart */
-.cart-image-tag{
-    width: 80px;
-    height: 70px;
+
+
+.cart-show{
+    position: relative;
+    margin: 2em 0;
+    top: 110px;
+    text-align: center;
+    font-weight: bold;
+    height: 600px;
+    margin: 0 auto;
+  
+  .cart-image-tag{
+      width: 80px;
+      height: 70px;
+  }
+
+  .destroy-cart{
+      color: white;
+      height: 20px;
+      margin-top: 50px;
+      background-color: black;
+      border-radius: 5px;
+  }
+  
+  .cart-display{
+      height: 500px;
+      width: 800px;
+      float: left;
+  }
+  
+  table{
+      margin-bottom: 10px;
+  }  
+  
+  tr{
+      border: solid 2px #1d1d1d;
+  }
+    
+  td{
+     padding: 20px;
+  }        
+  
+  .cart-panel{
+      color: white;
+  }
+  
+  .cart-total{
+      border-bottom: solid 1px orange;
+  }
+  
+  .order-total{
+      font-size: 30px;
+      margin-bottom: 30px;
+  }
+  
+  .cart-order{
+      padding-top: 40px;
+      width: 350px;
+      height: 300px;
+      background: #1d1d1d;
+      margin-top: 100px;
+      float: left;
+  }
+  
 }
 
-.destroy-cart{
+// mylist
+
+.mylist-show{
+    position: relative;
+    margin: 2em 0;
+    top: 50px;
+    text-align: center;
+    font-weight: bold;
+    height: 600px;
+    margin: 0 auto;
+  
+   table{
+      margin-bottom: 40px;
+  }  
+  
+  tr{
+      border: solid 2px #1d1d1d;
+  }
+    
+  td{
+     padding: 20px;
+  }        
+  
+  
+  .mylist-image-tag{
+      width: 80px;
+      height: 70px;
+  }
+  
+  .mylist-del-btn{
     color: white;
-    height: 40px;
-    background-color: red;
-    border: 1px solid #FF8000;
-    border-radius: 5px;
-    margin-top: 20px;
-    margin-left: 70px;
+    background-color: #2e2e2e;
+    border-radius: 10px;
+   }
+    
+  .mylist-cart{
+      width: 120px;
+  }
+
 }
+
+
+.pay-type{
+    color: black;
+}
+

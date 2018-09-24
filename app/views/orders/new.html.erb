@@ -1,0 +1,57 @@
+<div class = "mypage-info">
+  
+  <%= form_for @user(#confirmに) do |f| %>
+  <div>
+    <%= f.label :name_kana, '氏名(カナ)' ,class: "control-label" %>
+    <%= f.text_field :name_kana, autofocus: true,  class: "form-control" %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :name_kanji, '氏名(漢字)' ,class: "control-label" %>
+    <%= f.text_field :name_kanji, autofocus: true,  class: "form-control" %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :telphone, '電話番号' ,class: "control-label" %>
+    <%= f.text_field :telphone, autofocus: true, autocomplete: "telphone" , class: "form-control" %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :zip_code, '郵便番号' ,class: "control-label" %>
+    <%= f.text_field :zip_code, autofocus: true, autocomplete: "zip_code" , class: "form-control" %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :prefecture, '都道府県' ,class: "control-label" %>
+    <%= f.text_field :prefecture, autofocus: true, autocomplete: "prefecture" , class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :address1, '住所(丁目番地)' ,class: "control-label" %>
+    <%= f.text_field :address1, autofocus: true, autocomplete: "address1" , class: "form-control" %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :address2, '建物名・部屋番号(マンション名など)' ,class: "control-label" %>
+    <%= f.text_field :address2, autofocus: true, autocomplete: "address2" , class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email, 'メールアドレス', class: "control-label"%><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= f.fields_for :order do |f| %>
+      <%= f.label :pay_type, 'お支払い方法', class: "control-label" %><br />
+      <%= f.select :pay_type, Order::PAY_TYPE, prompt: 'お支払い方法を選択してください', class: "pay-type" %>
+    <% end %>
+  </div>
+  
+  
+  <div class="field field-center">
+    <%= f.submit "次へ", class: "btn btn-large btn-primary" %>
+  </div>
+  <% end %>
+  
+</div>

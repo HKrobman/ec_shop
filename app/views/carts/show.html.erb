@@ -1,15 +1,34 @@
 <% provide(:title, 'Cart')%>
-<div class = "cart">
-  <table>
-   <% @cart_items.each do |item| %>
-    <tr>
-      <td><%= image_tag(item.product.image_url.to_s, :class => "cart-image-tag")%></td>
-      <td><%= item.product.name %></td>
-      <td><%= item.product.sale_price %>円</td>
-      <td><%= item.quantity %>個</td>
-    </tr>
-    <% end %>
-  </table>
-  
-  <%= button_to 'カートを空にする', @cart, method: :delete, confirm: 'カートを空にしますか？', class: 'destroy-cart' %>
+<div class = "cart-show">
+ <div class = "cart-display">
+  <% if notice%>
+  <p><%= notice %></p>
+  <% end %>
+   <table align = "center">
+     <% @cart_items.each do |item| %>
+      <tr>
+        <td><%= image_tag(item.product.image_url.to_s, :class => "cart-image-tag")%></td>
+        <td><%= item.product.name %></td>
+        <td><%= item.product.sale_price %>円</td>
+        <td><%= item.quantity %>個</td>
+      </tr>
+     <% end %>
+      <tr class = "cart-total">
+        <td colspan = "1"></td>
+        <td colspan = "1">合計</td>
+        <td colspan = "1"><%= @cart.total_price %>円</td>
+        <td colspan = "1"></td>
+      </tr>
+   </table>
+   <div class="page">
+      <%= paginate @cart_items %>
+  </div>
+   <div><%= link_to "買い物を続ける", products_path, :class =>"cart-panel btn btn-large btn-primary" %> </div>
+ </div>
+ 
+ <div class = "cart-order">
+    <p class = "order-total">合計：<%= @cart.total_price %>円</p>
+    <%= button_to '注文画面に進む', new_order_path, method: :get, class: 'btn btn-large btn-primary' %>
+    <%= button_to 'カートを空にする', @cart, method: :delete, class: 'destroy-cart' %>    
+ </div>
 </div>

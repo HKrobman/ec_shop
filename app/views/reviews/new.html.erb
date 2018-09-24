@@ -1,25 +1,24 @@
 <% provide(:title, 'Review') %>
-<div class="review_form">
-    <h1>商品レビュー</h1>
+<div class="review-form">
     <%= form_for(@review) do |f| %>
+    <%= hidden_field_tag :product_id, @product.id %>
     <div class="field">
-      <%= f.label :name, '投稿者' %><br />
-      <%= f.text_field :name %>
+      <%= f.label :name, '投稿者(ニックネーム)', class: "review-label" %><br />
+      <%= f.text_field :name, class: "review-input" %>
     </div>
     
     <div class="field">
-      <%= f.label :title, 'タイトル' %><br />
-      <%= f.text_field :title %>
+      <%= f.label :title, 'レビュータイトル', class: "review-label" %><br />
+      <%= f.text_field :title, size: 40, class: "review-input"%>
     </div>
     
     <div class="field ">
-      <%= f.label :description, 'レビュー本文' %><br />
+      <%= f.label :description, 'レビュー本文(300文字以内)', class: "review-label" %><br />
       <%= f.text_area :description %>
     </div>
     
     <div class="field">
       <%= f.submit "投稿する", class: "btn btn-large btn-primary" %>
     </div>
-      
     <% end %>
 </div>

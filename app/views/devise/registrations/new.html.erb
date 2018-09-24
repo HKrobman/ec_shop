@@ -21,6 +21,7 @@
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
   
+   
   <div class="field">
     <%= f.label :password, 'パスワード(6文字以上)' ,class: "control-label" %>
     <% if @validatable %>
@@ -33,10 +34,11 @@
     <%= f.label :password_confirmation, 'パスワード(確認)' , class: "control-label" %>
     <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
   </div>
-  
+ 
   <div class="actions">
-    <%= f.submit "アカウント作成" %>
+    <%= f.submit "アカウント登録" %>
   </div>
 <% end %>
 </div>
 </div>
+
