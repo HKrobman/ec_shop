@@ -450,17 +450,19 @@ html, body {
     height: 150px;
     border: 2px solid #2e2e2e;
     
-  .count-text{
+    
+ .count-text{
       position: absolute;
       top: 12px;
       left: 30px;
   }
-    
+ 
   .count{
       position: absolute;
       background-color: #2e2e2e;
       border: 1px solid #1d1d1d;
       border-radius: 10px;
+      font-weight: bold;
       width: 80px;
       top: 10px;
       left: 100px;
@@ -489,8 +491,6 @@ html, body {
 }
 
 
-
-
 /* About */
 
 .about-contents{
@@ -516,7 +516,7 @@ html, body {
     
     h1{
         text-align: center;
-        padding: 30px 30px 70px 30px;
+        padding: 30px 30px 40px 30px;
     }
     
     h4{
@@ -579,7 +579,7 @@ html, body {
 
 .mypage-info{
     position: relative;
-    top: 100px;
+    top: 80px;
     padding: 30px;
     margin: 2em 0;
     width: 500px;
@@ -666,7 +666,30 @@ html, body {
       margin-top: 100px;
       float: left;
   }
+ 
+ .cart-btn{
+      background-color: #2e2e2e;
+      border: 1px solid #1d1d1d;
+      border-radius: 10px;
+      font-size: 10px;
+      width: 60px;
+      height: 20px;
+      margin-left: 10px;
+      //color: orange;
+ }
   
+  .count{
+      background-color: #2e2e2e;
+      border: 1px solid #1d1d1d;
+      border-radius: 10px;
+      text-align: center;
+  }
+
+ .cart-msg{
+     position: relative;
+     top: 160px;
+     margin-bottom: 80px;
+ }
 }
 
 // mylist

@@ -1,33 +1,37 @@
 <% provide(:title, 'Cart')%>
 <div class = "cart-show">
  <div class = "cart-display">
-  <% if notice%>
-  <p><%= notice %></p>
-  <% end %>
+  <% if @cart_items.any? %>
    <table align = "center">
      <% @cart_items.each do |item| %>
       <tr>
         <td><%= image_tag(item.product.image_url.to_s, :class => "cart-image-tag")%></td>
         <td><%= item.product.name %></td>
-        <td><%= item.product.sale_price %>円</td>
-        <td><%= item.quantity %>個</td>
+        <td><%= item.product.sale_price.to_s(:delimited) %>円</td>
+        <td><%= form_tag(cart_items_path(product_id: item.product_id)) do %>
+             <%= number_field_tag :quantity, item.quantity, in:1..10, :class=> "count"  %>
+             <%= label :quantity, "個", :class=> "count-text" %>
+             <%= submit_tag "変更する",  :class=> 'cart-btn' %>
+           <% end %>
+        </td>
+        <td><%= button_to "削除", cart_item_path(item) ,{ :method=> "delete", :class=>'cart-btn item-del'} %></td>
       </tr>
      <% end %>
-      <tr class = "cart-total">
-        <td colspan = "1"></td>
-        <td colspan = "1">合計</td>
-        <td colspan = "1"><%= @cart.total_price %>円</td>
-        <td colspan = "1"></td>
-      </tr>
+
    </table>
    <div class="page">
       <%= paginate @cart_items %>
-  </div>
-   <div><%= link_to "買い物を続ける", products_path, :class =>"cart-panel btn btn-large btn-primary" %> </div>
+   </div>
+  <div><%= link_to "買い物を続ける", products_path, :class =>"cart-panel btn btn-large btn-primary" %> </div>  
+
+  <% else %>
+   <h1 class = "cart-msg">カートは空です</h1>
+   <div><%= link_to "商品を選択する", products_path, :class =>"btn btn-large btn-primary cart-msg" %> </div>  
+  <% end %>
  </div>
  
  <div class = "cart-order">
-    <p class = "order-total">合計：<%= @cart.total_price %>円</p>
+    <p class = "order-total">合計：<%= @cart.total_price.to_s(:delimited) %>円</p>
     <%= button_to '注文画面に進む', new_order_path, method: :get, class: 'btn btn-large btn-primary' %>
     <%= button_to 'カートを空にする', @cart, method: :delete, class: 'destroy-cart' %>    
  </div>

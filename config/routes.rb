@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   
+  
   devise_for :users,
              :controllers =>{:registrations => "registrations"}
   
@@ -14,11 +15,18 @@ Rails.application.routes.draw do
   resources :mylists
   resources :contacts, only: [:new, :create]
   
-  resources :carts, only:[:show, :create, :destroy]
+  resources :carts
   
   resources :cart_items
-  resources :orders
+  
   #resources :payment_methods
+  
+  resources :orders do
+    collection do
+      post 'confirm'
+    end
+  end
+  
   
   
   resources :products 

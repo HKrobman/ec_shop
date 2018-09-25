@@ -19,7 +19,6 @@ class MylistsController < ApplicationController
     
     def destroy
         @mylist = Mylist.find(params[:id])
-        user = current_user
         #product = Product.find(params[:product_id])
         #@mylist = Mylist.find_by(user_id: user.id, product_id: product.id)
         @mylist.destroy

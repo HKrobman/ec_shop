@@ -5,16 +5,13 @@ class OrdersController < ApplicationController
     
     def new
       @user = current_user
-      #@order = @user.orders.build
-      #if @order.save
-        #redirect_to action: 'confirm'
-      #else
-      #  redirect_to new_order_path
-      #end
+      @order = Order.new(user_id: @user.id)
+      binding.pry
     end
     
     def confirm
-      @usr = current_user
+      @order = Order.new(user_params)
+      binding.pry
     end
     
     def create
