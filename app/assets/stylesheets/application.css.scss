@@ -54,7 +54,17 @@ html, body {
     background: #222222;
 }
 
-/* home, sign-in, sign-upレイアウト */
+ input{
+    color: black;
+}
+
+.btn{
+    color: white;
+    width: 200px;
+}
+
+
+/* homeレイアウト */
 .body-contents{
     width: 100%;
     height: 100%;
@@ -159,24 +169,57 @@ html, body {
 }
 
 /* Sign_in */
-.sign-in{
-    padding: 0.5em 1em;
-    margin: 2em 0;
-    font-weight: bold;
-    color: #1d1d1d;
-    background: #FFF;
-    border: solid 3px #1d1d1d;
-    border-radius: 10px;
-}
 
-.sign-up{
-    padding: 0.5em 1em;
+
+.sign-in-up-wrap{
+    
+    h2{
+        margin-bottom: 40px;
+    }
+    
+    position: relative;
+    top: 150px;
+    text-align: center;
+    vertical-align: middle;
+    
+ .sign-in-up{
+    padding: 20px;
     margin: 2em 0;
     font-weight: bold;
-    color: #1d1d1d;
-    background: #FFF;
-    border: solid 3px #1d1d1d;
+    border: solid 2px black;
+    border-top: solid 1px orange;
+    border-bottom: solid 1px orange;
     border-radius: 10px;
+    width: 500px;
+    margin: 0 auto;
+    
+    .field{
+        padding-bottom: 20px;
+    }
+    
+    .actions{
+        padding-bottom: 40px;
+    }
+    
+  }
+  
+  .f-u{
+      margin-bottom: 20px;
+      
+  }
+  
+  .s-i-btn{
+      color: white;
+      background-color: #2e2e2e;
+      padding: 5px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      border: solid 1px #2e2e2e;
+ }
+ 
+ .up-form{
+       width: 300px;
+  }
 }
 
 /*contact */
@@ -187,7 +230,6 @@ html, body {
     text-align: center;
     font-weight: bold;
     color: white;
-    border-radius: 10px;
     width: 700px;
     margin: 0 auto;
     
@@ -203,21 +245,16 @@ html, body {
     .contact-form{
         color: black;
         width: 300px;
-        border-radius: 10px;
     }
     
     textarea{
         color: black;
         width: 300px;
         height: 200px;
-        border-radius: 10px;
     }
 }
 
- .btn{
-        color: white;
-        width: 200px;
-    }
+
 
 /* Product */
 
@@ -334,9 +371,6 @@ html, body {
         width: 300px;
     }
     
-    input{
-        color: black;
-    }
     
     textarea{
         color: black;
@@ -345,11 +379,7 @@ html, body {
         margin-bottom: 20px;
     }
     
-    .btn{
-        color: white;
-        width: 200px;
-    }
-
+   
 }
 
 .review-index{
@@ -450,6 +480,9 @@ html, body {
     height: 150px;
     border: 2px solid #2e2e2e;
     
+    input{
+        color: white;
+    }
     
  .count-text{
       position: absolute;
@@ -614,6 +647,11 @@ html, body {
     height: 600px;
     margin: 0 auto;
   
+  
+    input{
+        color: white;
+    }
+    
   .cart-image-tag{
       width: 80px;
       height: 70px;

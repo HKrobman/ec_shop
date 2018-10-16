@@ -1,42 +1,42 @@
 <% provide(:title, 'Sign up') %>
-<div class="contents-center">
-<div class="sign-up">
+<div class="sign-in-up-wrap">
 <h2>Sign up</h2>
+<div class="sign-in-up">
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
   
   <div class="field">
-    <%= f.label :name_kana, '氏名(カナ)' ,class: "control-label" %>
-    <%= f.text_field :name_kana, autofocus: true, class: "form-control" %>
+    <%= f.label :name_kana, '氏名(カナ)' ,class: "control-label" %><br />
+    <%= f.text_field :name_kana, autofocus: true, class: "up-form" %>
   </div>
   
   <div class="field">
-    <%= f.label :name_kanji, '氏名(漢字)' ,class: "control-label" %>
-    <%= f.text_field :name_kanji, autofocus: true, class: "form-control" %>
+    <%= f.label :name_kanji, '氏名(漢字)' ,class: "control-label" %><br />
+    <%= f.text_field :name_kanji, autofocus: true, class: "up-form" %>
   </div>
 
   <div class="field">
     <%= f.label :email, 'メールアドレス' %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "up-form" %>
   </div>
   
    
   <div class="field">
-    <%= f.label :password, 'パスワード(6文字以上)' ,class: "control-label" %>
+    <%= f.label :password, 'パスワード(6文字以上)' ,class: "up-form" %><br />
     <% if @validatable %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %>
-    <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+    <%= f.password_field :password, autocomplete: "off", class: "up-form" %>
   </div>
   
   <div class="field">
-    <%= f.label :password_confirmation, 'パスワード(確認)' , class: "control-label" %>
-    <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
+    <%= f.label :password_confirmation, 'パスワード(確認)' , class: "control-label" %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off", class: "up-form" %>
   </div>
  
   <div class="actions">
-    <%= f.submit "アカウント登録" %>
+    <%= f.submit "アカウント登録", :class => "btn btn-large btn-primary" %>
   </div>
 <% end %>
 </div>

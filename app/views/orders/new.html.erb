@@ -1,36 +1,36 @@
 <div class = "mypage-info">
- 
+
   <%= form_for @order, url:{action: 'confirm'} do |f| %>
   <p>お届け先住所</p>
   <div class="field">
     <%= f.label :addressee_name_kana, '氏名(カナ)' ,class: "control-label" %>
-    <%= f.text_field :addressee_name_kana %>
+    <%= f.text_field :addressee_name_kana ,  class: "form-control"%>
   </div>
   
   <div class="field">
     <%= f.label :addressee_name_kanji, '氏名(漢字)' ,class: "control-label" %>
-    <%= f.text_field :addressee_name_kanji %>
+    <%= f.text_field :addressee_name_kanji,  class: "form-control" %>
   </div>
   
   <div class="field">
     <span class="p-country-name" style="display:none;">Japan</span>
     <%= f.label :addressee_zip_code, '郵便番号' ,class: "control-label  p-postal-code" %>
-    <%= f.text_field :addressee_zip_code%>
+    <%= f.text_field :addressee_zip_code,  class: "form-control"%>
   </div>
   
   <div class="field">
     <%= f.label :addressee_prefecture, '都道府県' ,class: "control-label" %>
-    <%= f.text_field :addressee_prefecture %>
+    <%= f.text_field :addressee_prefecture, class: "form-control" %>
   </div>
 
   <div class="field">
     <%= f.label :addressee_address1, '住所(丁目番地)' ,class: "control-label" %>
-    <%= f.text_field :addressee_address1 %>
+    <%= f.text_field :addressee_address1,  class: "form-control" %>
   </div>
   
   <div class="field">
     <%= f.label :addressee_address2, '建物名・部屋番号(マンション名など)' ,class: "control-label" %>
-    <%= f.text_field :addressee_address2 %>
+    <%= f.text_field :addressee_address2,  class: "form-control" %>
   </div>
 
   <div class="field">
@@ -42,5 +42,4 @@
     <%= f.submit "次へ", class: "btn btn-large btn-primary" %>
   </div>
   <% end %>
-  
 </div>
