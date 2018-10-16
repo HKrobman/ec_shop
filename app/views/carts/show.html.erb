@@ -8,7 +8,7 @@
         <td><%= image_tag(item.product.image_url.to_s, :class => "cart-image-tag")%></td>
         <td><%= item.product.name %></td>
         <td><%= item.product.sale_price.to_s(:delimited) %>円</td>
-        <td><%= form_tag(cart_items_path(product_id: item.product_id)) do %>
+        <td><%= form_tag(cart_item_path(product_id: item.product_id),{:method=> "patch"}) do %>
              <%= number_field_tag :quantity, item.quantity, in:1..10, :class=> "count"  %>
              <%= label :quantity, "個", :class=> "count-text" %>
              <%= submit_tag "変更する",  :class=> 'cart-btn' %>

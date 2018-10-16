@@ -2,6 +2,11 @@
 <div class="review-form">
     <%= form_for(@review) do |f| %>
     <%= hidden_field_tag :product_id, @product.id %>
+    <%= hidden_field_tag :rank, id: :rank%>
+    
+    <div class="field" id="star">
+    </div>
+    
     <div class="field">
       <%= f.label :name, '投稿者(ニックネーム)', class: "review-label" %><br />
       <%= f.text_field :name, class: "review-input" %>
@@ -22,3 +27,15 @@
     </div>
     <% end %>
 </div>
+
+<script>
+$('#star').raty({
+    size     : 36,
+    starOff: '<%= asset_path('star-off.png') %>',
+    starOn : '<%= asset_path('star-on.png') %>',
+    scoreName: 'rank',
+    click: function(score, e) {
+    $("#star").val(score)
+    }
+  });
+</script>

@@ -2,7 +2,7 @@ class MylistsController < ApplicationController
     before_action :authenticate_user!
     def index
         user = current_user
-        @mylists = Mylist.where(user_id: user.id)
+        @mylists = Mylist.where(user_id: user.id).page(params[:page]).per(5)
     end
     
     def show
@@ -18,11 +18,12 @@ class MylistsController < ApplicationController
     end
     
     def destroy
-        @mylist = Mylist.find(params[:id])
-        #product = Product.find(params[:product_id])
-        #@mylist = Mylist.find_by(user_id: user.id, product_id: product.id)
+        user = current_user  
+        #@mylist = Mylist.find(params[:id])
+        product = Product.find(params[:product_id])
+        @mylist = Mylist.find_by(user_id: user.id, product_id: product.id)
         @mylist.destroy
-        redirect_to mylist_path(current_user)
+        redirect_to mylists_path(current_user)
     end
 
 end

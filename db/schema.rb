@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_24_124000) do
+ActiveRecord::Schema.define(version: 2018_09_29_092852) do
 
   create_table "active_admin_comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "namespace"
@@ -89,6 +89,14 @@ ActiveRecord::Schema.define(version: 2018_09_24_124000) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "pay_type"
+    t.string "addressee_name_kanji"
+    t.string "addressee_name_kana"
+    t.string "addressee_zip_code"
+    t.string "addressee_prefecture"
+    t.string "addressee_city"
+    t.string "addressee_address1"
+    t.string "addressee_address2"
+    t.decimal "total_price", precision: 10
   end
 
   create_table "payment_methods", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

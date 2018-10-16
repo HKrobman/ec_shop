@@ -19,7 +19,6 @@
        <p>レビュー数: <%= @product.reviews.count %> 件</p>
        <p>
         <span class="all-review"><%= link_to "全てのレビューを見る", reviews_path(product_id: params[:id]), :class => "review_show"%></span>
-        <span class="post-review"><%= link_to "レビューを投稿する", new_review_path(product_id: params[:id]), :class => "review_post"%></span>
        </p>
            
         <div class="m-review">

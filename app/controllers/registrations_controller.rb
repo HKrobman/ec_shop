@@ -15,5 +15,7 @@ class RegistrationsController < Devise::RegistrationsController
     
     def update_resource(resource, params)
       resource.update_without_password(params)
+      path = Rails.application.routes.recognize_path(request.referer)
+      redirect_back(fallback_location: new_order_path) if path[:controller] == "orders"                           
     end
 end

@@ -9,7 +9,7 @@
        <td><%= image_tag(mylist.product.image_url.to_s, :class => "mylist-image-tag")%></td>
        <td><%= mylist.product.name %></td>
        <td><%= mylist.product.sale_price %>円</td>
-       <td><%= button_to "カートに入れる", cart_items_path(product_id: mylist.product.id),:class=> 'btn btn-large btn-primary mylist-cart' %></td>
+       <td><%= link_to "商品ページに飛ぶ", product_path(mylist.product.id), {:class=> 'btn btn-large btn-primary mylist-jump'} %></td>
        <td><%= button_to "マイリストから削除", mylist_path(mylist),  { :method=> "delete", :class=>'mylist-del-btn'} %></td>
      </tr>
     <% end %>

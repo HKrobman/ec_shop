@@ -1,0 +1,62 @@
+ <div class="deli-form">
+   <div class="deli-address">
+   <p>お届け先住所</p>
+   <%= form_for @order do |f| %>
+   <%= f.hidden_field :total_price, value: @cart.total_price %>
+   <%= f.hidden_field :user_id, value: current_user.id %>
+    <div>
+      お届け先氏名カナ<%=@order.addressee_name_kana%>
+      <%= f.hidden_field :addressee_name_kana %>   
+    </div>
+    <div>
+      お届け先氏名<%=@order.addressee_name_kanji%>
+      <%= f.hidden_field :addressee_name_kanji %>
+    </div>
+    <div>
+      郵便番号：<%=@order.addressee_zip_code%>
+      <%= f.hidden_field :addressee_zip_code%>
+    </div>
+    <div>
+      都道府県:<%=@order.addressee_prefecture%>
+      <%= f.hidden_field :addressee_prefecture%>
+    </div>
+    <div>
+      丁目・番地:<%=@order.addressee_address1%>
+      <%= f.hidden_field :addressee_address1%>
+    </div>
+    <div>
+      マンション名・号室:<%=@order.addressee_address2%>
+      <%= f.hidden_field :addressee_address2%>
+    </div>
+    <div>
+      お支払い方法:<%=@order.pay_type%>
+      <%= f.hidden_field :pay_type %>
+    </div>
+  <%if @order.pay_type == "現金"%>  
+   <%= f.submit '注文する' ,class:"btn btn-large btn-primary"%>
+  <% else %>
+  <%= form_tag(action: :pay, method: :post) do %>
+   <script type="text/javascript" src="https://checkout.pay.jp" class="payjp-button" data-key="pk_test_2aa8b4426fb2097c6d7203e3"></script>
+   <p>※カード決済完了後、注文が確定します</p>
+  <% end %>
+  <%end%>
+ <% end %>
+ </div>
+ 
+ <div class = "cart-display">
+ <table align = "center">
+     <% @cart_items.each do |item| %>
+      <tr>
+        <td><%= image_tag(item.product.image_url.to_s, :class => "cart-image-tag")%></td>
+        <td><%= item.product.name %></td>
+        <td><%= item.product.sale_price.to_s(:delimited) %>円</td>
+        <td><%= item.quantity%>個</td>
+      </tr>
+    <% end %>
+ </table>
+    <div>合計：<%= @cart.total_price.to_s(:delimited) %>円</div>
+    <%= link_to "カートに戻る", current_cart %>
+ </div>
+</div>
+
+</div>

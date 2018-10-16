@@ -24,6 +24,8 @@ Rails.application.routes.draw do
   resources :orders do
     collection do
       post 'confirm'
+      post 'pay'
+      get 'accepted'
     end
   end
   
