@@ -17,5 +17,11 @@ module EcShop
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
+  class Application < Rails::Application
+    # ...
+    config.assets.paths << Rails.root.join('raty')
+    config.assets.precompile << %w( cancel-off.png cencel-on.png star-off.png star-on.png star-half.png)
+    # ...
+  end
   end
 end

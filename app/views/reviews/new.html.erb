@@ -2,9 +2,11 @@
 <div class="review-form">
     <%= form_for(@review) do |f| %>
     <%= hidden_field_tag :product_id, @product.id %>
-    <%= hidden_field_tag :rank, id: :rank%>
     
-    <div class="field" id="star">
+    <div class="field">
+      <%= f.label :rank %>
+      <%= tag.div('', class: 'raty', data: { rating: @review.rank }) %>
+      <%= f.hidden_field :rank %>
     </div>
     
     <div class="field">
@@ -29,13 +31,33 @@
 </div>
 
 <script>
-$('#star').raty({
-    size     : 36,
-    starOff: '<%= asset_path('star-off.png') %>',
-    starOn : '<%= asset_path('star-on.png') %>',
-    scoreName: 'rank',
-    click: function(score, e) {
-    $("#star").val(score)
-    }
-  });
+
+function initRaty() {
+  if($('.raty-read').length) {
+    $('.raty-read').raty({
+      starType: 'i',
+      space: false,
+      readOnly: true,
+      cancelOff: '<%= asset_path('cancel-off.png') %>,
+      cancelOn: '<%= asset_path('cancel-on.png') %>'
+      starHalf: '<%= asset_path('star-half.png') %>',
+      starOff: '<%= asset_path('star-off.png') %>'
+      starOn: '<%= asset_path('star-on.png') %>'
+      score: function() { return $(this).data('rating') }
+    })
+  }
+
+  if($('.raty').length) {
+    $('.raty').raty({
+      starType: 'i',
+      target: '#review_rank', // Sync rating to #review_rate
+      targetKeep: true,
+      targetType: 'number',
+      space: true,
+      score: function() { return $(this).data('rating') }
+    })
+  }
+}
+
+$(document).on('load turbolinks:load', initRaty)
 </script>

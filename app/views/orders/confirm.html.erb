@@ -35,11 +35,12 @@
   <%if @order.pay_type == "現金"%>  
    <%= f.submit '注文する' ,class:"btn btn-large btn-primary"%>
   <% else %>
-  <%= form_tag(action: :pay, method: :post) do %>
-   <script type="text/javascript" src="https://checkout.pay.jp" class="payjp-button" data-key="pk_test_2aa8b4426fb2097c6d7203e3"></script>
-   <p>※カード決済完了後、注文が確定します</p>
-  <% end %>
+    <%= form_tag(action: :pay, method: :post) do %>
+     <script type="text/javascript" src="https://checkout.pay.jp" class="payjp-button" data-key="pk_test_2aa8b4426fb2097c6d7203e3"></script>
+     <p>※カード決済完了後、注文が確定します</p>
+    <% end %>
   <%end%>
+  
  <% end %>
  </div>
  

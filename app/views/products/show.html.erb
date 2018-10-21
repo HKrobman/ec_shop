@@ -22,10 +22,10 @@
        </p>
            
         <div class="m-review">
-         <% if @product.reviews.count > 0 %>
-          <p class="m-review-title" ><%= @review.title %></p>
-          <p>レビュー投稿日 : <%= @review.created_at.strftime('%Y/%m/%d') %><%=@review.name%></p>
-          <p class="m-review-desc"><%= @review.description %></p>
+         <% if @last_review.present? %>
+          <p class="m-review-title" ><%= @last_review.title %></p>
+          <p>レビュー投稿日 : <%= @last_review.created_at.strftime('%Y/%m/%d') %><%=@last_review.name%></p>
+          <p class="m-review-desc"><%= @last_review.description %></p>
          <% else %>
           <p class="review-title">レビューはありません</p>
          <% end %>   
@@ -44,7 +44,7 @@
        
        <div class="sub-box">
         
-           <%= form_tag(cart_items_path(product_id: params[:id])) do %>
+           <%= form_tag(cart_items_path(product_id: @product.id)) do %>
              <%= label :quantity, "注文個数 : ", :class=> "count-text" %>
              <%= number_field_tag :quantity, 1 , in:1..10, :class=> "count"  %>
              <%= submit_tag "カートに入れる",  :class=> 'btn btn-large btn-primary add-cart' %>
@@ -52,9 +52,9 @@
              
            
            <% if @mylist %>
-           　<%= button_to "マイリスト解除", mylist_path(product_id: params[:id]) , {:method=> "delete", :class=>'mylist-btn'} %>　
+           　<%= button_to "マイリスト解除", mylist_path(product_id: @product.id) , {:method=> "delete", :class=>'mylist-btn'} %>　
            <% else %>
-             <%= button_to "マイリスト登録", mylists_path(product_id: params[:id]) , {:class=>'mylist-btn'} %>
+             <%= button_to "マイリスト登録", mylists_path(product_id: @product.id) , {:class=>'mylist-btn'} %>
            <% end %>
            
        </div>
@@ -62,7 +62,7 @@
    <li>
      <div class="product-description">
        <p>商品説明</p>
-       <p class ="description" ><%= @product.description%></p> 
+       <p class ="description" ><%= @product.description %></p> 
      </div>
    </li>
    <li>

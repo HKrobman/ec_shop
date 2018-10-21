@@ -19,17 +19,20 @@ class ReviewsController < ApplicationController
   def create
     user = current_user
     @review = Review.new(
+      rank: review_params[:rank],
       name: review_params[:name],
       title: review_params[:title],
       description: review_params[:description],
       user_id: user.id,
-      product_id: params[:product_id])
-      redirect_to products_path(params[:product_id])  if @review.save   #
+      product_id: params[:product_id]
+    )
+    binding.pry
+    redirect_to product_path(params[:product_id])  if @review.save   #
   end
   
    private
 
     def review_params
-      params.require(:review).permit(:name, :title, :description)
+      params.require(:review).permit(:name, :title, :description, :rank, :product_id)
     end
 end

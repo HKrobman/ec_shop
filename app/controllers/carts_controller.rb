@@ -15,9 +15,5 @@ class CartsController < ApplicationController
     cart_items.to_a.sum{ |item| item.total_price }
   end    
   
-  private
-    
- # def set_up_cart
-#    @cart_items = current_cart.cart_items.find_by(product_id: params[:product_id])
-#  end
+  
 end

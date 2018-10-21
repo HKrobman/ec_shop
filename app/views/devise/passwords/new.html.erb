@@ -1,16 +1,20 @@
-<h2>パスワードをお忘れですか?</h2>
+<div class="sign-in-up-wrap">
+  <h3>パスワードの再設定</h3>
+  <div class="sign-in-up reset">  
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+    <%= devise_error_messages! %>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= devise_error_messages! %>
+    <div class="field">
+      <%= f.label :email, class: "control-label" %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <div class="actions">
+      <%= f.submit "案内を受け取る", :class =>"btn btn-large btn-primary"%>
+    </div>
+  <% end %>
+
+  <p>※メールが届かない場合</p>
+  <p>メールアドレスに間違いがないかをご確認ください。</p>
   </div>
-
-  <div class="actions">
-    <%= f.submit "パスワードをリセットする" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>

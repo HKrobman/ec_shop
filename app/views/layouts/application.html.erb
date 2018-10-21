@@ -16,11 +16,12 @@
       <%= render 'layouts/header' %>
       
       <div class="container">
+        <p class="notice"><%= notice %></p>
         <div class="body-contents">
-         <% flash.each do |key, value| %>
-           <div class="alert <%= bootstrap_class_for(key) %>"><%= value %></div>
-         <% end %>
-      
+        <!-- % flash.each do |key, value| %>
+           <div class="alert %= bootstrap_class_for(key) %>">%= value %></div>
+         % end %>
+      -->
          <%= yield %>
        </div>
         

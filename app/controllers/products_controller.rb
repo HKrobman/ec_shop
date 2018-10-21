@@ -22,7 +22,7 @@ class ProductsController < ApplicationController
             break
           end
         end
-      @review = Review.last
+      @last_review = @product.reviews.last
       @mylist = Mylist.find_by(user_id: user.id, product_id: params[:id])
     end
     

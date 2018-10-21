@@ -27,6 +27,11 @@
     <%= f.label :prefecture, '都道府県' ,class: "control-label" %>
     <%= f.text_field :prefecture, autofocus: true, class: "form-control" %>
   </div>
+  
+  <div class="field">
+    <%= f.label :city, '市町村' ,class: "control-label" %>
+    <%= f.text_field :city, autofocus: true, class: "form-control" %>
+  </div>
 
   <div class="field">
     <%= f.label :address1, '住所(丁目番地)' ,class: "control-label" %>
@@ -37,12 +42,6 @@
     <%= f.label :address2, '建物名・部屋番号(マンション名など)' ,class: "control-label" %>
     <%= f.text_field :address2, autofocus: true, class: "form-control" %>
   </div>
-
-  <div class="field">
-    <%= f.label :email, 'メールアドレス',class: "control-label"%><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
-  </div>
-  
  
   <div class="field field-center">
     <%= f.submit "保存", class: "btn btn-large btn-primary" %>

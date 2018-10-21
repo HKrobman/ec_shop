@@ -41,6 +41,15 @@ html, body {
      text-align: right;
  }
  
+ .notice{
+     text-align: center;
+     color: red;
+     font-size: 20px;
+ }
+ 
+ .alert{
+     text-align: center;
+ }
  
 .container{
      
@@ -220,6 +229,17 @@ html, body {
  .up-form{
        width: 300px;
   }
+}
+
+
+.reset{
+    .field{
+        margin-bottom: 20px;
+    }
+    
+    .actions{
+        margin-bottom: 20px;
+    }
 }
 
 /*contact */
@@ -614,7 +634,6 @@ html, body {
     position: relative;
     top: 80px;
     padding: 30px;
-    margin: 2em 0;
     width: 500px;
     text-align: left;
     font-weight: bold;
@@ -622,6 +641,11 @@ html, body {
     border-radius: 10px;
     margin: 0 auto;
     
+    .send-p{
+        text-align: center;
+        color: orange;
+        font-size: 20px;
+    }
     .field{
         padding-bottom: 5px;    
     }
@@ -640,7 +664,6 @@ html, body {
 
 .cart-show{
     position: relative;
-    margin: 2em 0;
     top: 110px;
     text-align: center;
     font-weight: bold;
@@ -734,7 +757,6 @@ html, body {
 
 .mylist-show{
     position: relative;
-    margin: 2em 0;
     top: 50px;
     text-align: center;
     font-weight: bold;
@@ -781,7 +803,6 @@ html, body {
 .deli-form{
     color: white;
     position: relative;
-    margin: 2em 0;
     top: 20px;
     //text-align: center;
     font-weight: bold;
@@ -875,11 +896,13 @@ html, body {
  
  .order-index{
     position: relative;
-    margin: 2em 0;
-    top: 50px;
+    margin: 0 auto;
+    top: 80px;
+    padding: 30px;
     text-align: center;
     font-weight: bold;
-    height: 500px;
+    //height: 500px;
+    width: 700px;
   
   .order-image-tag{
       width: 50px;
@@ -900,10 +923,14 @@ html, body {
   }        
   
   .order-display{
-      margin: 0 auto;
-      //height: 400px;
+      text-align: center;
+      margin-bottom: 60px;
       width: 600px;
       border: solid 2px #1d1d1d;
+  }
+  
+  .m-topi{
+      background-color: #1d1d1d;
   }
   
  }

@@ -1,15 +1,27 @@
 class OrdersController < ApplicationController
     
     def index
-      @orders = Order.all.page(params[:page]).per(5)
+      @orders = Order.all.page(params[:page]).per(2)
     end
     
     def show
     end
     
     def new
-      @user = current_user
-      @order = Order.new
+      if current_cart.cart_items.empty?
+        flash[:notice] = "カートに商品を追加してください"
+        redirect_to cart_path(current_cart)
+      else  
+        @user = current_user
+        @order = Order.new
+        @order.addressee_name_kana = @user.name_kana
+        @order.addressee_name_kanji = @user.name_kanji
+        @order.addressee_zip_code = @user.zip_code
+        @order.addressee_prefecture = @user.prefecture
+        @order.addressee_city = @user.city
+        @order.addressee_address1 = @user.address1
+        @order.addressee_address2 = @user.address2
+      end
     end
     
     def confirm
