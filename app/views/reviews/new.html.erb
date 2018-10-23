@@ -4,60 +4,27 @@
     <%= hidden_field_tag :product_id, @product.id %>
     
     <div class="field">
-      <%= f.label :rank %>
-      <%= tag.div('', class: 'raty', data: { rating: @review.rank }) %>
-      <%= f.hidden_field :rank %>
+      <%= f.label :rank,'5段階評価をつけてください(最高評価=5)', class: 'review-label' %><br />
+      <%= f.number_field :rank, min:1,max:5, class: 'review-rank count'%>
     </div>
     
     <div class="field">
-      <%= f.label :name, '投稿者(ニックネーム)', class: "review-label" %><br />
-      <%= f.text_field :name, class: "review-input" %>
+      <%= f.label :name, '投稿者(ニックネーム)', class: 'review-label' %><br />
+      <%= f.text_field :name, class: 'review-input' %>
     </div>
     
     <div class="field">
-      <%= f.label :title, 'レビュータイトル', class: "review-label" %><br />
-      <%= f.text_field :title, size: 40, class: "review-input"%>
+      <%= f.label :title, 'レビュータイトル', class: 'review-label' %><br />
+      <%= f.text_field :title, size: 40, class: 'review-input' %>
     </div>
     
-    <div class="field ">
-      <%= f.label :description, 'レビュー本文(300文字以内)', class: "review-label" %><br />
+    <div class="field">
+      <%= f.label :description, 'レビュー本文(300文字以内)', class: 'review-label' %><br />
       <%= f.text_area :description %>
     </div>
     
     <div class="field">
-      <%= f.submit "投稿する", class: "btn btn-large btn-primary" %>
+      <%= f.submit "投稿する", class: 'btn btn-large btn-primary' %>
     </div>
     <% end %>
 </div>
-
-<script>
-
-function initRaty() {
-  if($('.raty-read').length) {
-    $('.raty-read').raty({
-      starType: 'i',
-      space: false,
-      readOnly: true,
-      cancelOff: '<%= asset_path('cancel-off.png') %>,
-      cancelOn: '<%= asset_path('cancel-on.png') %>'
-      starHalf: '<%= asset_path('star-half.png') %>',
-      starOff: '<%= asset_path('star-off.png') %>'
-      starOn: '<%= asset_path('star-on.png') %>'
-      score: function() { return $(this).data('rating') }
-    })
-  }
-
-  if($('.raty').length) {
-    $('.raty').raty({
-      starType: 'i',
-      target: '#review_rank', // Sync rating to #review_rate
-      targetKeep: true,
-      targetType: 'number',
-      space: true,
-      score: function() { return $(this).data('rating') }
-    })
-  }
-}
-
-$(document).on('load turbolinks:load', initRaty)
-</script>

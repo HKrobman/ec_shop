@@ -18,12 +18,12 @@
    <% @products.each do |product| %>    
     <li>
        <%= link_to image_tag(product.image_url.to_s, :size => '180x180'), product %>
-       <div>
-         <div><%= link_to product.name, product%></div>
+       <div class="pro-box">
+         <div><%= link_to product.name, product, :class => 'pro-in-name'%></div>
          <div><%= product.company %></div>
        </div>
        <div><%= product.sale_price.to_s(:delimited) %>円</div>
-       <div><%= link_to "星"%></div>
+       <div><%= %></div>
     </li>
    <% end %>
   </ul>

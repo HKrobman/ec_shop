@@ -3,6 +3,7 @@ class ReviewsController < ApplicationController
   
   def index 
     @reviews = Review.where(product_id: params[:product_id]).page(params[:page]).per(6)
+    @review_rank = @reviews.average(:rank)
   end
   
   def new
@@ -17,16 +18,15 @@ class ReviewsController < ApplicationController
 #必要?
   
   def create
-    user = current_user
+    #user = current_user
     @review = Review.new(
-      rank: review_params[:rank],
+      rank: review_params[:rank].to_i,
       name: review_params[:name],
       title: review_params[:title],
       description: review_params[:description],
-      user_id: user.id,
+      user_id: current_user.id,
       product_id: params[:product_id]
     )
-    binding.pry
     redirect_to product_path(params[:product_id])  if @review.save   #
   end
   

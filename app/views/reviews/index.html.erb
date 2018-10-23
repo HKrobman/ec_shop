@@ -1,12 +1,17 @@
 <div class="review-index">
+	<p class="review-index-rank">レビュー評価:　<span><%= @review_rank %></span></p>
 	<% @reviews.each do |review| %>
 	<ul>
 	 <li class="m-review-index">
-	   <p class="m-review-title"><%= review.title %></p>
-	   <p class="review-time"><%= review.created_at.strftime('%Y/%m/%d') %></p>
-	   <p><%= review.name %></p>
-	   <p class="m-review-desc"><%= review.description%></p>
+	 	 <p class="m-review-name">投稿者：<%= review.name%><span>レビュー投稿日 : <%= review.created_at.strftime('%Y/%m/%d') %></span></p>
+	   <div class="review-i-c">
+	   	<p class="m-review-title" >評価：<%= review.rank %><span><%= review.title %></span></p>
+	   	<p class="m-review-desc"><%= review.description%></p>
+	   </div>
 	 </li>
 	</ul>
 	<% end %>
+  <div class="page">
+     <%= paginate @reviews %>
+  </div>
 </div>

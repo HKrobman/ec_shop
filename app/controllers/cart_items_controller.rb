@@ -1,5 +1,5 @@
 class CartItemsController < ApplicationController
-  before_action :set_cart_item
+  before_action :set_cart_item, only: [:update, :create]
   def create
     @cart_item = current_cart.add_product(@product.id, @quantity)
     @cart_item.save

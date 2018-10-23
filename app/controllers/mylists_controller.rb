@@ -14,6 +14,7 @@ class MylistsController < ApplicationController
         product = Product.find(params[:product_id])
         @mylist = Mylist.create(user_id: user.id, product_id: product.id)
         @mylist.save
+        flash[:notice] = "マイリストに追加しました"
         redirect_to product_path(params[:product_id])
     end
     
@@ -23,7 +24,8 @@ class MylistsController < ApplicationController
         product = Product.find(params[:product_id])
         @mylist = Mylist.find_by(user_id: user.id, product_id: product.id)
         @mylist.destroy
-        redirect_to mylists_path(current_user)
+        flash[:notice] = "マイリストから削除しました"
+        redirect_to product_path(params[:product_id])
     end
 
 end

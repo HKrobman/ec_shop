@@ -43,7 +43,7 @@ html, body {
  
  .notice{
      text-align: center;
-     color: red;
+     color: orange;
      font-size: 20px;
  }
  
@@ -299,6 +299,15 @@ html, body {
     
 }
 
+
+.pro-box{
+    margin-top: 10px;
+}
+.pro-in-name{
+    color: orange;
+    
+}
+
 .product li{
     float: left;
     width: 200px;
@@ -313,17 +322,9 @@ html, body {
 
 /*  product show   */
 
-.m-review-title{
-    font-size: 20px;
-    border-bottom: 1px solid orange;
-}
-
-.m-review-desc{
-    
-}
 
 .product-contents{
-    padding: 30px;
+    padding: 20px;
 }
     
 .show-image-tag{
@@ -334,11 +335,11 @@ html, body {
     display: block;
 }
 
-.back-image{
-    width: 450px;
-    height: 350px;
-    background-color: #2e2e2e;
-}
+//.back-image{
+  //  width: 450px;
+    //height: 350px;
+    //background-color: #2e2e2e;
+//}
 
 
 .left{
@@ -354,26 +355,72 @@ html, body {
     
 }
 
+// product reviewウィンドウ
 .review-coments{
     clear: left;
     
 }
 
 .m-review{
+    clear: left;
     width: 500px;
-    height: 150px;
+    height: 170px;
     padding: 10px;
     background-color: #1d1d1d;
     border-radius: 20px;
 }
 
-.all-review{
-    padding-left: 10px;
-    padding-right: 200px;
+
+.m-review-title{
+    font-size: 20px;
+    border-bottom: 1px solid orange;
+    
+    span{
+        padding-left: 10px;
+    }
 }
 
+.m-review-name{
+     font-size: 10px; 
+     //background-color: #2e2e2e;
+     border: 1px solid #2e2e2e;
+     border-radius: 10px;
+     //text-align: center;
+    
+    span{
+        padding-left: 60px;
+    }
+}
+
+
+.m-review-main{
+    height: 30px;
+    width: 450px;
+}
+
+.m-review-rank{
+    float: left;
+    padding-left: 10px;
+    font-size: 20px;
+    
+    span{
+        color: orange;
+    }
+}
+
+.all-review{
+    line-height: 30px;
+    float: right;
+    span{
+        padding-left: 10px;
+    }
+
+}
+
+//review投稿フォーム
+
 .review-form{
-    top: 200px;
+    top: 150px;
     position: relative;
     padding: 30px;
     text-align: center;
@@ -383,7 +430,7 @@ html, body {
     border-bottom: solid 1px orange;
     border-radius: 10px;
     width: 600px;
-    height: 500px;
+    height: 550px;
     margin: 0 auto;
     
     .review-input{
@@ -391,6 +438,17 @@ html, body {
         width: 300px;
     }
     
+    .review-rank{
+        margin-bottom: 20px;
+    }
+    
+    .count{
+        border: 1px solid #1d1d1d;
+        border-radius: 10px;
+        font-weight: bold;
+        width: 80px;
+        text-align: center;
+    }
     
     textarea{
         color: black;
@@ -401,7 +459,7 @@ html, body {
     
    
 }
-
+// review indexページ
 .review-index{
     top: 100px;
     position: relative;
@@ -409,17 +467,29 @@ html, body {
     width: 700px;
     height: 600px;
     
+    .review-index-rank{
+        font-size: 30px;
+        span{
+            color: orange;
+        }
+    }
+    
    .m-review-index{
-      background-color: #2e2e2e;
+      background-color: #1d1d1d;
       width: 500px;
+      height: 150px;
       border-radius: 10px;
-      padding-left: 10px;
+      //padding-left: 10px;
       margin-bottom: 20px;
+      padding: 10px;
   }
  
  .review-time{
      font-size: 10px;
-     
+ }
+ 
+ .review-i-c{
+     padding-left: 10px;
  }
   
 }
@@ -428,13 +498,12 @@ html, body {
     width: 500px;
     height: 220px;
     //float: left;
-    padding-top: 40px;
+    padding-top: 20px;
 }
 
 .product-info{
-    
     //float: left;
-    margin-top: 20px;
+    padding-top: 10px;
 }
 
 .product-info-desc{

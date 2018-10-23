@@ -8,6 +8,7 @@ class ProductsController < ApplicationController
                    Product.all
                 end
       @products = product.order(created_at: :desc).page(params[:page]).per(8)
+     
     end
     
     def show
@@ -22,8 +23,12 @@ class ProductsController < ApplicationController
             break
           end
         end
+      
       @last_review = @product.reviews.last
       @mylist = Mylist.find_by(user_id: user.id, product_id: params[:id])
+      
+      @review_rank = @product.reviews.average(:rank)
+      
     end
     
     def create
@@ -46,5 +51,6 @@ class ProductsController < ApplicationController
       "残りわずか"
     end
   end
+  
 
 end

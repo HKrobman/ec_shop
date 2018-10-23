@@ -16,15 +16,16 @@
     <%= image_tag(@product.image_url.to_s, :class => "show-image-tag left") %>
     <div class="back-image"></div>
       <div class="review-coments">
-       <p>レビュー数: <%= @product.reviews.count %> 件</p>
-       <p>
-        <span class="all-review"><%= link_to "全てのレビューを見る", reviews_path(product_id: params[:id]), :class => "review_show"%></span>
-       </p>
-           
+       <div class="m-review-main">
+        <p class="m-review-rank">評価：<span><%= @review_rank %></span></p>
+        <p class="all-review">レビュー数: <%= @product.reviews.count %> 件
+          <span><%= link_to "<全てのレビューを見る>", reviews_path(product_id: params[:id]), :class => "review_show"%></span>
+        </p>
+       </div>    
         <div class="m-review">
          <% if @last_review.present? %>
-          <p class="m-review-title" ><%= @last_review.title %></p>
-          <p>レビュー投稿日 : <%= @last_review.created_at.strftime('%Y/%m/%d') %><%=@last_review.name%></p>
+         <p class="m-review-name">投稿者：<%=@last_review.name%><span>レビュー投稿日 : <%= @last_review.created_at.strftime('%Y/%m/%d') %></span></p>
+          <p class="m-review-title" >評価：<%= @last_review.rank %><span><%= @last_review.title %></span></p>
           <p class="m-review-desc"><%= @last_review.description %></p>
          <% else %>
           <p class="review-title">レビューはありません</p>
@@ -75,10 +76,5 @@
     </div>
    </li>
   </ul>
-    
- 
-   </div>
- 
-  
-  
  </div>
+</div>
