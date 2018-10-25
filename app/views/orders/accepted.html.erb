@@ -1,4 +1,6 @@
-<h1>受付完了</h1>
-<p><%= @order.created_at.strftime('%Y/%m/%d')%>注文を受け付けました</p>
-<p>配達予定日は<%=@deli_date%>です</p>
-<p>ご利用ありがとうございました。</p>
+<div class="home contents-center accepted">
+  <h1>受付完了</h1>
+  <p><%= @order.created_at.strftime('%Y/%m/%d')%>注文を受け付けました</p>
+  <p>配達予定日は<%=@deli_date%>です</p>
+  <p>ご利用ありがとうございました。</p>
+</div>

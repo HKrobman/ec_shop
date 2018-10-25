@@ -66,7 +66,3 @@ class OrdersController < ApplicationController
     end
     
 end
-
-=begin
-
-=end

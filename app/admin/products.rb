@@ -29,62 +29,15 @@ ActiveAdmin.register Product do
   index :as => :grid do |product|
     div do
       a :href => admin_product_path(product) do
-        image_tag(product.image_url.to_s)
+        image_tag(product.image_url.to_s, :size => '180x180')
       end
     end
-    a truncate(product.name), :href => product_path(product)
+    a truncate(product.name), :href => admin_product_path(product)
   end
   
-   form do |f|
-    f.inputs do
-      f.input :name
-      f.input :category_id,
-                 label: 'カテゴリー',
-                 as: :select,
-                 collection: Category.all.map { |a| [a.category_name, a.id] }
-      f.input :company
-      f.input :released_on
-      f.input :code
-      f.input :list_price
-      f.input :sale_price
-      f.input :description
-      f.input :image_url
-      f.input :delivery_days
-      f.input :color
-      f.input :active
-    end
-    f.actions
-  end
-  
-  
-  sidebar :product_stats, :only => :show do
-    attributes_table_for resource do
-      row("総売上個数")  { Order.find(resource.id).count }
-      #row("総売上"){ Order.where(:product_id => resource.id).sum(:sale_price) }
-    end
-  end
-
-  sidebar :recent_orders, :only => :show do
-    Order.find_with_product(resource).limit(5).collect do |order|
-      auto_link(order)
-    end.join(content_tag("br")).html_safe
-  end
-
- 
-  
-  
-  controller do
-    def permitted_params
-      params.permit product: [:name,:category,:category_id,:company,:released_on,:code,:list_price,:sale_price,:description,:image_url,:delivery_days,:active,:color]
-    end
-  end
-  
-end
-
-=begin
-
   show do
-  attributes_table do
+    attributes_table_for resource do
+    
     row '商品名' do
       resource.name
     end
@@ -110,7 +63,7 @@ end
       resource.description
     end
     row '商品画像' do
-      resource.image_url
+      image_tag(resource.image_url.to_s, :size => '180x180')
     end
     row '配達日数' do
       resource.delivery_days
@@ -122,21 +75,32 @@ end
       resource.active
     end
   end
+end
   
-  index do
-      column :name
-      column :category_id
-      column :company
-      column :released_on
-      column :code
-      column :list_price
-      column :sale_price
-      column :description
-      column :image_url
-      column :color
-      column :delivery_days
-      column :active
+   form do |f|
+    f.inputs do
+      f.input :name
+      f.input :category_id,
+                 label: 'カテゴリー',
+                 as: :select,
+                 collection: Category.all.map { |a| [a.category_name, a.id] }
+      f.input :company
+      f.input :released_on
+      f.input :code
+      f.input :list_price
+      f.input :sale_price
+      f.input :description
+      f.input :image_url
+      f.input :delivery_days
+      f.input :color
+      f.input :active
+    end
+    f.actions
   end
   
-  
-=end
+  controller do
+    def permitted_params
+      params.permit product: [:name,:category,:category_id,:company,:released_on,:code,:list_price,:sale_price,:description,:image_url,:delivery_days,:active,:color]
+    end
+  end
+end

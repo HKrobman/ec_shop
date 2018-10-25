@@ -13,11 +13,12 @@ ActiveAdmin.register Stock do
 # end
 
   index do
-      column :product_id
-      column :quantity
-      column :sales_quantity
-      column :arriving_on
-      column :comment
+    column("商品名") {|stock| stock.product.name }
+    column("商品ID") {|stock| stock.product.id }
+    column("商品在庫"){|stock| stock.quantity }
+    column("販売在庫"){|stock| stock.sales_quantity }
+    column("入荷予定日"){|stock| stock.arriving_on }
+    column("コメント"){|stock| stock.comment }
   end
   
    form do |f|

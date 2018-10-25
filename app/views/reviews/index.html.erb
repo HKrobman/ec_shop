@@ -7,6 +7,11 @@
 	   <div class="review-i-c">
 	   	<p class="m-review-title" >評価：<%= review.rank %><span><%= review.title %></span></p>
 	   	<p class="m-review-desc"><%= review.description%></p>
+	   	<% if review.user_id == current_user.id %>
+	  		<p class="m-review-title" >これ書いたの君ね</p>
+	  	<%else%>
+	  		<p class="m-review-title" >これ書いたのは君じゃないね</p>
+	  	<%end%>
 	   </div>
 	 </li>
 	</ul>

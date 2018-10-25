@@ -10,7 +10,7 @@
     <td><%= item.product.name %></td>
     <td><%= item.product.sale_price.to_s(:delimited) %>円</td>
     <td><%= item.quantity %>個</td>
-    <td><span class="post-review"><%= link_to "レビューを投稿する", new_review_path(product_id: item.product.id), :class => "review_post"%></span></td>
+      <td><span class="post-review"><%= link_to "レビューを投稿する", new_review_path(product_id: item.product.id), :class => "review_post"%></span></td>
   </tr>
   <%end%>
   </table>

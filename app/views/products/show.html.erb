@@ -17,7 +17,11 @@
     <div class="back-image"></div>
       <div class="review-coments">
        <div class="m-review-main">
-        <p class="m-review-rank">評価：<span><%= @review_rank %></span></p>
+        <% if @review_rank.present? %>
+         <p class="m-review-rank">評価：<span><%= @review_rank %></span></p>
+        <%else%>
+         <p class="m-review-rank">評価：<span>0.0</span></p>
+        <%end%>
         <p class="all-review">レビュー数: <%= @product.reviews.count %> 件
           <span><%= link_to "<全てのレビューを見る>", reviews_path(product_id: params[:id]), :class => "review_show"%></span>
         </p>
