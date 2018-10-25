@@ -26,6 +26,7 @@ html, body {
     padding: 0;
     font-family: liberation_sans, "Open Sans", "ヒラギノ角ゴ ProN W6", "Hiragino Kaku Gothic ProN", Meiryo, メイリオ, sans-serif;
     color: white;
+    background: #222222;
  }
  
    ul{
@@ -34,7 +35,7 @@ html, body {
 
  
  footer{
-     position: absolute;
+     position: fixed;
      bottom: 0;
      width: 100%;
      background: #1d1d1d;
@@ -53,7 +54,7 @@ html, body {
  
 .container{
      
-    position: fixed;
+    //position: fixed;
     right: 0;
     top: 0;
     width: 100%;
@@ -74,10 +75,12 @@ html, body {
 
 
 /* homeレイアウト */
+
 .body-contents{
     width: 100%;
     height: 100%;
 }
+
 /* -------------------------------- */
 
 /* ------------------------------ header ------------------------------ */
@@ -85,7 +88,8 @@ html, body {
 .header{
     width: 260px;
     height: 100%;
-    position: absolute;
+    position: fixed;
+    //position: absolute;
     top: 0;
     left: 0;
     z-index: 100;
@@ -867,27 +871,59 @@ html, body {
     color: black;
 }
 
-
+// order confirm
 
 .deli-form{
     color: white;
     position: relative;
-    top: 20px;
+    top: 40px;
+    padding: 30px;
+    width: 1000px;
     //text-align: center;
     font-weight: bold;
     height: 600px;
     margin: 0 auto;
-// 仮
+    
+     .field{
+        padding-bottom: 5px;    
+    }
 
  .deli-address{
-     width: 500px;
+     margin-top: 50px;
+     padding: 30px;
+     width: 350px;
+     height: 250px;
      float: left;
+     border: 1px solid #1d1d1d;
  }
+ 
+  .cart-display{
+      height: 600px;
+      width: 500px;
+      float: left;
+      margin-right: 50px;
+  }
+  
+   .order_total_price{
+      float: left;
+      padding: 30px;
+      width: 350px;
+      height: 200px;
+      border: 2px solid #1d1d1d;
+      
+      li{
+          margin-bottom: 10px;
+      }
+  }
+  
  .cart-image-tag{
       width: 80px;
       height: 70px;
   }
 
+ .order-confirm-label{
+     background-color: black;
+ }
   .destroy-cart{
       color: white;
       height: 20px;
@@ -896,10 +932,17 @@ html, body {
       border-radius: 5px;
   }
   
-  .cart-display{
-      height: 300px;
-      width: 500px;
-      float: left;
+ 
+  
+ 
+  
+  .conf-text{
+      text-align: center;
+  }
+  
+  .o-t-p{
+      border-top: 1px solid orange;
+      font-size: 20px;
   }
   
   table{
@@ -973,33 +1016,23 @@ html, body {
     //height: 500px;
     width: 700px;
   
-  .order-image-tag{
-      width: 50px;
-      height: 50px;
-  }
-  
-    
-  table{
+    .order-image-tag{
+       width: 50px;
+       height: 50px;
+    }
+    table{
       margin-bottom: 10px;
-  }  
-  
-  tr{
-      
-  }
-    
-  td{
-     padding: 10px;
-  }        
-  
-  .order-display{
+    } 
+    td{
+      padding: 10px;
+    }        
+    .order-display{
       text-align: center;
       margin-bottom: 60px;
       width: 600px;
       border: solid 2px #1d1d1d;
-  }
-  
-  .m-topi{
+    }
+    .m-topi{
       background-color: #1d1d1d;
-  }
-  
+    }
  }

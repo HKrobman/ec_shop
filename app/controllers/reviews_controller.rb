@@ -2,7 +2,7 @@ class ReviewsController < ApplicationController
   before_action :authenticate_user!
   
   def index 
-    @reviews = Review.where(product_id: params[:product_id]).page(params[:page]).per(6)
+    @reviews = Review.where(product_id: params[:product_id]).page(params[:page]).order(created_at: "DESC").per(6)
     @review_rank = @reviews.average(:rank)
   end
   

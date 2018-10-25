@@ -12,30 +12,41 @@
     <%= f.text_field :addressee_name_kanji,  class: "form-control" %>
   </div>
   
+  
+  <div class="field">
+    <%= f.label :order_telphone, '電話番号' ,class: "control-label" %>
+    <%= f.text_field :order_telphone,  class: "form-control" %>
+  </div>
+  
+  <form>
+  <div class="h-adr">
+  <span class="p-country-name" style="display:none;">Japan</span>
+  <input type="hidden" class="p-country-name">
+    
   <div class="field">
     <span class="p-country-name" style="display:none;">Japan</span>
-    <%= f.label :addressee_zip_code, '郵便番号' ,class: "control-label  p-postal-code" %>
-    <%= f.text_field :addressee_zip_code,  class: "form-control"%>
+    <%= f.label :addressee_zip_code, '郵便番号' ,class: "control-label" %>
+    <%= f.text_field :addressee_zip_code,  class: "p-postal-code form-control", size:8, maxlength:8, placeholder: '1000000' %>
   </div>
   
   <div class="field">
     <%= f.label :addressee_prefecture, '都道府県' ,class: "control-label" %>
-    <%= f.text_field :addressee_prefecture, class: "form-control" %>
+    <%= f.text_field :addressee_prefecture, class: "p-region form-control" %>
   </div>
   
   <div class="field">
-    <%= f.label :addressee_city, '市町村' ,class: "control-label" %>
-    <%= f.text_field :addressee_city,  class: "form-control" %>
+    <%= f.label :addressee_city, '市町村区' ,class: "control-label" %>
+    <%= f.text_field :addressee_city,  class: "p-locality form-control" %>
   </div>
   
   <div class="field">
     <%= f.label :addressee_address1, '住所(丁目番地)' ,class: "control-label" %>
-    <%= f.text_field :addressee_address1,  class: "form-control" %>
+    <%= f.text_field :addressee_address1,  class: "p-street-address form-control" %>
   </div>
   
   <div class="field">
     <%= f.label :addressee_address2, '建物名・部屋番号(マンション名など)' ,class: "control-label" %>
-    <%= f.text_field :addressee_address2,  class: "form-control" %>
+    <%= f.text_field :addressee_address2,  class: "p-extended-address form-control" %>
   </div>
 
   <div class="field">
@@ -46,5 +57,17 @@
   <div class="field field-center">
     <%= f.submit "次へ", class: "btn btn-large btn-primary" %>
   </div>
+  </form>
   <% end %>
 </div>
+
+<script>
+
+$(document).ready(function() {
+  $(document).on('turbolinks:render', function() {
+    if ($('.h-adr').length) {
+      new YubinBango.MicroformatDom();
+    }
+  });
+});
+</script>

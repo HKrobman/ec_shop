@@ -5,7 +5,7 @@
     <table align = "center">
     <% @mylists.each do |mylist| %>
      <tr>
-       <td>登録日: <%= mylist.created_at.strftime('%Y/%m/%d') %></td>
+       <td>登録日: <%= mylist.created_at.strftime('%Y年%m月%d日') %></td>
        <td><%= image_tag(mylist.product.image_url.to_s, :class => "mylist-image-tag")%></td>
        <td><%= mylist.product.name %></td>
        <td><%= mylist.product.sale_price %>円</td>

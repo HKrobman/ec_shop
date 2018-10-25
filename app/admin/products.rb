@@ -25,19 +25,14 @@ ActiveAdmin.register Product do
   filter :created_at
   filter :updated_at
 
-  index do
-      column :name
-      column :category_id
-      column :company
-      column :released_on
-      column :code
-      column :list_price
-      column :sale_price
-      column :description
-      column :image_url
-      column :color
-      column :delivery_days
-      column :active
+
+  index :as => :grid do |product|
+    div do
+      a :href => admin_product_path(product) do
+        image_tag(product.image_url.to_s)
+      end
+    end
+    a truncate(product.name), :href => product_path(product)
   end
   
    form do |f|
@@ -62,6 +57,32 @@ ActiveAdmin.register Product do
   end
   
   
+  sidebar :product_stats, :only => :show do
+    attributes_table_for resource do
+      row("総売上個数")  { Order.find(resource.id).count }
+      #row("総売上"){ Order.where(:product_id => resource.id).sum(:sale_price) }
+    end
+  end
+
+  sidebar :recent_orders, :only => :show do
+    Order.find_with_product(resource).limit(5).collect do |order|
+      auto_link(order)
+    end.join(content_tag("br")).html_safe
+  end
+
+ 
+  
+  
+  controller do
+    def permitted_params
+      params.permit product: [:name,:category,:category_id,:company,:released_on,:code,:list_price,:sale_price,:description,:image_url,:delivery_days,:active,:color]
+    end
+  end
+  
+end
+
+=begin
+
   show do
   attributes_table do
     row '商品名' do
@@ -101,13 +122,21 @@ ActiveAdmin.register Product do
       resource.active
     end
   end
+  
+  index do
+      column :name
+      column :category_id
+      column :company
+      column :released_on
+      column :code
+      column :list_price
+      column :sale_price
+      column :description
+      column :image_url
+      column :color
+      column :delivery_days
+      column :active
   end
   
   
-  controller do
-    def permitted_params
-      params.permit product: [:name,:category,:category_id,:company,:released_on,:code,:list_price,:sale_price,:description,:image_url,:delivery_days,:active,:color]
-    end
-  end
-  
-end
+=end

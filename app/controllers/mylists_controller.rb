@@ -2,7 +2,7 @@ class MylistsController < ApplicationController
     before_action :authenticate_user!
     def index
         user = current_user
-        @mylists = Mylist.where(user_id: user.id).page(params[:page]).per(5)
+        @mylists = Mylist.where(user_id: user.id).order(created_at: "DESC").page(params[:page]).per(5)
     end
     
     def show

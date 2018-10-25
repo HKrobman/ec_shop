@@ -1,7 +1,7 @@
 class CartsController < ApplicationController
    
   def show
-    @cart_items = current_cart.cart_items.all.page(params[:page]).per(4)
+    @cart_items = current_cart.cart_items.all.order(created_at: "DESC").page(params[:page]).per(4)
   end
 
   def destroy
@@ -9,11 +9,8 @@ class CartsController < ApplicationController
     redirect_to cart_path(current_cart)
   end
   
-  
-  
   def total_price
     cart_items.to_a.sum{ |item| item.total_price }
   end    
-  
   
 end
