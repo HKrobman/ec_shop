@@ -8,7 +8,7 @@ class ContactsController < ApplicationController
     @contact = Contact.new(contact_params)
     if @contact.save
        ContactMailer.sent(@contact).deliver
-       flash[:success] = "Thanks!! We'll be in touch."
+       flash[:notice] = "お問い合わせありがとうございました"
        redirect_to root_url
     end
   end

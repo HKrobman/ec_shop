@@ -303,6 +303,30 @@ html, body {
     
 }
 
+.search-form{
+    margin: 20px 100px 0px 0px;
+    text-align: right;
+}
+
+.search-category{
+  background-color: #2e2e2e; 
+  border: 1px solid #1d1d1d;
+  border-radius: 10px;
+  padding-left: 5px;
+  width: 100px;
+  color: orange;
+}
+
+.search{
+  background-color: #2e2e2e; 
+  border: 1px solid #1d1d1d;
+  border-radius: 10px;
+  padding-left: 5px;
+  color: white;
+  width: 250px;
+ }
+
+
 
 .pro-box{
     margin-top: 10px;
@@ -358,6 +382,126 @@ html, body {
     float: left;
     
 }
+
+.product-description{
+    width: 500px;
+    height: 220px;
+    //float: left;
+    padding-top: 20px;
+}
+
+.product-info{
+    //float: left;
+    padding-top: 10px;
+}
+
+.product-info-desc{
+    border: 1px solid #2e2e2e;
+    font-size: 10px;
+    height: 50px;
+    width: 500px;
+    border-radius: 10px;
+    padding: 5px 0px 5px 10px;
+}
+
+.description{
+      //float: left;
+      font-size: 12px;
+      background-color: #2e2e2e;
+      width: 500px;
+      height: 150px;
+      border-radius: 10px;
+      padding: 10px 5px 5px 10px;
+  }
+  
+  
+.product-name{
+    width: 500px;
+    padding-left: 20px;
+    font-size: 30px;
+    line-height: 30px; 
+    border-bottom: 2px solid #2e2e2e;
+    //border: 1px solid #2e2e2e;
+    //border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+.sale-price{
+    border-bottom: 1px solid white;
+    width: 320px;
+    margin-left: 70px;
+    font-size: 15px;
+   
+  .price{
+    color: orange;
+    font-size: 30px;
+    padding-right: 5px;
+  }
+    
+   .price-unit{
+       padding-right: 40px;
+   }
+
+  .stock{
+    padding-left: 10px;
+    font-size: 15px;
+    color: orange;
+  }
+
+}
+
+.sub-box{
+    position: relative;
+    margin-top: 30px;
+    margin-left: 100px;
+    width: 250px;
+    height: 150px;
+    border: 2px solid #2e2e2e;
+    
+    input{
+        color: white;
+    }
+    
+ .count-text{
+      position: absolute;
+      top: 12px;
+      left: 30px;
+  }
+ 
+  .count{
+      position: absolute;
+      background-color: #2e2e2e;
+      border: 1px solid #1d1d1d;
+      border-radius: 10px;
+      font-weight: bold;
+      width: 80px;
+      top: 10px;
+      left: 100px;
+      text-align: center;
+  }    
+
+  .add-cart{
+    position: absolute;
+    color: white;
+    height: 40px;
+    border-radius: 10px;
+    top: 50px;
+    left: 30px;
+   }
+   
+   .mylist-btn{
+    position: absolute;
+    color: white;
+    height: 30px;
+    top: 110px;
+    left: 70px;
+    background-color: #2e2e2e;
+    border-radius: 10px;
+   }
+
+}
+
+
 
 // product reviewウィンドウ
 .review-coments{
@@ -497,125 +641,6 @@ html, body {
  }
   
 }
-
-.product-description{
-    width: 500px;
-    height: 220px;
-    //float: left;
-    padding-top: 20px;
-}
-
-.product-info{
-    //float: left;
-    padding-top: 10px;
-}
-
-.product-info-desc{
-    border: 1px solid #2e2e2e;
-    font-size: 10px;
-    height: 70px;
-    width: 500px;
-    border-radius: 10px;
-    padding: 5px 0px 5px 10px;
-}
-
-.description{
-      //float: left;
-      font-size: 12px;
-      background-color: #2e2e2e;
-      width: 500px;
-      height: 150px;
-      border-radius: 10px;
-      padding: 10px 5px 5px 10px;
-  }
-  
-  
-.product-name{
-    width: 500px;
-    padding-left: 20px;
-    font-size: 30px;
-    line-height: 30px; 
-    border-bottom: 2px solid #2e2e2e;
-    //border: 1px solid #2e2e2e;
-    //border-radius: 10px;
-    margin-bottom: 30px;
-}
-
-.sale-price{
-    border-bottom: 1px solid white;
-    width: 320px;
-    margin-left: 70px;
-    font-size: 15px;
-   
-  .price{
-    color: orange;
-    font-size: 30px;
-    padding-right: 5px;
-  }
-    
-   .price-unit{
-       padding-right: 40px;
-   }
-
-  .stock{
-    padding-left: 10px;
-    font-size: 15px;
-    color: orange;
-  }
-
-}
-
-.sub-box{
-    position: relative;
-    margin-top: 30px;
-    margin-left: 100px;
-    width: 250px;
-    height: 150px;
-    border: 2px solid #2e2e2e;
-    
-    input{
-        color: white;
-    }
-    
- .count-text{
-      position: absolute;
-      top: 12px;
-      left: 30px;
-  }
- 
-  .count{
-      position: absolute;
-      background-color: #2e2e2e;
-      border: 1px solid #1d1d1d;
-      border-radius: 10px;
-      font-weight: bold;
-      width: 80px;
-      top: 10px;
-      left: 100px;
-      text-align: center;
-  }    
-
-  .add-cart{
-    position: absolute;
-    color: white;
-    height: 40px;
-    border-radius: 10px;
-    top: 50px;
-    left: 30px;
-   }
-   
-   .mylist-btn{
-    position: absolute;
-    color: white;
-    height: 30px;
-    top: 110px;
-    left: 70px;
-    background-color: #2e2e2e;
-    border-radius: 10px;
-   }
-
-}
-
 
 /* About */
 

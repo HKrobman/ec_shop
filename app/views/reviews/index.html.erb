@@ -13,15 +13,16 @@
 	   <div class="review-i-c">
 	   	<p class="m-review-title" >評価：<%= review.rank %><span><%= review.title %></span></p>
 	   	<p class="m-review-desc"><%= review.description%></p>
-	   	<% if review.user_id == current_user.id %>
-	  		<p class="m-review-title" >これ書いたの君ね</p>
-	  	<%else%>
-	  		<p class="m-review-title" >これ書いたのは君じゃないね</p>
-	  	<%end%>
 	   </div>
 	 </li>
 	</ul>
+	<% if review.user_id == current_user.id %>
+	  		<p class="m-review-title" ><%=link_to "編集・削除リンク", review_path(review)%></p>
+	  	<%else%>
+	  		<p class="m-review-title" >役に立った(ボタン実装)</p>
+	<%end%>
 	<% end %>
+	
   <div class="page">
      <%= paginate @reviews %>
   </div>

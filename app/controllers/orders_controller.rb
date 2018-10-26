@@ -12,16 +12,15 @@ class OrdersController < ApplicationController
         flash[:notice] = "カートに商品を追加してください"
         redirect_to cart_path(current_cart)
       else  
-        @user = current_user
         @order = Order.new
-        @order.addressee_name_kana = @user.name_kana
-        @order.addressee_name_kanji = @user.name_kanji
-        @order.order_telphone = @user.telphone
-        @order.addressee_zip_code = @user.zip_code
-        @order.addressee_prefecture = @user.prefecture
-        @order.addressee_city = @user.city
-        @order.addressee_address1 = @user.address1
-        @order.addressee_address2 = @user.address2
+        @order.addressee_name_kana = current_user.name_kana
+        @order.addressee_name_kanji = current_user.name_kanji
+        @order.order_telphone = current_user.telphone
+        @order.addressee_zip_code = current_user.zip_code
+        @order.addressee_prefecture = current_user.prefecture
+        @order.addressee_city = current_user.city
+        @order.addressee_address1 = current_user.address1
+        @order.addressee_address2 = current_user.address2
       end
     end
     
@@ -37,7 +36,7 @@ class OrdersController < ApplicationController
     
     def create
       @order = Order.new(order_params)
-      @order.add_items(current_cart)
+      #stock = Stock.find_by(product_id: @order.cart_items.product.id)[:sales_quantity]
       if params[:credit]
         render :new
       elsif @order.save
@@ -48,7 +47,7 @@ class OrdersController < ApplicationController
     
     def accepted
       @order = Order.last
-      @deli_date = @order.created_at.since(4.days)
+      @deli_date = @order.created_at.since(4.days)    #表示されない
     end
     
     def pay

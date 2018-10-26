@@ -7,7 +7,7 @@ class Cart < ApplicationRecord
    def add_product(product_id, quantity)
     current_items = cart_items.find_by_product_id(product_id)
     if current_items
-      current_items.quantity += quantity
+        current_items.quantity += quantity
     else
       current_items = cart_items.build(product_id: product_id)
       current_items.quantity += quantity

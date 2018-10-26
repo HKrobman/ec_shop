@@ -1,14 +1,7 @@
 <div>
-	<% @reviews.each do |review| %>
 	<li>
-	  <%= review.name %>
-	  <%= review.title %>
-	  <%= review.description%>
-	  <% if review.user_id == current_user.id? %>
-	  	これ書いたの君ね
-	  <%else%>
-	  	これ書いたのは君じゃないね
-	  <%end%>
+	  <%= @review.name %>
+	  <%= @review.title %>
+	  <%= @review.description%>
 	</li>
-	<% end %>
 </div>

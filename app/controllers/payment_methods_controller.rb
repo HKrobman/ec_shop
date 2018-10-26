@@ -1,8 +1,7 @@
 class PaymentMethodsController < ApplicationController
 	
 	def new
-			user = current_user
-			@payment = PaymentMethod.find(user.id) if @payment
+			@payment = PaymentMethod.find(current_user.id) if @payment
 			@payment = PaymentMethod.new
 			
 	end

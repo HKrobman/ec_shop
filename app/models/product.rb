@@ -20,14 +20,13 @@ class Product < ApplicationRecord
     validates :list_price ,:sale_price, numericality: {greater_than_or_equal_to: 0}
     #image_urlの検証はimage_uploader.rbに記述されている
     
-  #カート内の商品(参照されている商品が削除されないようにする)    
-  def ensure_not_referenced_by_any_cart_item
-    if cart_items.empty?
-      return true
+  def self.search(search)
+    if search
+      where(['name LIKE ?', "%#{search}%"]) #検索とnameの部分一致を表示
     else
-      errors.add(:base, '品目が存在します')
-      return false
+      all 
     end
   end
+  
   
 end

@@ -2,9 +2,14 @@ class ProductsController < ApplicationController
   before_action :set_product, only: :show
     
     def index
-      product = if params[:category_id]
+      @categories = Category.all
+      product = if params[:category_id]     #ページ上部のカテゴリー名を選択すると選択されたカテゴリーの商品を表示
                    Product.where(category_id: params[:category_id])
-                else
+                elsif params[:category] && params[:search]        #ページ上部検索ボックスでカテゴリー指定&ワード入力で検索した場合
+                   Product.search(params[:search]).where(category_id: params[:category])
+                elsif params[:search]                             #ページ上部検索ボックスでカテゴリー未指定&ワードのみを入力して検索した場合 NG
+                   Product.search(params[:search])
+                else                                              
                    Product.all
                 end
       @products = product.order(created_at: :desc).page(params[:page]).per(8)
@@ -12,25 +17,25 @@ class ProductsController < ApplicationController
     end
     
     def show
-      user = current_user
       stock = Stock.find_by(product_id: params[:id])[:sales_quantity]
       @stock = judge_status(stock)
-       @current_stock_array = []
+      #在庫数が10個以下の場合はnumber_fieldで選択できる値を在庫数分だけにする
         stock.times do |quantity|
           if quantity < 10
-            @current_stock_array << [quantity + 1, quantity + 1]
+            @max = quantity + 1
           else
-            break
+            @max = 10
           end
         end
-      
+        
+     #商品ページには最新のレビューを1件表示する 
       @last_review = @product.reviews.last
-      
-      if signed_in?
-        @mylist = Mylist.find_by(user_id: user.id, product_id: params[:id])
-      end
-      
       @review_rank = @product.reviews.average(:rank)
+      
+     #該当商品がマイリストに登録されているかを確認。
+      if signed_in?
+        @mylist = Mylist.find_by(user_id: current_user.id, product_id: params[:id])
+      end
       
     end
     
@@ -55,5 +60,6 @@ class ProductsController < ApplicationController
     end
   end
   
-
 end
+
+ 

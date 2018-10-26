@@ -51,7 +51,7 @@
          <% if signed_in? %>
            <%= form_tag(cart_items_path(product_id: @product.id)) do %>
              <%= label :quantity, "注文個数 : ", :class=> "count-text" %>
-             <%= number_field_tag :quantity, 1 , in:1..10, :class=> "count"  %>
+             <%= number_field_tag :quantity, 1, in: 1..@max ,:class=> "count"  %>
              <%= submit_tag "カートに入れる",  :class=> 'btn btn-large btn-primary add-cart' %>
            <% end %>
         <% else %>
@@ -78,7 +78,7 @@
      <div class="product-info">
        <p>商品情報</p>
        <div class = "product-info-desc">
-         <p>商品コード:　<%= @product.code %></p>
+         <p>商品識別コード:　<%= @product.code %></p>
          <p>メーカー:　<%= @product.company %></p>
        </div>
     </div>

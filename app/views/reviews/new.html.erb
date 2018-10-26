@@ -1,6 +1,6 @@
 <% provide(:title, 'Review') %>
 <div class="review-form">
-    <%= form_for(@review) do |f| %>
+    <%= form_for @review do |f| %>
     <%= hidden_field_tag :product_id, @product.id %>
     
     <div class="field">
@@ -22,9 +22,9 @@
       <%= f.label :description, 'レビュー本文(300文字以内)', class: 'review-label' %><br />
       <%= f.text_area :description %>
     </div>
-    
+
     <div class="field">
       <%= f.submit "投稿する", class: 'btn btn-large btn-primary' %>
     </div>
-    <% end %>
+    
 </div>
