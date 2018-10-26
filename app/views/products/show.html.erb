@@ -48,19 +48,23 @@
        <p class="sale-price">価格：<span class="price"><%= @product.sale_price.to_s(:delimited) %></span><span class="price-unit">円</span> 在庫:<span class="stock"><%= @stock %><span></p>
        
        <div class="sub-box">
-        
+         <% if signed_in? %>
            <%= form_tag(cart_items_path(product_id: @product.id)) do %>
              <%= label :quantity, "注文個数 : ", :class=> "count-text" %>
              <%= number_field_tag :quantity, 1 , in:1..10, :class=> "count"  %>
              <%= submit_tag "カートに入れる",  :class=> 'btn btn-large btn-primary add-cart' %>
            <% end %>
-             
-           
+        <% else %>
+            <p>商品を購入するにはSign inしてください。</p>
+            <p><%= link_to "Sign in", new_user_session_path%></p>
+        <% end %>     
+          <% if signed_in? %> 
            <% if @mylist %>
            　<%= button_to "マイリスト解除", mylist_path(product_id: @product.id) , {:method=> "delete", :class=>'mylist-btn'} %>　
            <% else %>
              <%= button_to "マイリスト登録", mylists_path(product_id: @product.id) , {:class=>'mylist-btn'} %>
            <% end %>
+          <% end %>
            
        </div>
    </li>

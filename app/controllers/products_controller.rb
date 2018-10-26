@@ -25,7 +25,10 @@ class ProductsController < ApplicationController
         end
       
       @last_review = @product.reviews.last
-      @mylist = Mylist.find_by(user_id: user.id, product_id: params[:id])
+      
+      if signed_in?
+        @mylist = Mylist.find_by(user_id: user.id, product_id: params[:id])
+      end
       
       @review_rank = @product.reviews.average(:rank)
       

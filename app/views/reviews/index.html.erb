@@ -1,5 +1,11 @@
 <div class="review-index">
-	<p class="review-index-rank">レビュー評価:　<span><%= @review_rank %></span></p>
+	<% if @review_rank.present? %>
+  	<p class="review-index-rank">レビュー評価:　<span><%= @review_rank %></span></p>
+  <%else%>
+    <p class="review-index-rank">評価：<span>0.0</span></p>
+    <p>レビューがありません</p>
+  <%end%>
+	
 	<% @reviews.each do |review| %>
 	<ul>
 	 <li class="m-review-index">

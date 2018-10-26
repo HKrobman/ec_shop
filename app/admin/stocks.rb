@@ -14,6 +14,7 @@ ActiveAdmin.register Stock do
 
   index do
     column("商品名") {|stock| stock.product.name }
+    column("商品画像"){|stock| image_tag(stock.product.image_url.to_s, :size => '180x180')}
     column("商品ID") {|stock| stock.product.id }
     column("商品在庫"){|stock| stock.quantity }
     column("販売在庫"){|stock| stock.sales_quantity }
