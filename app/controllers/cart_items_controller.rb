@@ -2,9 +2,16 @@ class CartItemsController < ApplicationController
   before_action :set_cart_item, only: [:update, :create]
   def create
     @cart_item = current_cart.add_product(@product.id, @quantity)
-    if @cart_item.save
+    if @cart_item.quantity > 10
       redirect_to current_cart
+      flash[:notice] = "一度に購入できる同一商品は10個までです。"
     else
+      if @cart_item.save
+        redirect_to current_cart
+      else
+        redirect_to product_path(product_id: @product.id)
+        flash[:notice] = "エラーが発生しました。"
+      end
     end
   end
   

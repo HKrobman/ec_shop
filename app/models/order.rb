@@ -1,5 +1,5 @@
 class Order < ApplicationRecord
-    has_many :products
+    has_many :products,through: :cart_items
     belongs_to :user
     has_many :cart_items, dependent: :destroy
     PAY_TYPE = ["現金","クレジットカード"]
@@ -20,4 +20,6 @@ class Order < ApplicationRecord
 	  end
     end
 	
+
+
 end

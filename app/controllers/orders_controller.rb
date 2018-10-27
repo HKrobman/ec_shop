@@ -27,19 +27,20 @@ class OrdersController < ApplicationController
     def confirm
       @cart_items = current_cart.cart_items.all.page(params[:page]).per(5)
       @order = Order.new(order_params)
-      if @order.pay_type=="現金"
+      if @order.pay_type=="現金"  #送料350円 + 代引き手数料400円
         @cart_total = @cart.total_price + 350 + 400
-      else
+      else  #クレカ決済の場合は送料350円のみ
         @cart_total = @cart.total_price + 350
       end
     end
     
     def create
       @order = Order.new(order_params)
-      #stock = Stock.find_by(product_id: @order.cart_items.product.id)[:sales_quantity]
+      @order.add_items(current_cart)
       if params[:credit]
         render :new
       elsif @order.save
+        @order.cart_items.each { |item| item.product.sold! }
         render :accepted
       end        
 

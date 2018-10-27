@@ -68,21 +68,25 @@
            
        </div>
    </li>
+   <div class="product-description">
    <li>
-     <div class="product-description">
        <p>商品説明</p>
-       <p class ="description" ><%= @product.description %></p> 
-     </div>
+       <div class ="description" >
+        <% @product_description.each do |text|%>
+         <p><%= text %></p> 
+        <% end %>
+       </div>
    </li>
+   </div>
+   <div class="product-info">
    <li>
-     <div class="product-info">
        <p>商品情報</p>
        <div class = "product-info-desc">
          <p>商品識別コード:　<%= @product.code %></p>
          <p>メーカー:　<%= @product.company %></p>
        </div>
-    </div>
    </li>
+   </div>
   </ul>
  </div>
 </div>

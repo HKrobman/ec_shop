@@ -383,16 +383,16 @@ html, body {
     
 }
 
+
 .product-description{
-    width: 500px;
-    height: 220px;
-    //float: left;
-    padding-top: 20px;
+    //width: 500px;
+    //height: 250px;
 }
 
 .product-info{
-    //float: left;
-    padding-top: 10px;
+    margin-top: 10px;
+    
+    width: 500px;
 }
 
 .product-info-desc{
@@ -405,11 +405,9 @@ html, body {
 }
 
 .description{
-      //float: left;
       font-size: 12px;
       background-color: #2e2e2e;
       width: 500px;
-      height: 150px;
       border-radius: 10px;
       padding: 10px 5px 5px 10px;
   }

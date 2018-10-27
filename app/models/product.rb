@@ -10,7 +10,7 @@ class Product < ApplicationRecord
     has_many :orders, through: :cart_items
     #has_many :carts, through: :cart_items
     
-    has_many :stocks
+    has_one :stock
     attr_accessor :image_url 
     mount_uploader :image_url, ImageUploader
     
@@ -26,6 +26,10 @@ class Product < ApplicationRecord
     else
       all 
     end
+  end
+  
+  def sold!
+    self.stock.update(sales_quantity: self.stock.sales_quantity - 1)
   end
   
   

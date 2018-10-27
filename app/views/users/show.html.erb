@@ -8,7 +8,7 @@
    <li><%= link_to "会員情報の登録・変更", edit_user_registration_path, :class =>"list"%></li>
    <li><%= link_to "マイリスト", mylists_path(current_user), :class =>"list" %></li>
    <li><%= link_to "注文履歴・レビュー投稿", orders_path(current_user), :class =>"list" %></li>
-   <li><%= link_to "ログアウト", destroy_user_session_path(current_user), :class =>"list" %></li>
+   <li><%= link_to "何か", "#", :class =>"list" %></li>
  
    <%= button_to "退会",:class =>"quit", method: :delete %>
  </ul>
