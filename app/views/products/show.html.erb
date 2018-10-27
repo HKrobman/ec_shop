@@ -1,13 +1,15 @@
 <div class="menu">
+<!--
 <nav>
    <ul>
-       <li><%= link_to "本・雑誌", products_path,:class =>"list" %> </li>
-       <li><%= link_to "食品", products_path,:class =>"list" %> </li>
-       <li><%= link_to "衣類", products_path,:class =>"list" %> </li>
-       <li><%= link_to "家電", products_path,:class =>"list" %> </li>
-       <li><%= link_to "玩具", products_path,:class =>"list" %> </li>
+       <li>%= link_to "本・雑誌", products_path,:class =>"list" %> </li>
+       <li>%= link_to "食品", products_path,:class =>"list" %> </li>
+       <li>%= link_to "衣類", products_path,:class =>"list" %> </li>
+       <li>%= link_to "家電", products_path,:class =>"list" %> </li>
+       <li>%= link_to "玩具", products_path,:class =>"list" %> </li>
    </ul> 
 </nav>
+-->
 </div>
 
 <div class="product-contents">
@@ -30,7 +32,7 @@
          <% if @last_review.present? %>
          <p class="m-review-name">投稿者：<%=@last_review.name%><span>レビュー投稿日 : <%= @last_review.created_at.strftime('%Y/%m/%d') %></span></p>
           <p class="m-review-title" >評価：<%= @last_review.rank %><span><%= @last_review.title %></span></p>
-          <p class="m-review-desc"><%= @last_review.description %></p>
+          <p class="m-review-desc"><%= @last_review.description%></p>
          <% else %>
           <p class="review-title">レビューはありません</p>
          <% end %>   
@@ -60,7 +62,7 @@
         <% end %>     
           <% if signed_in? %> 
            <% if @mylist %>
-           　<%= button_to "マイリスト解除", mylist_path(product_id: @product.id) , {:method=> "delete", :class=>'mylist-btn'} %>　
+           　<%= button_to "マイリスト登録済み", mylists_path(current_user) , {:method => 'get', :class=>'mylist-btn'} %>　
            <% else %>
              <%= button_to "マイリスト登録", mylists_path(product_id: @product.id) , {:class=>'mylist-btn'} %>
            <% end %>
@@ -72,8 +74,8 @@
    <li>
        <p>商品説明</p>
        <div class ="description" >
-        <% @product_description.each do |text|%>
-         <p><%= text %></p> 
+        <% @product_description.each do |text| %>
+          <p><%= text%></p> 
         <% end %>
        </div>
    </li>

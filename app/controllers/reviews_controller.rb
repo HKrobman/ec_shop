@@ -11,7 +11,7 @@ class ReviewsController < ApplicationController
     @review = Review.new
   end
   
-  def edit   #未実装
+  def edit   
     @product = Product.find(params[:product_id])
     review = Review.find_by(product_id: @product.id, user_id: current_user.id) 
     @review.rank = review.rank 
@@ -47,13 +47,25 @@ class ReviewsController < ApplicationController
       description: review_params[:description],
       user_id: current_user.id,
       product_id: params[:product_id]
-    )
+      )
+    binding.pry
     redirect_to product_path(params[:product_id])  if @review.save   
+  end
+  
+  def destroy
+    review = Review.find(params[:id])
+    if review.destroy
+      redirect_to reviews_path(product_id: review.product_id)
+      flash[:notice] = "レビューを削除しました。"
+    else
+      redirect_to reviews_path(product_id: review.product_id) 
+      flash[:notice] = "エラーが発生しました。"
+    end
   end
   
    private
 
     def review_params
-      params.require(:review).permit(:name, :title, :description, :rank, :product_id)
+      params.require(:review).permit(:rank, :name, :title, :description, :product_id, :user_id)
     end
 end

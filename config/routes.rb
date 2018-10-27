@@ -10,16 +10,12 @@ Rails.application.routes.draw do
   
   resources :users, only: [:show]  #sign_upなどはdeviseの機能を利用
   
-  
-  
   resources :mylists
   resources :contacts, only: [:new, :create]
   
   resources :carts
   
   resources :cart_items
-  
-  #resources :payment_methods
   
   resources :orders do
     collection do
@@ -32,7 +28,12 @@ Rails.application.routes.draw do
   
   
   resources :products 
-  resources :reviews
+  resources :reviews do
+    collection do
+      get 'edit'
+    end
+  end
+  
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'static_pages#home'
   match '/about',     to: 'static_pages#about',    via: 'get'

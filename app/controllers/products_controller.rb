@@ -2,16 +2,16 @@ class ProductsController < ApplicationController
   before_action :set_product, only: :show
     
     def index
-      @categories = Category.all
-      product = if params[:category_id]     #ページ上部のカテゴリー名を選択すると選択されたカテゴリーの商品を表示
+       @categories = Category.all
+       product = if params[:category_id]     #ページ上部のカテゴリー名を選択すると選択されたカテゴリーの商品を表示
                    Product.where(category_id: params[:category_id])
-                elsif params[:category]&.any?(&:present?) && params[:search]        #ページ上部検索ボックスでカテゴリー指定&ワード入力で検索した場合
+                 elsif params[:category]&.any?(&:present?) && params[:search]        #ページ上部検索ボックスでカテゴリー指定&ワード入力で検索した場合
                    Product.search(params[:search]).where(category_id: params[:category])
-                elsif params[:search] #ページ上部検索ボックスでカテゴリー未指定&ワードのみを入力して検索した場合 NG
+                 elsif params[:search] #ページ上部検索ボックスでカテゴリー未指定&ワードのみを入力して検索した場合 
                    Product.search(params[:search])
-                else                                              
+                 else                                              
                    Product.all
-                end
+                 end
       @products = product.order(created_at: :desc).page(params[:page]).per(8)
      
     end
@@ -30,7 +30,6 @@ class ProductsController < ApplicationController
         
      #商品ページには最新のレビューを1件表示する 
       @last_review = @product.reviews.last
-      #@last_review.description = @last_review.description.split("。")
       @review_rank = @product.reviews.average(:rank)
       @product_description = @product.description.split("\r\n")
       

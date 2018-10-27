@@ -1,11 +1,11 @@
 <% provide(:title, 'Review') %>
 <div class="review-form">
-    <%= form_for @review do |f| %>
-    <%= hidden_field_tag :product_id, @product.id %>
+  <%= form_for @review do |f| %>
+    <%= hidden_field_tag :product_id,  @product.id %>
     
     <div class="field">
       <%= f.label :rank,'5段階評価をつけてください(最高評価=5)', class: 'review-label' %><br />
-      <%= f.number_field :rank, min:1,max:5, class: 'review-rank count'%>
+      <%= f.number_field :rank, min:1,max:5 , class: 'review-rank count'%>
     </div>
     
     <div class="field">
@@ -26,5 +26,7 @@
     <div class="field">
       <%= f.submit "投稿する", class: 'btn btn-large btn-primary' %>
     </div>
-    
+  <%end%>
 </div>
+
+ 

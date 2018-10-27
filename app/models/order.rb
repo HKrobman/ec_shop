@@ -19,7 +19,4 @@ class Order < ApplicationRecord
 		cart_items << item
 	  end
     end
-	
-
-
 end

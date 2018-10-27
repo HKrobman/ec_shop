@@ -3,5 +3,6 @@
 	  <%= @review.name %>
 	  <%= @review.title %>
 	  <%= @review.description%>
+	  <%=link_to "削除リンク", review_path(@review), {:method=> "delete", :class=>''}%>
 	</li>
 </div>

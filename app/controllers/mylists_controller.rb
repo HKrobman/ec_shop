@@ -1,7 +1,7 @@
 class MylistsController < ApplicationController
     before_action :authenticate_user!
     def index
-        @mylists = Mylist.where(user_id: current_user.id).order(created_at: "DESC").page(params[:page]).per(5)
+        @mylists = Mylist.where(user_id: current_user.id).order(created_at: "DESC")
     end
     
     def show
@@ -10,18 +10,18 @@ class MylistsController < ApplicationController
     
     def create
         product = Product.find(params[:product_id])
-        @mylist = Mylist.create(user_id: current_user.id, product_id: product.id)
+        @mylist = Mylist.create(product_id: product.id, user_id: current_user.id)
+        binding.pry
         @mylist.save
         flash[:notice] = "マイリストに追加しました"
         redirect_to product_path(params[:product_id])
     end
     
     def destroy
-        product = Product.find(params[:product_id])
-        @mylist = Mylist.find_by(user_id: current_user.id, product_id: product.id)
+        @mylist = Mylist.find(params[:id])
         @mylist.destroy
+        redirect_to mylists_path(current_user)
         flash[:notice] = "マイリストから削除しました"
-        redirect_to product_path(params[:product_id])
     end
 
 end

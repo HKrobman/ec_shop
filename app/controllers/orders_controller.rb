@@ -40,7 +40,7 @@ class OrdersController < ApplicationController
       if params[:credit]
         render :new
       elsif @order.save
-        @order.cart_items.each { |item| item.product.sold! }
+        @order.cart_items.each { |item| item.product.sold! } #在庫数から購入数を引く
         render :accepted
       end        
 

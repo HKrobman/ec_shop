@@ -142,7 +142,16 @@ html, body {
 
 .list{
     color: white;
+    display: block;
 }
+
+a:hover {
+  color: orange;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
 
     
 .head{
@@ -314,7 +323,6 @@ html, body {
   border-radius: 10px;
   padding-left: 5px;
   width: 100px;
-  color: orange;
 }
 
 .search{
@@ -352,7 +360,7 @@ html, body {
 
 
 .product-contents{
-    padding: 20px;
+    padding: 40px;
 }
     
 .show-image-tag{
@@ -452,7 +460,7 @@ html, body {
     position: relative;
     margin-top: 30px;
     margin-left: 100px;
-    width: 250px;
+    width: 270px;
     height: 150px;
     border: 2px solid #2e2e2e;
     
@@ -491,8 +499,9 @@ html, body {
     position: absolute;
     color: white;
     height: 30px;
+    width: 150px;
     top: 110px;
-    left: 70px;
+    left: 60px;
     background-color: #2e2e2e;
     border-radius: 10px;
    }

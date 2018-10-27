@@ -1,6 +1,6 @@
 <% provide(:title, 'Product') %>
 <div class="search-form">
-  <%= form_tag(products_path, :method => 'get' ) do %>
+  <%= form_tag(products_path, :method => 'get' ) do  %>
     <%= select :category,'', @categories.map{|t| [t.category_name, t.id]},{:prompt => "カテゴリー"},{:class => 'search-category'} %>
     <%= text_field_tag :search, '', :class => 'search' %>
     <%= submit_tag '検索', :name => nil, :class => 'btn-primary' %>
@@ -28,7 +28,6 @@
          <div><%= product.company %></div>
        </div>
        <div><%= product.sale_price.to_s(:delimited) %>円</div>
-       <div><%= %></div> <!--レビューとか-->
     </li>
    <% end %>
   </ul>
