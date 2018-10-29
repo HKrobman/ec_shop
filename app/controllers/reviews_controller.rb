@@ -12,16 +12,22 @@ class ReviewsController < ApplicationController
   end
   
   def edit   
-    @product = Product.find(params[:product_id])
-    review = Review.find_by(product_id: @product.id, user_id: current_user.id) 
-    @review.rank = review.rank 
-    @review.name = review.name
-    @review.title = review.title
-    @review.description = review.description
+    binding.pry
+    #@product = Product.find(params[:id])
+    @review = Review.find(params[:id]) 
+=begin    
+    @review.rank = @review.rank 
+    @review.name = @review.name
+    @review.title = @review.title
+    @review.description = @review.description
+=end
   end
   
   
   def update
+    review = Review.find(@review)
+    @revi
+=begin
     @review = Review.new(
       rank: review_params[:rank].to_i,
       name: review_params[:name],
@@ -31,6 +37,7 @@ class ReviewsController < ApplicationController
       product_id: params[:product_id]
      )
      redirect_to reviews_path(product_id: params[:product_id])  if @review.save 
+=end
   end
 
 

@@ -1,17 +1,3 @@
-<div class="menu">
-<!--
-<nav>
-   <ul>
-       <li>%= link_to "本・雑誌", products_path,:class =>"list" %> </li>
-       <li>%= link_to "食品", products_path,:class =>"list" %> </li>
-       <li>%= link_to "衣類", products_path,:class =>"list" %> </li>
-       <li>%= link_to "家電", products_path,:class =>"list" %> </li>
-       <li>%= link_to "玩具", products_path,:class =>"list" %> </li>
-   </ul> 
-</nav>
--->
-</div>
-
 <div class="product-contents">
  
   <div class="left">
@@ -25,70 +11,67 @@
          <p class="m-review-rank">評価：<span>0.0</span></p>
         <%end%>
         <p class="all-review">レビュー数: <%= @product.reviews.count %> 件
-          <span><%= link_to "<全てのレビューを見る>", reviews_path(product_id: params[:id]), :class => "review_show"%></span>
+          <%if @product.reviews.present?%><span><%= link_to "<全てのレビューを見る>", reviews_path(product_id: params[:id]), :class => "review_show"%></span><%end%>
         </p>
        </div>    
         <div class="m-review">
          <% if @last_review.present? %>
-         <p class="m-review-name">投稿者：<%=@last_review.name%><span>レビュー投稿日 : <%= @last_review.created_at.strftime('%Y/%m/%d') %></span></p>
-          <p class="m-review-title" >評価：<%= @last_review.rank %><span><%= @last_review.title %></span></p>
+          <p class="m-review-name">投稿者：<%=@last_review.name%><span>レビュー投稿日 : <%= @last_review.created_at.strftime('%Y/%m/%d') %></span></p>
+          <p class="m-review-title" ><評価：<%= @last_review.rank %>><span><%= @last_review.title %></span></p>
           <p class="m-review-desc"><%= @last_review.description%></p>
          <% else %>
           <p class="review-title">レビューはありません</p>
          <% end %>   
         </div>
-       
     </div>      
   </div>
     
-
   <ul class="right">
    <li>
-       <p class ="product-name"><%= @product.name %></p>
+     <p class ="product-name"><%= @product.name %></p>
    </li>
    <li>       
-       <p class="sale-price">価格：<span class="price"><%= @product.sale_price.to_s(:delimited) %></span><span class="price-unit">円</span> 在庫:<span class="stock"><%= @stock %><span></p>
+     <p class="sale-price">価格：<span class="price"><%= @product.sale_price.to_s(:delimited) %></span><span class="price-unit">円</span> 在庫:<span class="stock"><%= @stock %><span></p>
+     <p class="del">最短お届け日 : <span><%=@delivery_days%></span>　(お届け日数: <span><%=@product.delivery_days%></span>日)</p>
        
-       <div class="sub-box">
-         <% if signed_in? %>
-           <%= form_tag(cart_items_path(product_id: @product.id)) do %>
-             <%= label :quantity, "注文個数 : ", :class=> "count-text" %>
-             <%= number_field_tag :quantity, 1, in: 1..@max ,:class=> "count"  %>
-             <%= submit_tag "カートに入れる",  :class=> 'btn btn-large btn-primary add-cart' %>
-           <% end %>
-        <% else %>
-            <p>商品を購入するにはSign inしてください。</p>
-            <p><%= link_to "Sign in", new_user_session_path%></p>
-        <% end %>     
-          <% if signed_in? %> 
-           <% if @mylist %>
-           　<%= button_to "マイリスト登録済み", mylists_path(current_user) , {:method => 'get', :class=>'mylist-btn'} %>　
-           <% else %>
-             <%= button_to "マイリスト登録", mylists_path(product_id: @product.id) , {:class=>'mylist-btn'} %>
-           <% end %>
-          <% end %>
-           
-       </div>
+     <div class="sub-box">
+       <% if signed_in? %>
+         <%= form_tag(cart_items_path(product_id: @product.id)) do %>
+           <%= label :quantity, "注文個数 : ", :class=> "count-text" %>
+           <%= number_field_tag :quantity, 1, in: 1..@max ,:class=> "count"  %>
+           <%= submit_tag "カートに入れる",  :class=> 'btn btn-large btn-primary add-cart' %>
+         <% end %>
+      <% else %>
+         <p>商品を購入するにはSign inしてください。</p>
+         <p><%= link_to "Sign in", new_user_session_path%></p>
+      <% end %>     
+      <% if signed_in? %> 
+         <% if @mylist %>
+           <%= button_to "マイリスト登録済み", mylists_path(current_user) , {:method => 'get', :class=>'mylist-btn'} %>　
+         <% else %>
+           <%= button_to "マイリスト登録", mylists_path(product_id: @product.id) , {:class=>'mylist-btn'} %>
+         <% end %>
+      <% end %>
+    </div>
    </li>
    <div class="product-description">
    <li>
-       <p>商品説明</p>
-       <div class ="description" >
-        <% @product_description.each do |text| %>
-          <p><%= text%></p> 
-        <% end %>
-       </div>
+     <p>商品説明</p>
+     <div class ="description" >
+     <% @product_description.each do |text| %>
+       <p><%= text%></p> 
+     <% end %>
+     </div>
    </li>
    </div>
    <div class="product-info">
    <li>
-       <p>商品情報</p>
-       <div class = "product-info-desc">
-         <p>商品識別コード:　<%= @product.code %></p>
-         <p>メーカー:　<%= @product.company %></p>
-       </div>
+     <p>商品情報</p>
+     <div class = "product-info-desc">
+       <p>商品識別コード:　<%= @product.code %></p>
+       <p>メーカー:　<%= @product.company %></p>
+     </div>
    </li>
    </div>
   </ul>
- </div>
 </div>

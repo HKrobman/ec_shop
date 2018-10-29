@@ -1,6 +1,7 @@
 ActiveAdmin.register Order do
   menu :priority => 3
-  actions :index, :show
+  #actions :index, :show, :edit
+  permit_params :status
 
   filter :total_price
   filter :checked_out_at
@@ -8,6 +9,22 @@ ActiveAdmin.register Order do
   #scope :all, :default => true
   #scope :in_progress
   #scope :complete
+   form do |f|
+    f.inputs do
+      f.input :addressee_name_kana
+      f.input :addressee_name_kanji
+      f.input :addressee_zip_code
+      f.input :order_telphone
+      f.input :addressee_prefecture
+      f.input :addressee_city
+      f.input :addressee_address1
+      f.input :addressee_address2
+      f.input :pay_type
+      f.input :total_price
+      f.input :status
+    end
+    f.actions
+  end
 
   index do
     column("注文番号", :sortable => :id) {|order| link_to "##{order.id} ", admin_order_path(order) }
@@ -22,7 +39,10 @@ ActiveAdmin.register Order do
     column("住所1"){|order| order.addressee_address1}
     column("住所2"){|order| order.addressee_address2}
     column("電話番号"){|order| order.order_telphone}
+    column("発送状況"){|order| order.status}
   end
+  
+
 
   show do
     panel "注文詳細" do
@@ -30,13 +50,20 @@ ActiveAdmin.register Order do
         t.column("商品名") {|item| auto_link item.product        }
         t.column("注文個数")   {|item|  item.quantity }
         t.column("商品価格")   {|item|  item.product.sale_price }
-        t.column("支払いタイプ") {order.pay_type}
         tr :class => "odd" do
+        t.column("注文価格") {order.total_price}
           td ""
-          td "注文価格:", :style => "text-align: right;"
-          td order.total_price
-          td "送料:350円   <支払いタイプが現金なら手数料400円加算>"
+          td ""
+          td ""
+          if order.pay_type == "現金"
+            td "(内訳: <商品合計> + <送料350円> + <手数料400円> )"
+          else
+            td "(内訳: <商品合計> + <送料:350円> )"
+          end
+          t.column("支払いタイプ") {order.pay_type}
         end
+      end
+      table_for(order.cart_items) do |t|
         t.column("郵便番号"){ order.addressee_zip_code }
         t.column("都道府県"){ order.addressee_prefecture }
         t.column("市町村区"){ order.addressee_city }

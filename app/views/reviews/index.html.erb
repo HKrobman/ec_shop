@@ -15,7 +15,7 @@
 	   	<p class="m-review-desc"><%= review.description%></p>
 	   </div>
 	   	<% if review.user_id == current_user.id %>
-	  		<p class="m-review-title" ><%=link_to "編集・削除リンク", review_path(review)%></p>
+	  		<p class="m-review-title" ><%=link_to "編集・削除", review_path(review)%></p>
 	  	<%else%>
 	  		<p class="m-review-title" >役に立った(ボタン実装)</p>
 			<%end%>

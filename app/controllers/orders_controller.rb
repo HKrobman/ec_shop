@@ -5,6 +5,12 @@ class OrdersController < ApplicationController
     end
     
     def show
+      @order = Order.find(params[:id])
+      if @order.status
+        @order_status = "発送済み"
+      else
+        @order_status = "未発送"
+      end
     end
     
     def new
@@ -26,6 +32,12 @@ class OrdersController < ApplicationController
     
     def confirm
       @cart_items = current_cart.cart_items.all.page(params[:page]).per(5)
+      binding.pry
+      @cart_items.each {|item| item.product.delivery_day(item)}
+      wd = ["日", "月", "火", "水", "木", "金", "土"]
+      max_delivery_day = Date.today + $max_day
+      @max_delivery_day = max_delivery_day.strftime("%m/%d(#{wd[max_delivery_day.wday]})")
+      
       @order = Order.new(order_params)
       if @order.pay_type=="現金"  #送料350円 + 代引き手数料400円
         @cart_total = @cart.total_price + 350 + 400
@@ -35,6 +47,7 @@ class OrdersController < ApplicationController
     end
     
     def create
+      binding.pry
       @order = Order.new(order_params)
       @order.add_items(current_cart)
       if params[:credit]
@@ -42,13 +55,15 @@ class OrdersController < ApplicationController
       elsif @order.save
         @order.cart_items.each { |item| item.product.sold! } #在庫数から購入数を引く
         render :accepted
+      else
+        redirect_to new_order_path
+        flash[:notice] = "必要項目を入力してください"
       end        
 
     end
     
     def accepted
       @order = Order.last
-      @deli_date = @order.created_at.since(4.days)    #表示されない
     end
     
     def pay
@@ -62,7 +77,7 @@ class OrdersController < ApplicationController
     
     def order_params
       params.require(:order).permit(:addressee_name_kana,:addressee_name_kanji,:addressee_zip_code,:order_telphone,
-                                     :addressee_prefecture,:addressee_city,:addressee_address1,:addressee_address2, :pay_type, :total_price,:user_id)
+                                     :addressee_prefecture,:addressee_city,:addressee_address1, :pay_type, :total_price,:user_id)
     end
     
 end

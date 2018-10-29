@@ -33,6 +33,9 @@ class ProductsController < ApplicationController
       @review_rank = @product.reviews.average(:rank)
       @product_description = @product.description.split("\r\n")
       
+      wd = ["日", "月", "火", "水", "木", "金", "土"]
+      time = Date.today + @product.delivery_days
+      @delivery_days = time.strftime("%m/%d(#{wd[time.wday]})")
      #該当商品がマイリストに登録されているかを確認。
       if signed_in?
         @mylist = Mylist.find_by(user_id: current_user.id, product_id: params[:id])

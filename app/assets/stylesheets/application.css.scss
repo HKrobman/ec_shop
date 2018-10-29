@@ -187,7 +187,7 @@ a:hover {
     display: block;
     padding-top:60px;
     font-size: 30px;
-    color: orange;
+    color: white;
 }
 
 /* Sign_in */
@@ -366,17 +366,10 @@ a:hover {
 .show-image-tag{
     width: 450px;
     height: 350px;
-    margin: 40px 20px 40px 40px;
+    margin: 40px 20px 60px 40px;
     float: left;
     display: block;
 }
-
-//.back-image{
-  //  width: 450px;
-    //height: 350px;
-    //background-color: #2e2e2e;
-//}
-
 
 .left{
     float: left;
@@ -389,17 +382,25 @@ a:hover {
     width: 550px;
     float: left;
     
+    .del{
+      text-align: center;
+      
+      span{
+        color: orange;
+      }
+    }
+    
 }
 
 
 .product-description{
-    //width: 500px;
-    //height: 250px;
+    margin-top: 30px;
+    width: 500px;
+    //height: 270px;
 }
 
 .product-info{
-    margin-top: 10px;
-    
+    margin-top: 20px;
     width: 500px;
 }
 
@@ -416,6 +417,7 @@ a:hover {
       font-size: 12px;
       background-color: #2e2e2e;
       width: 500px;
+      //height: 230px;
       border-radius: 10px;
       padding: 10px 5px 5px 10px;
   }
@@ -527,7 +529,7 @@ a:hover {
 
 
 .m-review-title{
-    font-size: 20px;
+    font-size: 15px;
     border-bottom: 1px solid orange;
     
     span{
@@ -537,11 +539,7 @@ a:hover {
 
 .m-review-name{
      font-size: 10px; 
-     //background-color: #2e2e2e;
-     border: 1px solid #2e2e2e;
-     border-radius: 10px;
-     //text-align: center;
-    
+     border-top: 1px solid #2e2e2e;
     span{
         padding-left: 60px;
     }
@@ -549,7 +547,6 @@ a:hover {
 
 
 .m-review-main{
-    height: 30px;
     width: 450px;
 }
 
@@ -962,7 +959,9 @@ a:hover {
       border-radius: 5px;
   }
   
- 
+ .order-deli_date{
+   color: orange;
+ }
   
  
   
@@ -1057,13 +1056,10 @@ a:hover {
     //height: 500px;
     width: 700px;
   
-    .order-image-tag{
-       width: 50px;
-       height: 50px;
-    }
     table{
       margin-bottom: 10px;
     } 
+  
     td{
       padding: 10px;
     }        
@@ -1077,3 +1073,36 @@ a:hover {
       background-color: #1d1d1d;
     }
  }
+ 
+.order-image-tag{
+  width: 50px;
+  height: 50px;
+}
+
+//order-show
+
+.order-show{
+    position: relative;
+    margin: 0 auto;
+    top: 50px;
+    padding: 30px;
+    text-align: center;
+    font-weight: bold;
+    width: 700px;
+
+  table{
+    margin-bottom: 10px;
+  } 
+  
+  td{
+    padding: 10px;
+  }          
+  
+  .order-display{
+    text-align: center;
+    margin-bottom: 60px;
+    width: 600px;
+    border: solid 2px #1d1d1d;
+  }
+  
+}

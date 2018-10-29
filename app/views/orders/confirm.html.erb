@@ -60,6 +60,7 @@
       <%=@order.addressee_prefecture%><%=@order.addressee_city%><%=@order.addressee_address1%><%=@order.addressee_address2%>
       <%= f.hidden_field :addressee_prefecture%><%= f.hidden_field :addressee_city%><%= f.hidden_field :addressee_address1%><%= f.hidden_field :addressee_address2%>
     </div>
+    <p class="order-deli_date">お届け日: <%=@max_delivery_day%></p>
   
     <div class="field">
       <%=f.label "(お支払い方法)"%>

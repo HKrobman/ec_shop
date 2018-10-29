@@ -1,0 +1,29 @@
+<div>
+  <%= form_for @review, url:{action: 'update'} do |f| %>
+
+    <div class="field">
+      <%= f.label :rank,'5段階評価をつけてください(最高評価=5)', class: 'review-label' %><br />
+      <%= f.number_field :rank, min:1,max:5 , class: 'review-rank count'%>
+    </div>
+    
+    <div class="field">
+      <%= f.label :name, '投稿者(ニックネーム)', class: 'review-label' %><br />
+      <%= f.text_field :name, class: 'review-input' %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :title, 'レビュータイトル', class: 'review-label' %><br />
+      <%= f.text_field :title, size: 40, class: 'review-input' %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :description, 'レビュー本文(300文字以内)', class: 'review-label' %><br />
+      <%= f.text_area :description %>
+    </div>
+
+    <div class="field">
+      <%= f.submit "更新する", class: 'btn btn-large btn-primary' %>
+    </div>
+  <%end%>
+   
+</div>

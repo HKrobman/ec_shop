@@ -11,7 +11,7 @@ class Order < ApplicationRecord
     validates :addressee_prefecture, presence: true
     validates :addressee_city, presence: true
     validates :addressee_address1, presence: true
-    validates :addressee_address2, presence: true
+    #validates :addressee_address2, presence: true
     
     def add_items(cart)
 	  cart.cart_items.each do |item|
