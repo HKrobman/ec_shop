@@ -1,85 +1,78 @@
- <div class="deli-form">
+<% provide(:title, 'Order_Confirm') %> 
+ <div class='deli-form'>
    
-    <div class = "cart-display">
-     <table align = "center">
-      <% @cart_items.each do |item| %>
-        <tr>
-          <td><%= image_tag(item.product.image_url.to_s, :class => "cart-image-tag")%></td>
-          <td><%= item.product.name %></td>
-          <td><%= item.product.sale_price.to_s(:delimited) %>円</td>
-          <td><%= item.quantity%>個</td>
-        </tr>
-      <% end %>
-   </table>
-   <div class="page">
-      <%= paginate @cart_items %>
-   </div>
-    <div class="conf-text">
+  <div class='cart-display'>
+    <table align='center'>
+    <% @cart_items.each do |item| %>
+      <tr>
+        <td><%= image_tag(item.product.image_url.to_s, class: 'cart-image-tag')%></td>
+        <td><%= item.product.name %></td>
+        <td><%= item.product.sale_price.to_s(:delimited) %>円</td>
+        <td><%= item.quantity%>個</td>
+      </tr>
+    <%end%>
+    </table>
+    <div class='conf-text'>
       <%= link_to "カートに戻る", current_cart %>
     </div>
-   </div>
-   
-   
+  </div>
  
- <div class = "order_total_price">
+ <div class='order_total_price'>
    <ul>
-   <li>送料: 350円</li>
-   <li>商品の小計: <%= @cart.total_price.to_s(:delimited) %>円</li>
-   <%if @order.pay_type == "現金"%>   
-     <li>代引手数料: 400円</li>
-     <li class="o-t-p">合計：<%=@cart_total.to_s(:delimited)%>円</li>
-   <% else %>
-      <li class="o-t-p">合計：<%=@cart_total.to_s(:delimited)%>円</li>
-   <%end%>
+     <li>送料: 350円</li>
+     <li>商品の小計: <%= @cart.total_price.to_s(:delimited) %>円</li>
+     <%if @order.pay_type == "現金"%>   
+       <li>代引手数料: 400円</li>
+       <li class='o-t-p'>合計：<%=@cart_total.to_s(:delimited)%>円</li>
+     <%else%>
+        <li class='o-t-p'>合計：<%=@cart_total.to_s(:delimited)%>円</li>
+     <%end%>
    </ul>
  </div>
 
    
-  <div class="deli-address"> 
+  <div class='deli-address'> 
    <p>お届け先住所</p>
    <%= form_for @order do |f| %>
-   <%= f.hidden_field :total_price, value: @cart_total %>
-   <%= f.hidden_field :user_id, value: current_user.id %>
-    <div class="field">
-      <%=@order.addressee_name_kana%>
-      <%= f.hidden_field :addressee_name_kana %>   
-    </div>
-    <div class="field">
-      <%=@order.addressee_name_kanji%>
-      <%= f.hidden_field :addressee_name_kanji %>
-    </div>
-    <div class="field">
-      Tel:<%=@order.order_telphone%>
-      <%= f.hidden_field :order_telphone %>
-    </div>
-    <div class="field">
-      〒<%=@order.addressee_zip_code%>
-      <%= f.hidden_field :addressee_zip_code%>
-    </div>
-    <div class="field">
-      <%=@order.addressee_prefecture%><%=@order.addressee_city%><%=@order.addressee_address1%><%=@order.addressee_address2%>
-      <%= f.hidden_field :addressee_prefecture%><%= f.hidden_field :addressee_city%><%= f.hidden_field :addressee_address1%><%= f.hidden_field :addressee_address2%>
-    </div>
-    <p class="order-deli_date">お届け日: <%=@max_delivery_day%></p>
-  
-    <div class="field">
-      <%=f.label "(お支払い方法)"%>
-      <%=@order.pay_type%>
-      <%= f.hidden_field :pay_type %>
-    </div>
-  <%if @order.pay_type == "現金"%>  
-   <%= f.submit '注文する' ,class:"btn btn-large btn-primary"%>
-  <% else %>
-    <%= form_tag(action: :pay, method: :post) do %>
-     <script type="text/javascript" src="https://checkout.pay.jp" class="payjp-button" data-key="pk_test_2aa8b4426fb2097c6d7203e3"></script>
-     <p>※カード決済完了後、注文が確定します</p>
-    <% end %>
-  <%end%>
-  
- <% end %>
+     <%= f.hidden_field :total_price, value: @cart_total %>
+     <%= f.hidden_field :user_id, value: current_user.id %>
+     <div class='field'>
+       <%=@order.addressee_name_kana%>
+       <%= f.hidden_field :addressee_name_kana %>   
+     </div>
+     <div class='field'>
+       <%=@order.addressee_name_kanji%>
+       <%= f.hidden_field :addressee_name_kanji %>
+     </div>
+     <div class='field'>
+       Tel:<%=@order.order_telphone%>
+       <%= f.hidden_field :order_telphone %>
+     </div>
+     <div class='field'>
+       〒<%=@order.addressee_zip_code%>
+       <%= f.hidden_field :addressee_zip_code%>
+     </div>
+     <div class='field'>
+       <%=@order.addressee_prefecture%><%=@order.addressee_city%><%=@order.addressee_address1%><%=@order.addressee_address2%>
+       <%= f.hidden_field :addressee_prefecture%><%= f.hidden_field :addressee_city%><%= f.hidden_field :addressee_address1%><%= f.hidden_field :addressee_address2%>
+     </div>
+     <p class='order-deli_date'>お届け日: <%=@max_delivery_day%></p>
+     <div class='field'>
+       <%=f.label "(お支払い方法)"%>
+       <%=@order.pay_type%>
+       <%= f.hidden_field :pay_type %>
+     </div>
+     
+     <%if @order.pay_type == "現金"%>  
+       <%= f.submit '注文する' , class: 'btn btn-large btn-primary'%>
+     <%else%>
+       <%= form_tag(action: :pay, method: :post) do %>
+        <script type="text/javascript" src="https://checkout.pay.jp" class='payjp-button' data-key="pk_test_2aa8b4426fb2097c6d7203e3"></script>
+        <p>※カード決済完了後、注文が確定します</p>
+       <%end%>
+     
+     <%end%>
+   <%end%>
  </div>
  
- 
-</div>
-
 </div>

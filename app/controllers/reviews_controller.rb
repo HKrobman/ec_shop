@@ -6,9 +6,16 @@ class ReviewsController < ApplicationController
     @review_rank = @reviews.average(:rank)
   end
   
+  
+  def show
+   @review = Review.find(params[:id])
+  end
+
+  
+  
   def new
-    @product = Product.find(params[:product_id])
     @review = Review.new
+    #@product = Product.find(params[:product_id])
   end
   
   def edit   
@@ -25,8 +32,22 @@ class ReviewsController < ApplicationController
   
   
   def update
-    review = Review.find(@review)
-    @revi
+    #binding.pry
+    @review = Review.find(params[:id])
+=begin
+    @review = Review.find(params[:id])
+    @review.rank = params[:rank].to_i
+    @review.name = params[:name]
+    @review.title = params[:title]
+    @review.description = params[:description]
+=end
+    if @review.update_attributes(review_params)
+      flash[:success] = "レビューを編集しました。"
+      redirect_to @review
+    else
+      redirect_to edit_review_path(@review)
+      flash[:alert] = "入力項目をお確かめください"
+    end
 =begin
     @review = Review.new(
       rank: review_params[:rank].to_i,
@@ -41,10 +62,6 @@ class ReviewsController < ApplicationController
   end
 
 
-  def show
-   @review = Review.find(params[:id])
-  end
-
   
   def create
     @review = Review.new(
@@ -55,18 +72,21 @@ class ReviewsController < ApplicationController
       user_id: current_user.id,
       product_id: params[:product_id]
       )
-    binding.pry
-    redirect_to product_path(params[:product_id])  if @review.save   
+    if @review.save   
+      redirect_to product_path(params[:product_id])  
+    else
+      render :new   
+    end
   end
   
   def destroy
     review = Review.find(params[:id])
     if review.destroy
       redirect_to reviews_path(product_id: review.product_id)
-      flash[:notice] = "レビューを削除しました。"
+      flash[:alert] = "レビューを削除しました。"
     else
       redirect_to reviews_path(product_id: review.product_id) 
-      flash[:notice] = "エラーが発生しました。"
+      flash[:error] = "エラーが発生しました。"
     end
   end
   

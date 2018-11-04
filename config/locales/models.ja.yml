@@ -1,0 +1,29 @@
+ja:
+  activerecord:
+    attributes:
+      user:
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: 確認用パスワード
+        remember_me: 次回から自動的にログイン
+       
+    
+      order:
+        addressee_name_kana: お届け先氏名(カナ)
+        addressee_name_kanji: お届け先氏名(漢字)
+        order_telphone: 電話番号
+        addressee_zip_code: 郵便番号
+        addressee_prefecture: 都道府県
+        addressee_city: 市町村区
+        addressee_address1: 住所(丁目番地)
+        addressee_address2: 建物名・部屋番号(マンション名など)
+        pay_type: お支払い方法
+        
+      review:
+        rank: ランク(5段階)
+        name: 投稿者(ニックネーム)
+        title: レビュータイトル
+        description: レビュー本文 
+        
+        
+        

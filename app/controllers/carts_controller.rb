@@ -1,7 +1,7 @@
 class CartsController < ApplicationController
    
   def show
-    @cart_items = current_cart.cart_items.all.order(created_at: "DESC").page(params[:page]).per(4)
+    @cart_items = current_cart.cart_items.all.order(created_at: "DESC").page(params[:page]).per(5)
   end
 
   def destroy

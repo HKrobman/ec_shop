@@ -1,21 +1,17 @@
 class OrdersController < ApplicationController
     
     def index
-      @orders = Order.all.order(created_at: "DESC").page(params[:page])#.per(2)
+      @orders = Order.where(user_id: current_user.id)
     end
     
     def show
       @order = Order.find(params[:id])
-      if @order.status
-        @order_status = "発送済み"
-      else
-        @order_status = "未発送"
-      end
+      @order.status ? @order_status = "発送済み" : @order_status = "未発送"
     end
     
     def new
       if current_cart.cart_items.empty?
-        flash[:notice] = "カートに商品を追加してください"
+        flash[:alert] = "カートに商品を追加してください"
         redirect_to cart_path(current_cart)
       else  
         @order = Order.new
@@ -32,13 +28,13 @@ class OrdersController < ApplicationController
     
     def confirm
       @cart_items = current_cart.cart_items.all.page(params[:page]).per(5)
-      binding.pry
       @cart_items.each {|item| item.product.delivery_day(item)}
       wd = ["日", "月", "火", "水", "木", "金", "土"]
       max_delivery_day = Date.today + $max_day
       @max_delivery_day = max_delivery_day.strftime("%m/%d(#{wd[max_delivery_day.wday]})")
-      
       @order = Order.new(order_params)
+     # binding.pry
+      render :new unless @order.valid?
       if @order.pay_type=="現金"  #送料350円 + 代引き手数料400円
         @cart_total = @cart.total_price + 350 + 400
       else  #クレカ決済の場合は送料350円のみ
@@ -47,7 +43,6 @@ class OrdersController < ApplicationController
     end
     
     def create
-      binding.pry
       @order = Order.new(order_params)
       @order.add_items(current_cart)
       if params[:credit]
@@ -57,7 +52,7 @@ class OrdersController < ApplicationController
         render :accepted
       else
         redirect_to new_order_path
-        flash[:notice] = "必要項目を入力してください"
+        flash[:error] = "必要項目を入力してください"
       end        
 
     end
@@ -75,6 +70,13 @@ class OrdersController < ApplicationController
       )
     end
     
+private
+
+    def order_param
+      params.require(:order).permit(:addressee_name_kana,:addressee_name_kanji,:addressee_zip_code,:order_telphone,
+                                    :addressee_prefecture,:addressee_city,:addressee_address1, :pay_type)
+    end
+
     def order_params
       params.require(:order).permit(:addressee_name_kana,:addressee_name_kanji,:addressee_zip_code,:order_telphone,
                                      :addressee_prefecture,:addressee_city,:addressee_address1, :pay_type, :total_price,:user_id)

@@ -1,3 +1,4 @@
+<% provide(:title, 'Review') %>
 <div class="review-index">
 	<% if @review_rank.present? %>
   	<p class="review-index-rank">レビュー評価:　<span><%= @review_rank %></span></p>
@@ -14,11 +15,13 @@
 	   	<p class="m-review-title" >評価：<%= review.rank %><span><%= review.title %></span></p>
 	   	<p class="m-review-desc"><%= review.description%></p>
 	   </div>
+	   <div class="review-menu">
 	   	<% if review.user_id == current_user.id %>
-	  		<p class="m-review-title" ><%=link_to "編集・削除", review_path(review)%></p>
+	  		<p class="" ><%=link_to "編集・削除", review_path(review), class: 'r-button'%></p>
 	  	<%else%>
 	  		<p class="m-review-title" >役に立った(ボタン実装)</p>
 			<%end%>
+		</div>
 	 </li>
 	</ul>
 

@@ -1,6 +1,5 @@
-<div class="mypage-info">
+<div class="mypage-info mypage-form">
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
   <div class="field">
     <%= f.label :name_kana, '氏名(カナ)' ,class: "control-label" %>
     <%= f.text_field :name_kana, autofocus: true,  class: "form-control" %>
@@ -12,39 +11,34 @@
   </div>
   
   <div class="field">
-    <%= f.label :telphone, '電話番号' ,class: "control-label" %>
+    <%= f.label :telphone, '電話番号(ハイフン不要)' ,class: "control-label" %>
     <%= f.text_field :telphone, autofocus: true, class: "form-control" %>
   </div>
   
   <form>
-    <div class="h-adr">
-    <span class="p-country-name" style="display:none;">Japan</span>
-    <input type="hidden" class="p-country-name">
-    
     <div class="field">
-      <%= f.label :zip_code, '郵便番号' ,class: "control-label" %>
-      <%= f.text_field :zip_code, autofocus: true, class: "p-postal-code form-control", size:8, maxlength:8, placeholder: '1000000'  %>
+      <%= f.label :zip_code, '郵便番号(ハイフン不要)' ,class: "control-label" %>
+      <%= f.text_field :zip_code, autofocus: true, class: "form-control"%>
     </div>
   
     <div class="field">
       <%= f.label :prefecture, '都道府県' ,class: "control-label" %>
-      <%= f.text_field :prefecture, autofocus: true, class: "p-region form-control" %>
+      <%= f.text_field :prefecture, autofocus: true, class: "form-control" %>
     </div>
   
     <div class="field">
-      <%= f.label :city, '市町村区' ,class: "control-label" %>
-      <%= f.text_field :city, autofocus: true, class: "p-locality form-control" %>
+      <%= f.label :city, '市区町村' ,class: "control-label" %>
+      <%= f.text_field :city, autofocus: true, class: " form-control" %>
     </div>
 
     <div class="field">
       <%= f.label :address1, '住所(丁目番地)' ,class: "control-label" %>
-      <%= f.text_field :address1, autofocus: true, class: "p-street-address form-control" %>
+      <%= f.text_field :address1, autofocus: true, class: "form-control" %>
     </div>
   
     <div class="field">
       <%= f.label :address2, '建物名・部屋番号(マンション名など)' ,class: "control-label" %>
-      <%= f.text_field :address2, autofocus: true, class: "p-extended-address form-control" %>
-    </div>
+      <%= f.text_field :address2, autofocus: true, class: "form-control",placeholder: '◯○○マンション○○○号室' %>
     </div>
  
     <div class="field field-center">
@@ -54,12 +48,26 @@
 <% end %>
 </div>
 
+
 <script>
-$(document).ready(function() {
-  $(document).on('turbolinks:render', function() {
-    if ($('.h-adr').length) {
-      new YubinBango.MicroformatDom();
-    }
+$(window).ready( function()
+  {
+    $("#user_zip_code").jpostal({
+　　postcode : [ "#user_zip_code" ],
+　　address : {
+　　　　　　　"#user_prefecture" : "%3",
+　　　　　　　"#user_city" : "%4%5",
+　　　　　　　}
+　})
   });
+
+$( document ).ready( function()
+  {
+	// 姓名 (カタカナ)
+	$.fn.autoKana( "#user_name_kanji", "#user_name_kana", {
+		katakana : true
+	});
+ 
 });
+
 </script>

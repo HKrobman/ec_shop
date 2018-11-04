@@ -1,10 +1,11 @@
-<div class="order-show">
-  <div class="order-display">
+<% provide(:title, 'Order') %>
+<div class = 'order-show'>
+  <div class='order-display'>
   <div class="">注文日<%=@order.created_at.strftime('%Y年%m月%d日')%></div>
   <%@order.cart_items.each do |item|%>
-  <table align = "center">
+  <table align = 'center'>
   <tr>
-    <td><%= image_tag(item.product.image_url.to_s, :class => "order-image-tag")%></td>
+    <td><%= image_tag(item.product.image_url.to_s, class: 'order-image-tag' )%></td>
     <td><%= item.product.name %></td>
     <td><%= item.product.sale_price.to_s(:delimited) %>円</td>
     <td><%= item.quantity %>個</td>

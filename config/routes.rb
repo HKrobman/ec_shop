@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'contacts/new'
   get 'users/show'
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
@@ -12,7 +11,6 @@ Rails.application.routes.draw do
   
   resources :mylists
   resources :contacts, only: [:new, :create]
-  
   resources :carts
   
   resources :cart_items
@@ -24,8 +22,6 @@ Rails.application.routes.draw do
       get 'accepted'
     end
   end
-  
-  
   
   resources :products 
   resources :reviews do

@@ -1,4 +1,4 @@
-//@import "bootstrap-sprockets";
+@import "bootstrap-sprockets";
 @import "bootstrap";
 @import "font-awesome";
 /*
@@ -13,10 +13,9 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *= require font-awesome
- *= require_tree .
  *= require_self
+ *= require_tree .
  */
-
  
 html, body {
     display: table;
@@ -27,6 +26,18 @@ html, body {
     font-family: liberation_sans, "Open Sans", "ヒラギノ角ゴ ProN W6", "Hiragino Kaku Gothic ProN", Meiryo, メイリオ, sans-serif;
     color: white;
     background: #222222;
+ }
+ 
+ #error_explanation{
+     //position: relative;
+     margin-top: 200px;
+     float: left;
+     color: white;
+     
+     .error-list{
+         border-bottom: 1px solid orange;
+         margin-bottom: 20px;
+     }
  }
  
    ul{
@@ -42,16 +53,30 @@ html, body {
      text-align: right;
  }
  
+ 
+ a:hover {
+   color: orange;
+   text-decoration: none;
+   cursor: pointer;
+ }
+.msg{
+    text-align: center;
+}
+
+/* 
  .notice{
      text-align: center;
      color: orange;
      font-size: 20px;
  }
- 
+*/
+
  .alert{
      text-align: center;
+     //margin-bottom: 10px;
  }
  
+
 .container{
      
     //position: fixed;
@@ -131,7 +156,7 @@ html, body {
 
    li{
      text-align: center;
-     padding-bottom: 20px;
+     padding-bottom: 15px;
      display: block;
      font-size: 23px;
      line-height: 2.8;
@@ -143,14 +168,14 @@ html, body {
 .list{
     color: white;
     display: block;
+    font-size: 25px;
 }
 
-a:hover {
-  color: orange;
-  text-decoration: none;
-  cursor: pointer;
+.p-list{
+    color: white;
+    display: block;
+    font-size: 15px;
 }
-
 
 
     
@@ -180,6 +205,7 @@ a:hover {
      font-weight: bold;
      font-size: 50px;
      line-height: 1.2703;
+     border-bottom: 2px solid orange;
 }
 
 
@@ -188,6 +214,7 @@ a:hover {
     padding-top:60px;
     font-size: 30px;
     color: white;
+    
 }
 
 /* Sign_in */
@@ -224,10 +251,8 @@ a:hover {
     }
     
   }
-  
   .f-u{
       margin-bottom: 20px;
-      
   }
   
   .s-i-btn{
@@ -255,7 +280,7 @@ a:hover {
     }
 }
 
-/*contact */
+/*                     contact                    */
 .contact{
     position: relative;
     padding: 30px;
@@ -268,7 +293,8 @@ a:hover {
     
     h1{
         text-align: center;
-        padding-bottom: 50px;
+        margin-bottom: 50px;
+        border-bottom: 1px solid orange;
     }
 
    .field{
@@ -289,7 +315,7 @@ a:hover {
 
 
 
-/* Product */
+/*                       Product                       */
 
 .menu{
   margin: 30px;
@@ -356,7 +382,19 @@ a:hover {
 }
 
 
-/*  product show   */
+/*                         product show                   */
+
+.sign-in-btn{
+    position: absolute;
+    color: white;
+    height: 40px;
+    border-radius: 10px;
+    top: 60px;
+    left: 85px;
+    background-color: #1d1d1d;
+    padding: 5px;
+    font-size: 25px;
+}
 
 
 .product-contents{
@@ -389,7 +427,6 @@ a:hover {
         color: orange;
       }
     }
-    
 }
 
 
@@ -531,6 +568,7 @@ a:hover {
 .m-review-title{
     font-size: 15px;
     border-bottom: 1px solid orange;
+    clear: both;
     
     span{
         padding-left: 10px;
@@ -539,7 +577,7 @@ a:hover {
 
 .m-review-name{
      font-size: 10px; 
-     border-top: 1px solid #2e2e2e;
+     float: right;
     span{
         padding-left: 60px;
     }
@@ -581,7 +619,7 @@ a:hover {
     border-top: solid 1px orange;
     border-bottom: solid 1px orange;
     border-radius: 10px;
-    width: 600px;
+    width: 500px;
     height: 550px;
     margin: 0 auto;
     
@@ -598,7 +636,7 @@ a:hover {
         border: 1px solid #1d1d1d;
         border-radius: 10px;
         font-weight: bold;
-        width: 80px;
+        width: 100px;
         text-align: center;
     }
     
@@ -611,12 +649,33 @@ a:hover {
     
    
 }
+//review index show
+ .review-menu{
+        position: absolute;
+        bottom: 0;
+        right: 0;
+    }
+
+    .r-button{
+      padding: 10px;
+      border-left: 1px solid orange;
+      border-top: 1px solid orange;
+      color: white;
+   }
+/*                                              削除OK          */   
+   a:hover {
+    color: orange;
+    cursor: pointer;
+  }
+
+
+
 // review indexページ
 .review-index{
     top: 100px;
     position: relative;
     margin: 0 auto;
-    width: 700px;
+    width: 550px;
     height: 600px;
     
     .review-index-rank{
@@ -628,8 +687,8 @@ a:hover {
     
    .m-review-index{
       background-color: #1d1d1d;
-      width: 500px;
-      height: 150px;
+      position: relative;
+      height: 200px;
       border-radius: 10px;
       //padding-left: 10px;
       margin-bottom: 20px;
@@ -643,35 +702,38 @@ a:hover {
  .review-i-c{
      padding-left: 10px;
  }
-  
 }
 
-/* About */
+// review-show
+.review-show{
+    top: 250px;
+    position: relative;
+    margin: 0 auto;
+    width: 550px;
+    
+    .m-review-show{
+      background-color: #1d1d1d;
+      height: 200px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      padding: 10px;
+    }
 
-.about-contents{
-    padding-bottom: 70px;
 }
 
-#map{
-   height: 300px;
-   width: 760px;
-   
-   
-}
 
-
-
-
-/* FAQ */
+/* ABOUT FAQ */
 .about, .faq {
     
     width: 800px;
-    height: 100%;
+    //height: 100%;
     margin: 0 auto;
     
     h1{
-        text-align: center;
-        padding: 30px 30px 40px 30px;
+      text-align: center;
+      margin-top: 30px;
+      //padding: 30px;
+      border-bottom: 1px solid orange;
     }
     
     h4{
@@ -679,11 +741,34 @@ a:hover {
         border-left: 2px double orange;
         border-bottom: 1px solid white;
     }
-    p{
-       padding-bottom: 20px;
+}
+
+
+/*                           About                             */
+.about-contents{
+    margin: 30px 0 40px 0;
+    text-align: center;
+    
+     p{
+      padding-bottom: 10px;
     }
 }
 
+#map{
+   color: black;
+   height: 350px;
+   width: 800px;
+   
+}
+
+/*                        FAQ                           */
+.faq-contents{
+  margin-top: 40px;
+  
+    p{
+      padding-bottom: 30px;
+    }
+}
 
 .user-icon{
     position: relative;
@@ -713,12 +798,13 @@ a:hover {
     margin: 0 auto;
     
     ul{
-        padding-left: 0;
+       //padding-left: 0;
+       padding: 10px;
     }
     
     li{
      text-align: center;
-     padding-bottom: 20px;
+     padding: 15px;
      display: block;
      font-size: 23px;
      line-height: 2.8;
@@ -742,7 +828,6 @@ a:hover {
     color: black;
     border-radius: 10px;
     margin: 0 auto;
-    
     .send-p{
         text-align: center;
         color: white;
@@ -761,22 +846,22 @@ a:hover {
     }
 }
 
+.mypage-form{
+    top: 90px;
+}
+
 /* cart */
 
 
 .cart-show{
     position: relative;
-    top: 110px;
+    top: 70px;
     text-align: center;
     font-weight: bold;
-    height: 600px;
-    margin: 0 auto;
-  
-  
     input{
         color: white;
     }
-    
+
   .cart-image-tag{
       width: 80px;
       height: 70px;
@@ -791,9 +876,12 @@ a:hover {
   }
   
   .cart-display{
-      height: 500px;
       width: 800px;
       float: left;
+      
+    .cart-panel{
+      color: white;
+     }
   }
   
   table{
@@ -808,9 +896,7 @@ a:hover {
      padding: 20px;
   }        
   
-  .cart-panel{
-      color: white;
-  }
+ 
   
   .cart-total{
       border-bottom: solid 1px orange;
@@ -822,11 +908,13 @@ a:hover {
   }
   
   .cart-order{
+      //position: absolute;
+      //top: 230px;
       padding-top: 40px;
-      width: 350px;
+      width: 300px;
       height: 300px;
       background: #1d1d1d;
-      margin-top: 100px;
+      margin-top: 150px;
       float: left;
   }
  
@@ -838,7 +926,6 @@ a:hover {
       width: 60px;
       height: 20px;
       margin-left: 10px;
-      //color: orange;
  }
   
   .count{
@@ -895,6 +982,7 @@ a:hover {
 
 }
 .pay-type{
+    margin-top: 20px;
     color: black;
 }
 
@@ -947,6 +1035,10 @@ a:hover {
       }
   }
   
+  .payjp-button{
+    margin-top: 10px;
+  }
+  
  .cart-image-tag{
       width: 80px;
       height: 70px;
@@ -963,8 +1055,6 @@ a:hover {
    color: orange;
  }
   
- 
-  
   .conf-text{
       text-align: center;
   }
@@ -973,10 +1063,6 @@ a:hover {
       border-top: 1px solid orange;
       font-size: 20px;
   }
-  
-  table{
-      //margin-bottom: 10px;
-  }  
   
   tr{
       border: solid 2px #1d1d1d;
@@ -1004,6 +1090,7 @@ a:hover {
       height: 300px;
       background: #1d1d1d;
       margin-top: 100px;
+      position: fixed;
       //float: left;
   }
  
@@ -1101,7 +1188,6 @@ a:hover {
   .order-display{
     text-align: center;
     margin-bottom: 60px;
-    width: 600px;
     border: solid 2px #1d1d1d;
   }
   

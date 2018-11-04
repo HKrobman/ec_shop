@@ -20,20 +20,31 @@ html, body{
     display: table-cell;
     text-align: center;
     vertical-align: middle;
-    
-    h1{
-     margin: 0;
+ 
+}
+
+.contents-center{
+    position: relative;
+    top: 300px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.home h1{
      text-indent: .1em;
      text-shadow: 0 0 3px rgba(0, 0, 0, .3);
      letter-spacing: .1em;
      font-weight: bold;
      font-size: 50px;
      line-height: 1.2703;
-    }
+     border-bottom: 2px solid orange;
 }
+
 
 .home-p{
     display: block;
     padding-top:60px;
     font-size: 30px;
+    color: white;
+    
 }

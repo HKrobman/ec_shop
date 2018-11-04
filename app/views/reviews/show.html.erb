@@ -1,9 +1,16 @@
-<div>
-	<li>
-	  <%= @review.name %>
-	  <%= @review.title %>
-	  <%= @review.description%>
-	  <%=link_to "編集", edit_review_path(@review)%>
-	  <%=link_to "削除", review_path(@review), {:method=> "delete", :class=>''}%>
+<% provide(:title, 'Your_Review') %>
+<div class="review-show">
+	<ul>
+	<li class="m-review-show">
+	  <p class="m-review-name">投稿者:<%= @review.name %><span>レビュー投稿日 : <%= @review.created_at.strftime('%Y/%m/%d') %></span></p>
+	  <div class="review-i-c">
+	   	<p class="m-review-title" >評価：<%= @review.rank %><span><%= @review.title %></span></p>
+	   	<p class="m-review-desc"><%= @review.description%></p>
+	  </div>
+	  <div class="review-menu">
+	    <%=link_to "編集", edit_review_path(@review), :class=> 'r-button'%>
+	    <%=link_to "削除", review_path(@review), {:method=> "delete", :class=>'r-button'}%>
+	  </div>
 	</li>
+	</ul>
 </div>

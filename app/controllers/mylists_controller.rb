@@ -11,17 +11,20 @@ class MylistsController < ApplicationController
     def create
         product = Product.find(params[:product_id])
         @mylist = Mylist.create(product_id: product.id, user_id: current_user.id)
-        binding.pry
-        @mylist.save
-        flash[:notice] = "マイリストに追加しました"
-        redirect_to product_path(params[:product_id])
+        if @mylist.save
+          flash[:success] = "マイリストに追加しました"
+          redirect_to product_path(params[:product_id])
+        else
+          flash[:error] = "エラーが発生しました。"
+          redirect_to product_path(params[:product_id])
+        end
     end
     
     def destroy
         @mylist = Mylist.find(params[:id])
         @mylist.destroy
         redirect_to mylists_path(current_user)
-        flash[:notice] = "マイリストから削除しました"
+        flash[:alert] = "マイリストから削除しました"
     end
 
 end

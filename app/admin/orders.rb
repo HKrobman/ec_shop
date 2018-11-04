@@ -27,8 +27,7 @@ ActiveAdmin.register Order do
   end
 
   index do
-    column("注文番号", :sortable => :id) {|order| link_to "##{order.id} ", admin_order_path(order) }
-    #column("State")                   {|order| status_tag(order.state) }
+    column("注文番号", :sortable => :id) {|order| link_to "#{order.id} ", admin_order_path(order) }
     column("注文日", :checked_out_at){|order| order.created_at.strftime('%Y年%m月%d日 %H:%M:%S') }
     column("購入者", :user, :sortable => :user_id){|order| order.addressee_name_kanji}
     column("支払い方法"){|order| order.pay_type}
@@ -39,7 +38,7 @@ ActiveAdmin.register Order do
     column("住所1"){|order| order.addressee_address1}
     column("住所2"){|order| order.addressee_address2}
     column("電話番号"){|order| order.order_telphone}
-    column("発送状況"){|order| order.status}
+    column("発送状況"){|order| order.status ? "発送済み" : "未発送" }
   end
   
 

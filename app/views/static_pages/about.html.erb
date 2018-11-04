@@ -3,26 +3,19 @@
 <div class="about">
   <h1>About us</h1>
   <div  class="about-contents">
-   <p>
-      ●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●
-      ●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●
-      ●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●
-      ●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●
-      ●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●
-      ●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●
-      ●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●
-   </p>
+    <p>会社名 株式会社 MY EC-SHOP</p>
+    <p>運営責任者　山田　太郎</p>
+    <p>〒105-0011 東京都港区芝公園４丁目２-８</p>
+    <p>TEL:　00-1111-0000</p>
+    <p>FAX:　00-1111-0001</p>
   </div>
   <div id="map"></div>
 </div>
 
-
- 
-
 <script type="text/javascript">
 function initMap() {
 
-  var test ={lat: <%= @latitude %>, lng: <%= @longitude %>};
+  var test ={lat:  <%= @latitude %>, lng:  <%= @longitude %>};
   var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 15,
     center: test
@@ -30,7 +23,7 @@ function initMap() {
   var transitLayer = new google.maps.TransitLayer();
   transitLayer.setMap(map);
 
-  var contentString = '住所：<%= @address %>';
+  var contentString = ' <%= @address %>';
   var infowindow = new google.maps.InfoWindow({
     content: contentString
   });
@@ -45,8 +38,7 @@ function initMap() {
     infowindow.open(map, marker);
   });
 }
- </script>
- 
+</script>
  <script async defer
    src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCWcRJpldfXoQHoZCBw6Ih8sRCee0Pifu4&callback=initMap">
  </script>

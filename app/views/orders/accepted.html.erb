@@ -1,5 +1,6 @@
-<div class="home contents-center accepted">
+<% provide(:title, 'Order_Complete') %>
+<div class='home contents-center accepted'>
   <h1>受付完了</h1>
-  <p><%= @order.created_at.strftime('%Y/%m/%d')%>注文を受け付けました</p>
+  <p><%= @order.created_at.strftime('/%m月/%d日')%>、注文を受け付けました</p>
   <p>ご利用ありがとうございました。</p>
 </div>

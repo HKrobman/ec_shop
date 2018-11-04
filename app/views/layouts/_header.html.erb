@@ -1,37 +1,38 @@
-<header class="header">
-   <div class="head">
-     <%= link_to image_tag('logo.png', :size => '130x90'), root_path %>
+<header class='header'>
+   <div class='head'>
+     <%= link_to image_tag('logo.png', size: '130x90'), root_path %>
      
    </div>
    <nav>
-     <div class="header_contents">
+     <div class='header_contents'>
        <div>
-        <section class="section sign_in">
-          <ul class="ul-nav">
+        <section class='section sign_in'>
+          <ul class='ul-nav'>
              <% if signed_in? %>
-               <li><%= link_to "Sign out", destroy_user_session_path, :class =>"list", method: "delete"%></li>
+               <li><%= link_to "Sign out", destroy_user_session_path, class: "list", method: 'delete' %></li>
              <%else%>
-               <li><%= link_to "Sign in", new_user_session_path, :class =>"list" %></li>
+               <li><%= link_to "Sign in", new_user_session_path, class: 'list' %></li>
              <% end %>
-            <li><%= link_to "Products", products_path, :class =>"list" %> </li>
-            <li><%= link_to "About", about_path, :class =>"list" %></li>
-            <li><%= link_to "Contact", new_contact_path, :class =>"list" %></li>
-            <li><%= link_to "FAQ", faq_path, :class =>"list" %></li>
-             <% if signed_in? %>
-              <div class="mypage"> 
-               <%= link_to users_show_path, :class =>"list", method: :get do%>
-                  <i class="fa fa-user-circle"></i>
-                    <p class="icon">Mypage</p>
+            <li><%= link_to "Products", products_path, class: 'list' %> </li>
+            <li><%= link_to "About", about_path, class: 'list' %></li>
+            <% if signed_in? %>
+              <li><%= link_to "Contact", new_contact_path, class: 'list' %></li>
+            <%end%>
+            <li><%= link_to "FAQ", faq_path, class: 'list' %></li>
+            <% if signed_in? %>
+              <div class='mypage'> 
+               <%= link_to users_show_path, class: 'list', method: 'get' do%>
+                  <i class='fa fa-user-circle'></i>
+                    <p class='icon'>Mypage</p>
                <% end %>
               </div>
-              <div class="cart">
-               <%= link_to cart_path(current_cart), :class =>"list", method: :get do%>
-                  <i class="fa fa-shopping-cart"></i>
+              <div class='cart'>
+               <%= link_to cart_path(current_cart), class: 'list', method: 'get' do%>
+                  <i class='fa fa-shopping-cart'></i>
                <% end %>
               </div>
-              <div class="credit">Logo made with <a href="https://www.designevo.com/en/" title="Free Online Logo Maker">DesignEvo</a></div>
-             <% end %>
-             
+              <div class='credit'>Logo made with <a href="https://www.designevo.com/en/" title="Free Online Logo Maker">DesignEvo</a></div>
+            <% end %>
           </ul>
         </section>
        </div>

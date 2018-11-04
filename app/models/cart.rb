@@ -2,6 +2,8 @@ class Cart < ApplicationRecord
     
   has_many :cart_items, dependent: :destroy
   has_many :products, through: :cart_items
+  
+  validates :user_id, presence: true
 
   #productページの数量ボックスから個数を選択した場合
    def add_product(product_id, quantity)
