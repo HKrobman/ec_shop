@@ -16,10 +16,29 @@
 	   	<p class="m-review-desc"><%= review.description%></p>
 	   </div>
 	   <div class="review-menu">
+
 	   	<% if review.user_id == current_user.id %>
-	  		<p class="" ><%=link_to "編集・削除", review_path(review), class: 'r-button'%></p>
+	  		
+	  		<p>
+	  			<span class="u-count">役に立った:　<%=Like.where(review_id: review.id).count%>票</span>
+	  			<%=link_to "編集・削除", review_path(review), class: 'r-button'%>
+	  		</p>
+	  	
 	  	<%else%>
-	  		<p class="m-review-title" >役に立った(ボタン実装)</p>
+		
+	  		<% if Like.find_by(user_id: current_user.id, review_id: review.id) %>
+	  			役に立った:　<%=Like.where(review_id: review.id).count%>票 
+	  			<%= link_to like_path(review), class: 'b', method: :delete do%>
+	  				<span class="fa fa-heart review-hert-on"></span>
+	  			<%end%>
+	  			
+	  		<%else%>
+	  			役に立った:　<%=Like.where(review_id: review.id).count%>票
+	  		  <%=link_to likes_path(review_id: review.id), class:'a', method: :post do%>
+	  				<span class="fa fa-heart review-hert-off"></span>
+	  		  <%end%>
+	  		<%end%>
+	  		
 			<%end%>
 		</div>
 	 </li>

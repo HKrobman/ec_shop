@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   
   resources :users, only: [:show]  #sign_upなどはdeviseの機能を利用
   
+  resources :likes, only:[:create, :destroy]
   resources :mylists
   resources :contacts, only: [:new, :create]
   resources :carts

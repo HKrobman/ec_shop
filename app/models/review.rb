@@ -1,6 +1,9 @@
 class Review < ApplicationRecord
     belongs_to :product
-    belongs_to :user
+    #belongs_to :user
+    has_many :likes, dependent: :destroy
+    has_many :users,through: :likes
+    
     
     validate :add_error_sample
     validates :name, :title, :description,:user_id, :product_id, presence: true

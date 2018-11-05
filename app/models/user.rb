@@ -15,8 +15,11 @@ class User < ApplicationRecord
   has_many :mylists, dependent: :destroy
   has_many :products,through: :mylists
   
-  has_many :reviews, dependent: :destroy
+ # has_many :reviews, dependent: :destroy
   has_many :products, through: :reviews
+  
+  has_many :likes, dependent: :destroy
+  has_many :reviews,through: :likes
   
   has_many :orders, dependent: :destroy
   has_many :contacts

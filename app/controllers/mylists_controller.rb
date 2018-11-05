@@ -10,7 +10,7 @@ class MylistsController < ApplicationController
     
     def create
         product = Product.find(params[:product_id])
-        @mylist = Mylist.create(product_id: product.id, user_id: current_user.id)
+        @mylist = Mylist.new(product_id: product.id, user_id: current_user.id) #create?
         if @mylist.save
           flash[:success] = "マイリストに追加しました"
           redirect_to product_path(params[:product_id])

@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   
   
   def current_cart
-      @cart ||= Cart.find_or_create_by(user_id: current_user.id)
+    @cart ||= Cart.find_or_create_by(user_id: current_user.id)
   end
   
   protected

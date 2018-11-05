@@ -1,7 +1,7 @@
 <% provide(:title, 'Orders') %>
 <div class = 'order-index'>
 <div class = "">
-<% if @orders %>  
+<% if @orders.present? %>  
   <%@orders.each do |order|%>
     <div class='order-display'>
     <div class='m-topi'>注文日<%=order.created_at.strftime('%Y年%m月%d日')%></div>

@@ -71,12 +71,12 @@ class OrdersController < ApplicationController
     end
     
 private
-
+=begin  多分いらない
     def order_param
       params.require(:order).permit(:addressee_name_kana,:addressee_name_kanji,:addressee_zip_code,:order_telphone,
                                     :addressee_prefecture,:addressee_city,:addressee_address1, :pay_type)
     end
-
+=end
     def order_params
       params.require(:order).permit(:addressee_name_kana,:addressee_name_kanji,:addressee_zip_code,:order_telphone,
                                      :addressee_prefecture,:addressee_city,:addressee_address1, :pay_type, :total_price,:user_id)
