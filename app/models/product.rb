@@ -8,9 +8,8 @@ class Product < ApplicationRecord
     
     has_many :cart_items, dependent: :destroy
     has_many :orders, through: :cart_items
-    #has_many :carts, through: :cart_items
-    
     has_one :stock
+    
     attr_accessor :image_url 
     mount_uploader :image_url, ImageUploader
     validates :name, :category_id,:company,:released_on,:code,:list_price,:sale_price,:description,:image_url,:delivery_days,:active,:color, presence: true
@@ -18,16 +17,18 @@ class Product < ApplicationRecord
     validates :list_price ,:sale_price, numericality: {greater_than_or_equal_to: 0}
     #image_urlの検証はimage_uploader.rbに記述されている
     
-    #attr_accessor :max_day
-    $max_day = 0
+    
     
   def self.search(search)
     if search
-      where(['name LIKE ?', "%#{search}%"]) #検索とnameの部分一致を表示
+      where(['name LIKE ?', "%#{search}%"]) 
     else
       all 
     end
   end
+  
+  #最大配達日数を入れるためのグローバル変数。改善の余地あり。
+  $max_day = 0
   
   def delivery_day(item)
     $max_day = item.product.delivery_days if item.product.delivery_days > $max_day 

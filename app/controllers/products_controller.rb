@@ -22,8 +22,8 @@ class ProductsController < ApplicationController
         stock.times do |quantity|
           quantity < 10 ? @max=quantity+1 : @max = 10
         end
-     #商品ページには最新のレビューを1件表示する 
-      @last_review = @product.reviews.last
+     #最新レビューを1件表示。 review.rbにてdefault_scope -> {order('created_at DESC')}に指定しているためlastではなくfirstメソッドを利用
+      @last_review = @product.reviews.first
       @review_rank = @product.reviews.average(:rank)
       @product_description = @product.description.split("\r\n")
       

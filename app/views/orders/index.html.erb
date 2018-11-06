@@ -16,7 +16,7 @@
     </tr>
     <%end%>
     </table>
-      <div class='m-topi'>合計金額：<%= order.total_price.to_s(:delimited) %>円</div>
+      <div>合計金額：<%= order.total_price.to_s(:delimited) %>円</div>
       <div><%=link_to "詳細を見る(発送状況)", order_path(order)%></div>
     </div>
   <%end%>

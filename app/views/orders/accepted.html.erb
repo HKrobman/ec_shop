@@ -1,6 +1,7 @@
 <% provide(:title, 'Order_Complete') %>
 <div class='home contents-center accepted'>
   <h1>受付完了</h1>
-  <p><%= @order.created_at.strftime('/%m月/%d日')%>、注文を受け付けました</p>
+  <p>本日<%= @order.created_at.strftime('%m月%d日')%>、注文を受け付けました。</p>
+  <p>配達予定日は <%= @order.delivery_date.strftime('%m月%d日')%>です。</p>
   <p>ご利用ありがとうございました。</p>
 </div>

@@ -21,6 +21,7 @@ ActiveAdmin.register Order do
       f.input :addressee_address2
       f.input :pay_type
       f.input :total_price
+      f.input :delivery_date
       f.input :status
     end
     f.actions
@@ -29,6 +30,7 @@ ActiveAdmin.register Order do
   index do
     column("注文番号", :sortable => :id) {|order| link_to "#{order.id} ", admin_order_path(order) }
     column("注文日", :checked_out_at){|order| order.created_at.strftime('%Y年%m月%d日 %H:%M:%S') }
+    #column("配達予定日",:checked_out_at){|order| order.delivery_date.strftime('%Y年%m月%d日 %H:%M:%S') } 
     column("購入者", :user, :sortable => :user_id){|order| order.addressee_name_kanji}
     column("支払い方法"){|order| order.pay_type}
     column("合計金額")                   {|order| order.total_price }
@@ -63,6 +65,7 @@ ActiveAdmin.register Order do
         end
       end
       table_for(order.cart_items) do |t|
+        t.column("配達予定日",:checked_out_at){order.delivery_date.strftime('%Y年%m月%d日 %H:%M:%S') } 
         t.column("郵便番号"){ order.addressee_zip_code }
         t.column("都道府県"){ order.addressee_prefecture }
         t.column("市町村区"){ order.addressee_city }

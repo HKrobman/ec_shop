@@ -1,7 +1,7 @@
 <% provide(:title, 'Order') %>
 <div class = 'order-show'>
   <div class='order-display'>
-  <div class="">注文日<%=@order.created_at.strftime('%Y年%m月%d日')%></div>
+  <div class="m-topi">注文日<%=@order.created_at.strftime('%Y年%m月%d日')%></div>
   <%@order.cart_items.each do |item|%>
   <table align = 'center'>
   <tr>
@@ -16,12 +16,13 @@
   <div>支払い方法: <%=@order.pay_type%></div>
   </div>
   
-  <div>
+  <div class="del-add">
     <p>お届け先住所</p>
     <p><%=@order.addressee_name_kanji%> (<%=@order.addressee_name_kana%>)</p>
     <p>〒<%=@order.addressee_zip_code%> <%=@order.addressee_prefecture%> 
     <%=@order.addressee_city%> <%=@order.addressee_address1%> <%=@order.addressee_address2%></p>
-    <p>発送状況 : <%=@order_status%></p>
+    <p>配達予定日 : <%=@order.delivery_date.strftime('%Y年%m月%d日')%></p>
+    <p>発送状況 : <span><%=@order_status%></span></p>
   </div>
   
 </div>

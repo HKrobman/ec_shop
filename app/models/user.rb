@@ -11,6 +11,8 @@ class User < ApplicationRecord
   
   validates :password, presence: true, length:{minimum: 6}, :on => :create
   validates :password, length: {minimum: 6, maximum: 120}, on: :update, allow_blank: true
+  validates :telphone, uniqueness: true, on: :update
+  
   
   has_many :mylists, dependent: :destroy
   has_many :products,through: :mylists

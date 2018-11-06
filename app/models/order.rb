@@ -4,16 +4,13 @@ class Order < ApplicationRecord
     has_many :cart_items, dependent: :destroy
     PAY_TYPE = ["現金","クレジットカード"]
     
-    #validates :pay_type, presence: true, inclusion: PAY_TYPE
+    
     validates :addressee_name_kana, presence: true, format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/, message: 'はカタカナで入力して下さい。'}
-    validates :addressee_name_kanji, presence: true
-    validates :order_telphone, presence: true, uniqueness: true
-    validates :addressee_zip_code, presence: true
-    validates :addressee_prefecture, presence: true
-    validates :addressee_city, presence: true
-    validates :addressee_address1, presence: true
+    validates :addressee_name_kanji, :order_telphone,  :addressee_zip_code, :addressee_prefecture, :addressee_city, :addressee_address1, presence: true
+    validates :addressee_zip_code, format: {with:/\A[0-9]{7}\z/}
     
     default_scope -> {order('created_at DESC')}
+    
     
     validate :add_error_sample
     def add_error_sample
@@ -22,10 +19,17 @@ class Order < ApplicationRecord
       end
     end
     
+    #注文後のカートの初期化
     def add_items(cart)
-	  cart.cart_items.each do |item|
-		item.cart_id = nil
-		cart_items << item
-	  end
+	    cart.cart_items.each do |item|
+		    item.cart_id = nil
+		    cart_items << item
+	    end
     end
+
+#未実装    
+    def add_delivery_date(max_day)
+       self.update(delivery_date: max_day)
+    end
+    
 end
