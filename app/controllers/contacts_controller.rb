@@ -9,17 +9,10 @@ class ContactsController < ApplicationController
   end
   
   def create
-    binding.pry
-    @contact = Contact.new(
-      user_id: params[:user_id],
-      name: contact_params[:name],
-      telphone: contact_params[:telphone],
-      email: contact_params[:email],
-      content_type: contact_params[:content_type],
-      content: contact_params[:content]
-      )
-      
+    @contact = Contact.new(contact_params)
     if @contact.save
+      ContactMailer.sent(@contact).deliver
+      flash[:success] = "Thanks!! We'll be in touch."
       render :accepted
     else
       flash[:alert] = "入力内容をお確かめください"
@@ -30,7 +23,17 @@ class ContactsController < ApplicationController
   private
 
     def contact_params
-      params.require(:contact).permit(:name, :telphone, :email, :content_type, :content, :user_id)
+      params.require(:contact).permit(:name, :telphone, :email, :content_type, :content, :user_id )
     end
 
 end
+=begin
+def create 
+    @contact = Contact.new(contact_params)
+    if @contact.save
+      ContactMailer.sent(@contact).deliver
+      flash[:success] = "Thanks!! We'll be in touch."
+      redirect_to root_url
+    end
+  end
+=end

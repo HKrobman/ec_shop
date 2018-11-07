@@ -24,7 +24,7 @@ class User < ApplicationRecord
   has_many :reviews,through: :likes
   
   has_many :orders, dependent: :destroy
-  has_many :contacts
+  has_many :contacts, dependent: :destroy
   
   has_one :cart, dependent: :destroy
 

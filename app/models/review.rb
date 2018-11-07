@@ -6,7 +6,7 @@ class Review < ApplicationRecord
     
     
     validate :add_error_sample
-    validates :name, :title, :description,:user_id, :product_id, presence: true
+    validates :name, :title, :description, :user_id, :product_id, presence: true
     validates :title, length: {maximum: 50}
     validates :description, length: {maximum: 300}
     default_scope -> {order('created_at DESC')}

@@ -12,35 +12,18 @@ class ReviewsController < ApplicationController
   end
 
   
-  
   def new
     @review = Review.new
-    #@product = Product.find(params[:product_id])
+    @review.product_id = params[:product_id] 
   end
   
   def edit   
-    binding.pry
-    #@product = Product.find(params[:id])
     @review = Review.find(params[:id]) 
-=begin    
-    @review.rank = @review.rank 
-    @review.name = @review.name
-    @review.title = @review.title
-    @review.description = @review.description
-=end
   end
   
   
   def update
-    #binding.pry
     @review = Review.find(params[:id])
-=begin
-    @review = Review.find(params[:id])
-    @review.rank = params[:rank].to_i
-    @review.name = params[:name]
-    @review.title = params[:title]
-    @review.description = params[:description]
-=end
     if @review.update_attributes(review_params)
       flash[:success] = "レビューを編集しました。"
       redirect_to @review
@@ -48,34 +31,16 @@ class ReviewsController < ApplicationController
       redirect_to edit_review_path(@review)
       flash[:alert] = "入力項目をお確かめください"
     end
-=begin
-    @review = Review.new(
-      rank: review_params[:rank].to_i,
-      name: review_params[:name],
-      title: review_params[:title],
-      description: review_params[:description],
-      user_id: current_user.id,
-      product_id: params[:product_id]
-     )
-     redirect_to reviews_path(product_id: params[:product_id])  if @review.save 
-=end
   end
 
 
   
   def create
-    @review = Review.new(
-      rank: review_params[:rank].to_i,
-      name: review_params[:name],
-      title: review_params[:title],
-      description: review_params[:description],
-      user_id: current_user.id,
-      product_id: params[:product_id]
-      )
+    @review = Review.new(review_params)
     if @review.save   
-      redirect_to product_path(params[:product_id])  
+      redirect_to product_path(@review.product_id)  
     else
-      render :new   
+      render :new
     end
   end
   
@@ -93,6 +58,6 @@ class ReviewsController < ApplicationController
    private
 
     def review_params
-      params.require(:review).permit(:rank, :name, :title, :description, :product_id, :user_id)
+      params.require(:review).permit(:rank, :name, :title, :description, :product_id ,:user_id)
     end
 end

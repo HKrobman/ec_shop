@@ -2,7 +2,7 @@
 <div class="contact">
     <h1>Contact</h1>
     <%= form_for @contact do |f| %>
-    <%= hidden_field_tag :user_id,  @user.id %>
+    <%= f.hidden_field :user_id, value:  @user.id %>
     
     <div class="field">
       <%= f.label :name, '氏名' %><br />
