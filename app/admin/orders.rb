@@ -30,7 +30,7 @@ ActiveAdmin.register Order do
   index do
     column("注文番号", :sortable => :id) {|order| link_to "#{order.id} ", admin_order_path(order) }
     column("注文日", :checked_out_at){|order| order.created_at.strftime('%Y年%m月%d日 %H:%M:%S') }
-    #column("配達予定日",:checked_out_at){|order| order.delivery_date.strftime('%Y年%m月%d日 %H:%M:%S') } 
+    column("配達予定日",:checked_out_at){|order| order.delivery_date.strftime('%Y年%m月%d日') } 
     column("購入者", :user, :sortable => :user_id){|order| order.addressee_name_kanji}
     column("支払い方法"){|order| order.pay_type}
     column("合計金額")                   {|order| order.total_price }
@@ -52,19 +52,17 @@ ActiveAdmin.register Order do
         t.column("注文個数")   {|item|  item.quantity }
         t.column("商品価格")   {|item|  item.product.sale_price }
         tr :class => "odd" do
-        t.column("注文価格") {order.total_price}
-          td ""
-          td ""
-          td ""
-          if order.pay_type == "現金"
-            td "(内訳: <商品合計> + <送料350円> + <手数料400円> )"
-          else
-            td "(内訳: <商品合計> + <送料:350円> )"
-          end
+          
+        table_for(order) do |t|  
+          t.column("注文日") {order.created_at.strftime('%Y年%m月%d日 %H:%M:%S')}
           t.column("支払いタイプ") {order.pay_type}
+          t.column("注文価格") {order.total_price}
+        end
         end
       end
-      table_for(order.cart_items) do |t|
+    
+      
+      table_for(order) do |t|
         t.column("配達予定日",:checked_out_at){order.delivery_date.strftime('%Y年%m月%d日 %H:%M:%S') } 
         t.column("郵便番号"){ order.addressee_zip_code }
         t.column("都道府県"){ order.addressee_prefecture }

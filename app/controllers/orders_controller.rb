@@ -47,13 +47,12 @@ class OrdersController < ApplicationController
     
     def create
       @order = Order.new(order_params)
-      binding.pry
-      @order.add_items(current_cart)
+      @order.add_items(current_cart)  
       if params[:credit]
         render :new
       elsif @order.save
-        @order.cart_items.each { |item| item.product.sold! } #在庫数から購入数を引く
-        render :accepted
+        @order.cart_items.each { |item| item.product.sold! }
+        redirect_to accepted_orders_path
       else
         redirect_to new_order_path
         flash[:error] = "必要項目を入力してください"
@@ -62,16 +61,17 @@ class OrdersController < ApplicationController
     end
     
     def accepted
-      @order = Order.where(user_id: current_user.id).last
+      #order.rbにてdefault_scopeがdescに指定されているためfirstで最新のorderを取得(紛らわしいため改善の余地あり)
+      @order = Order.where(user_id: current_user.id).first 
     end
     
     #pay-jpテストモード
     def pay
       Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
       Payjp::Charge.create(
-      :amount => 3500,
+      :amount => 200,
       :card => params['payjp-token'],
-      :currency => 'jpy'
+      :currency => "jpy",
       )
     end
     
