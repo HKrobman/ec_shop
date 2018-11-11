@@ -11,13 +11,12 @@ class ContactsController < ApplicationController
   def create
     @contact = Contact.new(contact_params)
     if @contact.save
-      ContactMailer.sent(@contact).deliver
-      flash[:success] = "Thanks!! We'll be in touch."
+      #ContactMailer.sent(@contact).deliver
+      flash[:success] = "ありがとうございました。"
       render :accepted
     else
-      flash[:alert] = "入力内容をお確かめください"
+      flash[:alert] = "エラーが発生しました。"
     end
-
   end
 
   private
@@ -27,13 +26,3 @@ class ContactsController < ApplicationController
     end
 
 end
-=begin
-def create 
-    @contact = Contact.new(contact_params)
-    if @contact.save
-      ContactMailer.sent(@contact).deliver
-      flash[:success] = "Thanks!! We'll be in touch."
-      redirect_to root_url
-    end
-  end
-=end

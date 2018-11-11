@@ -42,7 +42,7 @@ ActiveAdmin.register Product do
       resource.name
     end
     row 'カテゴリー' do
-      resource.category
+      resource.category.category_name
     end
     row '会社名' do
       resource.company

@@ -54,10 +54,9 @@ class OrdersController < ApplicationController
         @order.cart_items.each { |item| item.product.sold! }
         redirect_to accepted_orders_path
       else
-        redirect_to new_order_path
-        flash[:error] = "必要項目を入力してください"
+        redirect_back(fallback_location: confirm_orders_path)
+        flash[:alert] = "エラーが発生しました。"
       end        
-
     end
     
     def accepted
@@ -79,7 +78,7 @@ private
 
   def order_params
     params.require(:order).permit(:addressee_name_kana,:addressee_name_kanji,:addressee_zip_code,:order_telphone,
-                                  :addressee_prefecture,:addressee_city,:addressee_address1, :pay_type, :total_price,:user_id, :delivery_date)
+              :addressee_prefecture,:addressee_city,:addressee_address1, :pay_type, :total_price,:user_id, :delivery_date)
   end
     
 end

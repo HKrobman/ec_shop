@@ -8,7 +8,7 @@ class ReviewsController < ApplicationController
   
   
   def show
-   @review = Review.find(params[:id])
+      @review = Review.find(params[:id])
   end
 
   
@@ -55,9 +55,9 @@ class ReviewsController < ApplicationController
     end
   end
   
-   private
+private
 
-    def review_params
-      params.require(:review).permit(:rank, :name, :title, :description, :product_id ,:user_id)
-    end
+  def review_params
+    params.require(:review).permit(:rank, :name, :title, :description, :product_id ,:user_id)
+  end
 end

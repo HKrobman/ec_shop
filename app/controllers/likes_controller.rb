@@ -5,7 +5,8 @@ class LikesController < ApplicationController
     if like.save
       redirect_back(fallback_location: reviews_path)
     else
-      #例外処理
+      redirect_back(fallback_location: reviews_path)
+      flash[:alert] = "エラーが発生しました。"
     end
   end
   
@@ -14,7 +15,8 @@ class LikesController < ApplicationController
     if like.destroy
       redirect_back(fallback_location: reviews_path)
     else
-      #例外処理
+      redirect_back(fallback_location: reviews_path)
+      flash[:alert] = "エラーが発生しました。"
     end
   end
   

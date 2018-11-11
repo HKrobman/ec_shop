@@ -34,6 +34,7 @@ class Product < ApplicationRecord
     $max_day = item.product.delivery_days if item.product.delivery_days > $max_day 
   end
   
+  
   def sold!
     self.stock.update(sales_quantity: self.stock.sales_quantity - 1)
   end

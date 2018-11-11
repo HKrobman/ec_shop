@@ -1,5 +1,8 @@
 <% provide(:title, 'Your_Review') %>
 <div class="review-show">
+	<div class="review-back">
+		<%=link_to "一覧に戻る", reviews_path(product_id: @review.product.id)%>
+	</div>
 	<ul>
 	<li class="m-review-show">
 	  <p class="m-review-name">投稿者:<%= @review.name %><span>レビュー投稿日 : <%= @review.created_at.strftime('%Y/%m/%d') %></span></p>

@@ -1,6 +1,5 @@
 <% provide(:title, 'Orders') %>
 <div class = 'order-index'>
-<div class = "">
 <% if @orders.present? %>  
   <%@orders.each do |order|%>
     <div class='order-display'>
@@ -12,7 +11,11 @@
       <td><%= item.product.name %></td>
       <td><%= item.product.sale_price.to_s(:delimited) %>円</td>
       <td><%= item.quantity %>個</td>
-      <td><span class='post-review'><%= link_to "レビューを投稿する", new_review_path(product_id: item.product.id), class: 'review_post' %></span></td>
+      <% if Review.find_by(user_id: current_user.id, product_id: item.product.id) %>
+        <td><%= link_to "レビュー投稿済み", reviews_path(product_id: item.product.id), class: 'posted-review' %></td>
+      <%else%>
+        <td><%= link_to "レビューを投稿する", new_review_path(product_id: item.product.id), class: 'review-post' %></td>
+      <%end%>
     </tr>                                                            
     <%end%>
     </table>

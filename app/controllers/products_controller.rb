@@ -3,11 +3,13 @@ class ProductsController < ApplicationController
     
     def index
        @categories = Category.all
-       product = if params[:category_id]     #ページ上部のカテゴリー名を選択すると選択されたカテゴリーの商品を表示
+       product = if params[:category_id]
                    Product.where(category_id: params[:category_id])
-                 elsif params[:category]&.any?(&:present?) && params[:search] #ページ上部検索ボックスでカテゴリー指定&ワード入力で検索した場合
+      #ページ上部検索ボックスでカテゴリー指定&ワード入力で検索した場合
+                 elsif params[:category]&.any?(&:present?) && params[:search] 
                    Product.search(params[:search]).where(category_id: params[:category])
-                 elsif params[:search] #ページ上部検索ボックスでカテゴリー未指定&ワードのみを入力して検索した場合 
+      #ページ上部検索ボックスでカテゴリー未指定&ワードのみを入力して検索した場合 
+                 elsif params[:search] 
                    Product.search(params[:search])
                  else                                              
                    Product.all
@@ -18,10 +20,9 @@ class ProductsController < ApplicationController
     def show
       stock = Stock.find_by(product_id: params[:id])[:sales_quantity]
       #在庫数が10個以下の場合はnumber_fieldで選択できる値を在庫数分だけにする(一度に注文できる個数は10個まで)
-      stock < 10 ? @max = stock + 1  : @max = 10
+      stock < 10 ? @max = stock : @max = 10
       @stock = judge_status(stock)
       
-     #最新レビューを1件表示。 
       #review.rbにてdefault_scope -> {order('created_at DESC')}に指定しているため
       #lastではなくfirstメソッドを利用し最新のレビューを取得している(改善の余地あり。)
       @last_review = @product.reviews.first
@@ -38,20 +39,13 @@ class ProductsController < ApplicationController
         @mylist = Mylist.find_by(user_id: current_user.id, product_id: params[:id])
       end
     end
+
+private
     
-    def create
-    end
+  def set_product
+    @product = Product.find(params[:id])
+  end
     
-    def update
-    end
-    
-    private
-    
-    def set_product
-      @product = Product.find(params[:id])
-    end
-    
-        
   def judge_status(stock)
     stock > 20 ? "あり" : "残りわずか"
   end
