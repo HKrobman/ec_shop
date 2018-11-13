@@ -3,8 +3,7 @@ class ApplicationController < ActionController::Base
    before_action :configure_permitted_parameters, if: :devise_controller? 
    helper_method :current_cart 
   
-  private 
-  
+private 
   
   def current_cart
     @cart ||= Cart.find_or_create_by(user_id: current_user.id)

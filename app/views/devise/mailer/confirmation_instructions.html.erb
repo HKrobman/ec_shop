@@ -2,4 +2,4 @@
 
 <p>アカウントを有効化するには、下のリンクにアクセスしてください。</p>
 
-<p><%= link_to 'アカウントを有効化する', confirmation_url(@resource, confirmation_token: @token) %></p>
+<p><%= link_to 'アカウントを有効化する', new_user_confirmation_url(@resource, confirmation_token: @token) %></p>
