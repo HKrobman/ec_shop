@@ -14,6 +14,7 @@ class ProductsController < ApplicationController
                  else                                              
                    Product.all
                  end
+                 
       @products = product.order(created_at: :desc).page(params[:page]).per(8)
       flash.now[:notice] = " 検索条件に一致する商品は見つかりませんでした。" if product.empty?
     end

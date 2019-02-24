@@ -8,7 +8,7 @@ gem 'activeadmin'
 gem 'rails', '~> 5.2.0'
 gem 'mysql2', '>= 0.4.4', '< 0.6.0'
 gem 'puma', '~> 3.11'
-gem 'bootstrap-sass', '~> 3.3.7'
+gem "bootstrap-sass", ">= 3.4.1"
 gem 'jquery-rails'
 gem 'sass-rails', '~> 5.0'
 gem 'font-awesome-rails'
